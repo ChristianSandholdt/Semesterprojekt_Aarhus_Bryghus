@@ -16,13 +16,25 @@ public class Ordre {
     }
 
     // Aggregation -> 0..*
-    private final ArrayList<Ordrelinje> ordrelines = new ArrayList<>();
+    private final ArrayList<Ordrelinje> orderLines = new ArrayList<>();
 
     public ArrayList<Ordrelinje> getOrdrelinjes() {
-        return new ArrayList<>(ordrelines);
+        return new ArrayList<>(orderLines);
     }
 
     public Ordrelinje createOrderLine(int antal, Produkt produkt){
-        OrderLinje
+        Ordrelinje orderLine = new Ordrelinje(antal,produkt);
+        orderLines.add(orderLine);
+        return orderLine;
+    }
+
+    //Pre: The OrderLine is not connected to an Order.
+    public void addOrderLine(Ordrelinje ordrelinje){
+        orderLines.add(ordrelinje);
+    }
+
+    //Pre: The OrderLine is connected to an Order.
+    public void removeOrderLine(Ordrelinje ordrelinje){
+        orderLines.remove(ordrelinje);
     }
 }
