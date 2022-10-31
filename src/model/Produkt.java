@@ -7,7 +7,7 @@ public class Produkt {
     private String beskrivelse;
     private Produktgruppe produktgruppe;
     private final ArrayList<Pris> priser = new ArrayList<>();
-    // -------------------------------------------------------------------
+    // ----------------------------------------------------------------------
     public Produkt(String navn, String beskrivelse) {
         this.navn = navn;
         this.beskrivelse = beskrivelse;
