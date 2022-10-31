@@ -1,5 +1,7 @@
 package controller;
 
+import model.Produkt;
+
 public abstract class Controller {
 
     private static Storage storage;
@@ -14,8 +16,22 @@ public abstract class Controller {
     //------------------------------------------------------------------------
 
     /**
-     * Create a
+     * Create a new produkt
      */
+    public static Produkt createProdukt(String name, String beskrivelse){
+        Produkt produkt = new Produkt(name,beskrivelse);
+        storage.storeProdukt(produkt);
+        return produkt;
+    }
+
+    public static void deleteProdukt(Produkt produkt){
+        storage.deleteProdukt(produkt);
+    }
+
+    public static void updateProdukt(Produkt produkt, String name, String beskrivelse){
+        produkt.setNavn(name);
+        produkt.setBeskrivelse(name);
+    }
 
 
 }

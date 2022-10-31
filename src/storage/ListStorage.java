@@ -11,29 +11,33 @@ import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
 
+    private List<Produkt> produkter = new ArrayList<>();
     private List<Produktgruppe> produktgrupper = new ArrayList<>();
 
-    private List<Produktgruppe> getProduktgrupper = new ArrayList<>();
-
-    public void storeProduktgruppe(Produktgruppe produktgruppe){
+    @Override
+    public List<Produktgruppe> getProduktgruppe() {
+        return new ArrayList<>(produktgrupper);
+    }
+    @Override
+    public void storeProduktgruppe(Produktgruppe produktgruppe) {
         produktgrupper.add(produktgruppe);
     }
-
-    public void removeProduktgruppe(Produktgruppe produktgruppe){
-        produktgrupper.add(produktgruppe);
+    @Override
+    public void deleteProduktgruppe(Produktgruppe produktgruppe) {
+        produktgrupper.remove(produktgruppe);
+    }
+    @Override
+    public List<Produkt> getProdukt() {
+        return new ArrayList<>(produkter);
     }
 
-    private List<Produkt> produkter = new ArrayList<>();
-
-    private List<Produkt> getProdukter(){
-        return new ArrayList<Produkt>(produkter);
-    }
-
-    public void storeProdukt(Produkt produkt){
+    @Override
+    public void storeProdukt(Produkt produkt) {
         produkter.add(produkt);
     }
 
-    public void removeProdukt(Produkt produkt){
+    @Override
+    public void deleteProdukt(Produkt produkt) {
         produkter.remove(produkt);
     }
 
@@ -76,4 +80,6 @@ public class ListStorage implements Storage, Serializable {
             return null;
         }
     }
+
+
 }
