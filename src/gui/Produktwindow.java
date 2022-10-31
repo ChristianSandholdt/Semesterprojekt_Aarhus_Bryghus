@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
@@ -29,6 +30,10 @@ public class Produktwindow extends Stage{
 
     }
     private void initContent(GridPane pane){
+        pane.setGridLinesVisible(false);
+        pane.setPadding(new Insets(20));
+        pane.setHgap(10);
+        pane.setVgap(10);
 
     }
 }
