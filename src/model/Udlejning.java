@@ -7,17 +7,20 @@ public class Udlejning {
     private final int liter;
     private final double rest;
     private double pant = 200;
-    private double anlæg;
+    private double anlaeg;
+    private int krus = 60;
     private final Ordrelinje ordrelinje;
 
 
-    public Udlejning(int antal, double pris, Produkt produkt, int liter, double rest, double pant, Ordrelinje ordrelinje) {
+    public Udlejning(int antal, double pris, Produkt produkt, int liter, double rest, double pant, double anlaeg, int krus, Ordrelinje ordrelinje) {
         this.antal = antal;
         this.pris = pris;
         this.produkt = produkt;
         this.liter = liter;
         this.rest = rest;
         this.pant = pant;
+        this.anlaeg = anlaeg;
+        this.krus = krus;
         this.ordrelinje = ordrelinje;
     }
 
@@ -52,7 +55,7 @@ public class Udlejning {
 
     public double pris(){
         double totalPris = 0;
-        totalPris = (pris / 20 * liter + pant) * antal;
+        totalPris = (pris / 20 * liter + pant) * antal + krus + anlaeg;
         return totalPris;
     }
     public double udregnRest(){
@@ -60,7 +63,7 @@ public class Udlejning {
         if(antal < 1)
             return retur;
         else
-            return retur + antal * pris + pant;
+            return retur + (antal * pris) + pant + anlaeg;
     }
 
 }
