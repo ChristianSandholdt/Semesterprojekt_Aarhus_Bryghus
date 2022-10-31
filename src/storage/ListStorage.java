@@ -3,12 +3,25 @@ package storage;
 import controller.Storage;
 import model.Ordre;
 import model.Produkt;
+import model.Produktgruppe;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListStorage implements Storage, Serializable {
+
+    private List<Produktgruppe> produktgrupper = new ArrayList<>();
+
+    private List<Produktgruppe> getProduktgrupper = new ArrayList<>();
+
+    public void storeProduktgruppe(Produktgruppe produktgruppe){
+        produktgrupper.add(produktgruppe);
+    }
+
+    public void removeProduktgruppe(Produktgruppe produktgruppe){
+        produktgrupper.add(produktgruppe);
+    }
 
     private List<Produkt> produkter = new ArrayList<>();
 

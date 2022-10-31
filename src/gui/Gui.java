@@ -44,6 +44,7 @@ public class Gui extends Application {
         btnProdukt.setMinHeight(100);
         btnProdukt.setMinWidth(120);
         pane.add(btnProdukt,0,0);
+        btnProdukt.setOnAction(event -> this.btnProduktAction());
 
         //Ordre
         Button btnOrdre = new Button("Ny Ordre");
@@ -55,13 +56,13 @@ public class Gui extends Application {
         Button btnStatistik = new Button("Statistik");
         btnStatistik.setMinHeight(100);
         btnStatistik.setMinWidth(120);
-        pane.add(btnStatistik,1,1);
+        pane.add(btnStatistik,0,1);
 
         //Rundvisning
         Button btnRundvisning = new Button("Book Rundvisning");
         btnRundvisning.setMinHeight(100);
         btnRundvisning.setMinWidth(120);
-        pane.add(btnRundvisning,0,1);
+        pane.add(btnRundvisning,1,1);
     }
 
     private void btnProduktAction(){
