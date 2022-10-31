@@ -9,10 +9,10 @@ public class Udlejning {
     private double pant = 200;
     private double anlaeg;
     private int krus = 60;
-    private final Ordrelinje ordrelinje;
+    private Ordrelinje ordrelinje;
 
 
-    public Udlejning(int antal, double pris, Produkt produkt, int liter, double rest, double pant, double anlaeg, int krus, Ordrelinje ordrelinje) {
+    public Udlejning(int antal, double pris, Produkt produkt, int liter, double rest, double pant, double anlaeg, int krus) {
         this.antal = antal;
         this.pris = pris;
         this.produkt = produkt;
@@ -21,7 +21,6 @@ public class Udlejning {
         this.pant = pant;
         this.anlaeg = anlaeg;
         this.krus = krus;
-        this.ordrelinje = ordrelinje;
     }
 
 
