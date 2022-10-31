@@ -7,6 +7,7 @@ public class Udlejning {
     private final int liter;
     private final double rest;
     private double pant = 200;
+    private double anlæg;
     private final Ordrelinje ordrelinje;
 
 
