@@ -1,6 +1,6 @@
 package controller;
 
-public class Controller {
+public abstract class Controller {
 
     private static Storage storage;
 
@@ -12,4 +12,10 @@ public class Controller {
     }
 
     //------------------------------------------------------------------------
+
+    /**
+     * Create a
+     */
+
+
 }
