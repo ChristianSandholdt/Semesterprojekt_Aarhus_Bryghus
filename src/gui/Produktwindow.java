@@ -2,10 +2,13 @@ package gui;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Produktgruppe;
 
 public class Produktwindow extends Stage{
 
@@ -29,11 +32,18 @@ public class Produktwindow extends Stage{
         this.setScene(scene);
 
     }
+    private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
         pane.setHgap(10);
         pane.setVgap(10);
+
+        Label lblProduktGruppe = new Label("Produktgrupper");
+        pane.add(lblProduktGruppe,0,0);
+
+        pane.add(lvwProduktGruppe,0,1);
+
 
     }
 }
