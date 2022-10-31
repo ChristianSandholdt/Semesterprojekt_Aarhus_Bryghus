@@ -65,7 +65,7 @@ public class Gui extends Application {
     }
 
     private void btnProduktAction(){
-        produktWindow.
+        produktWindow.showAndWait();
     }
 
 
