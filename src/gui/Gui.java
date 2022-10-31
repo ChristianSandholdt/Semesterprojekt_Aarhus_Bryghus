@@ -23,6 +23,8 @@ public class Gui extends Application {
         stage.show();
 
         produktWindow = new Produktwindow("Produkter", stage);
+        ordreWindow = new NyOrdreWindow("Ny ordre", stage);
+
     }
 
     @Override
@@ -32,6 +34,7 @@ public class Gui extends Application {
     //--------------------------------------------------------------------------------
 
     private Produktwindow produktWindow;
+    private NyOrdreWindow ordreWindow;
 
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
@@ -51,6 +54,7 @@ public class Gui extends Application {
         btnOrdre.setMinHeight(100);
         btnOrdre.setMinWidth(120);
         pane.add(btnOrdre,1,0);
+        btnOrdre.setOnAction(event -> this.btnNyOrdreAction());
 
         //Statistik
         Button btnStatistik = new Button("Statistik");
@@ -67,6 +71,10 @@ public class Gui extends Application {
 
     private void btnProduktAction(){
         produktWindow.showAndWait();
+    }
+
+    private void btnNyOrdreAction(){
+        ordreWindow.showAndWait();
     }
 
 
