@@ -15,6 +15,8 @@ import model.Produkt;
 import model.Produktgruppe;
 
 public class NyOrdreTab extends GridPane {
+
+    private NyOrdreWindow nyOrdreWindow;
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdrelinje = new ListView<>();
@@ -23,11 +25,12 @@ public class NyOrdreTab extends GridPane {
 
     private final Button btnAnnuller = new Button("Annuller");
     private final Button btnBetal = new Button("Betal");
-    public NyOrdreTab() {
+    public NyOrdreTab(NyOrdreWindow nyOrdreWindow) {
         this.setPadding(new Insets(20));
         this.setHgap(20);
         this.setVgap(10);
         this.setGridLinesVisible(false);
+        this.nyOrdreWindow = nyOrdreWindow;
 
         Label lblProduktGruppe = new Label("Produktgrupper:");
         this.add(lblProduktGruppe,0,0);
@@ -49,25 +52,31 @@ public class NyOrdreTab extends GridPane {
         this.add(txfSum, 0, 6);
 
         HBox box = new HBox(20,btnAnnuller,btnBetal);
-        this.add(box, 0, 6, 2, 1);
+        this.add(box, 1, 6, 1, 1);
         box.setAlignment(Pos.CENTER_RIGHT);
+        btnAnnuller.setOnAction(event -> this.annullerAction());
 
         HBox box2 = new HBox(10,lblTotal,txfSum);
-        this.add(box2,0,6 , 2, 1);
+        this.add(box2,0,6 , 1, 1);
         box2.setAlignment(Pos.CENTER_LEFT);
 
-        btnAnnuller.setOnAction(event -> this.annullerAction());
+
 
     }
     private void annullerAction() {
+        lvwProdukt.getItems().clear();
+        lvwOrdrelinje.getItems().clear();
+        txfSum.clear();
+        nyOrdreWindow.hide();
+
     }
     private void selectedProduktgruppeChanged() {
-        this.updateControls();
+        this.updateControlsProdukt();
     }
-    public void updateControls() {
+    public void updateControlsProdukt() {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
-
+            lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
         }
     }
 }
