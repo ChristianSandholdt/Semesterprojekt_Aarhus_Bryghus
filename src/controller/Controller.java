@@ -19,18 +19,37 @@ public abstract class Controller {
     /**
      * Create a new produkt
      */
-    public static Produkt createProdukt(String name, String beskrivelse){
-        Produkt produkt = new Produkt(name,beskrivelse);
+    public static Produkt createProdukt(String name, String beskrivelse, Produktgruppe produktgruppe){
+        Produkt produkt = new Produkt(name,beskrivelse, produktgruppe);
         storage.storeProdukt(produkt);
+        produktgruppe.tilfoejProdukt(produkt);
         return produkt;
+
     }
 
-    public static void deleteProdukt(Produkt produkt){
+    public static void deleteProdukt(Produkt produkt, Produktgruppe produktgruppe){
+        produktgruppe.fjernProdukt(produkt);
         storage.deleteProdukt(produkt);
     }
 
-    public static void updateProdukt(Produkt produkt, String name, String beskrivelse){
+    public static void updateProdukt(Produkt produkt, String name, String beskrivelse, Produktgruppe produktgruppe){
         produkt.setNavn(name);
-        produkt.setBeskrivelse(beskrivelse);
+        produkt.setBeskrivelse(name);
+        produkt.setProduktgruppe(produktgruppe);
     }
+
+    //---------------------------------------------------------------------------
+
+    public static Produktgruppe createProduktGruppe(String name, String type){
+        Produktgruppe produktgruppe = new Produktgruppe(name,type);
+        storage.storeProduktgruppe(produktgruppe);
+        return produktgruppe;
+    }
+
+    public static void deleteProduktGruppe(Produktgruppe produktgruppe){
+        storage.deleteProduktgruppe(produktgruppe);
+    }
+
+
+
 }

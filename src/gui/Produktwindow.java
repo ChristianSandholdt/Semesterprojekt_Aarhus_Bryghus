@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,8 +15,12 @@ import model.Produktgruppe;
 
 public class Produktwindow extends Stage{
 
+
+    private OpretproduktWindow opretproduktWindow;
+    private OpretproduktgruppeWindow opretproduktgruppe;
     private String title;
     private Stage stage;
+
 
     public Produktwindow(String title, Stage owner) {
         this.title = title;
@@ -32,10 +37,14 @@ public class Produktwindow extends Stage{
 
         Scene scene = new Scene(pane);
         this.setScene(scene);
+        opretproduktgruppe = new OpretproduktgruppeWindow("Opret produktgruppe", stage);
+        opretproduktWindow = new OpretproduktWindow("Opret produkt", stage);
 
     }
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
+
+    private final Button btnFjernProduktGruppe = new Button();
 
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
@@ -50,16 +59,24 @@ public class Produktwindow extends Stage{
         pane.add(lblProdukt,1,0);
 
         pane.add(lvwProduktGruppe,0,1);
+        //Lidt i tvivl om linjen herunder virker
+        lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
         pane.add(lvwProdukt,1,1);
 
         //Tilføj ny produktgruppe
         Button btnTilfoejProduktGruppe = new Button("Opret ny produktgruppe");
         pane.add(btnTilfoejProduktGruppe,0,2);
+        btnTilfoejProduktGruppe.setOnAction(event -> this.btnOpretProduktGruppeAction());
 
+        //Fjern produktgruppe
+        Button btnFjernProduktGruppe = new Button("Fjern produktgruppe");
+        pane.add(btnFjernProduktGruppe,0,3);
+        btnFjernProduktGruppe.setOnAction(event -> btnFjernProduktGruppeAction());
 
         //Tilføj nyt produkt
         Button btnTilfoejProdukt = new Button("Tilføj nyt produkt");
         pane.add(btnTilfoejProdukt,1,2);
+        btnTilfoejProdukt.setOnAction(event -> btnOpretProduktAction());
         //Fjern produkt
         Button btnFjernProdukt = new Button("Fjern produkt");
         pane.add(btnFjernProdukt,1,3);
@@ -68,6 +85,41 @@ public class Produktwindow extends Stage{
         Button btnRedigerProdukt = new Button("Rediger produkt");
         pane.add(btnRedigerProdukt,1,4);
     }
+
+    private void btnOpretProduktGruppeAction(){
+        opretproduktgruppe.showAndWait();
+        lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
+    }
+    private void btnFjernProduktGruppeAction(){
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        if (produktgruppe == null){
+            return;
+        }
+        for (Produktgruppe p : lvwProduktGruppe.getItems()){
+            if (p.getProdukter().size() > 0){
+                p.getProdukter().removeAll(p.getProdukter());
+            }
+        }
+        Controller.deleteProduktGruppe(produktgruppe);
+        btnFjernProduktGruppe.setDisable(true);
+        lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
+    }
+
+    private void btnOpretProduktAction(){
+        opretproduktWindow.showAndWait();
+        lvwProdukt.getItems().setAll(Controller.getStorage().getProdukt());
+    }
+
+    private void selectedProduktGruppeChanged(){
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        if (produktgruppe == null){
+            return;
+        }
+        lvwProdukt.getItems().setAll(Controller.getStorage().getProduktgruppe()
+    }
+
+
+
 
 
 }
