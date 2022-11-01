@@ -5,13 +5,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import model.Produkt;
 import model.Produktgruppe;
 
 public class NyOrdreTab extends GridPane {
-    private String title;
-    private Stage stage;
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
     public NyOrdreTab() {
