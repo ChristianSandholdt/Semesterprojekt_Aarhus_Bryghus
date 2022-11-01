@@ -63,8 +63,6 @@ public class OpretproduktgruppeWindow extends Stage {
         Controller.createProduktGruppe(navn,type);
         txfNavn.clear();
         txfType.clear();
-        close();
-
     }
 
 

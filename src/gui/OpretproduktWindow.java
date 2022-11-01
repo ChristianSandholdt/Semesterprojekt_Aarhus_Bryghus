@@ -67,10 +67,17 @@ public class OpretproduktWindow extends Stage {
     private void btnOpretProduktAction(){
         String navn = txfNavn.getText().trim();
         String beskrivelse = txfBeskrivelse.getText().trim();
+        if (lvwProduktGruppe.getSelectionModel().getSelectedItem() == null){
+            return;
+        }
         Controller.createProdukt(navn, beskrivelse, lvwProduktGruppe.getSelectionModel().getSelectedItem());
         close();
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
 
+    }
+
+    public void update(){
+        lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
     }
 
 
