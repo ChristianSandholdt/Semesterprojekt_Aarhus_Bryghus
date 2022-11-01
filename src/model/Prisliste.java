@@ -1,15 +1,16 @@
 package model;
 
-public class Prisliste {
-    private int pris;
-    private Produkt produkt;
-    private Prisliste prisliste;
+import java.util.ArrayList;
 
-    public Prisliste(int pris) {
+public class Prisliste {
+    private double pris;
+    private Produkt produkt;
+
+    public Prisliste(double pris) {
         this.pris = pris;
     }
 
-    public int getPris() {
+    public double getPris() {
         return pris;
     }
 
@@ -23,13 +24,5 @@ public class Prisliste {
 
     public void setProdukt(Produkt produkt) {
         this.produkt = produkt;
-    }
-
-    public Prisliste getPrisliste() {
-        return prisliste;
-    }
-
-    public void setPrisliste(Prisliste prisliste) {
-        this.prisliste = prisliste;
     }
 }

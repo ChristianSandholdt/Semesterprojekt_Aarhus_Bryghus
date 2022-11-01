@@ -1,6 +1,7 @@
 package controller;
 
 import model.Produkt;
+import model.Produktgruppe;
 
 public abstract class Controller {
 
@@ -30,8 +31,6 @@ public abstract class Controller {
 
     public static void updateProdukt(Produkt produkt, String name, String beskrivelse){
         produkt.setNavn(name);
-        produkt.setBeskrivelse(name);
+        produkt.setBeskrivelse(beskrivelse);
     }
-
-
 }

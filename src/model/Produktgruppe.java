@@ -12,8 +12,8 @@ public class Produktgruppe {
         this.navn = navn;
         this.type = type;
     }
-    // ----------------------------------------------------------------------------
 
+    // ----------------------------------------------------------------------------
 
     public Produktgruppe(String navn, String type, ArrayList<Produkt> produkter) {
         this.navn = navn;

@@ -28,8 +28,4 @@ public class Produkt {
     public Produktgruppe getProduktgruppe() {
         return produktgruppe;
     }
-
-    public ArrayList<Pris> getPriser() {
-        return priser;
-    }
 }

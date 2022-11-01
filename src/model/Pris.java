@@ -6,7 +6,6 @@ public class Pris {
     private final String navn;
     private final double pris;
     private final String beskrivelse;
-    private final ArrayList<Pris> priser = new ArrayList<>();
 
     public Pris(String navn, double pris, String beskrivelse) {
         this.navn = navn;
@@ -24,9 +23,5 @@ public class Pris {
 
     public String getBeskrivelse() {
         return beskrivelse;
-    }
-
-    public ArrayList<Pris> getPriser() {
-        return priser;
     }
 }
