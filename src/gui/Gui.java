@@ -23,7 +23,7 @@ public class Gui extends Application {
         stage.show();
 
         produktWindow = new Produktwindow("Produkter", stage);
-        ordreWindow = new NyOrdreWindow("Ny ordre", stage);
+        ordreWindow = new NyOrdreWindow();
     }
 
     @Override
@@ -70,11 +70,11 @@ public class Gui extends Application {
     }
 
     private void btnProduktAction(){
-        produktWindow.showAndWait();
+        produktWindow.show();
     }
 
     private void btnNyOrdreAction(){
-        ordreWindow.showAndWait();
+       ordreWindow.show();
     }
 
 
