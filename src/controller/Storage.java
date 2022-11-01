@@ -8,7 +8,7 @@ import java.util.List;
 public interface Storage {
 
     //--------------------------------------------------------------------------------------------------
-    List<Produktgruppe> getProduktgruppe();
+    List<Produktgruppe> getProduktgrupper();
     void storeProduktgruppe(Produktgruppe produktgruppe);
     void deleteProduktgruppe(Produktgruppe produktgruppe);
     //--------------------------------------------------------------------------------------------------

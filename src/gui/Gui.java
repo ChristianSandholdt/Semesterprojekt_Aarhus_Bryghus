@@ -24,7 +24,6 @@ public class Gui extends Application {
 
         produktWindow = new Produktwindow("Produkter", stage);
         ordreWindow = new NyOrdreWindow("Ny ordre", stage);
-
     }
 
     @Override
@@ -33,6 +32,7 @@ public class Gui extends Application {
     }
     //--------------------------------------------------------------------------------
 
+    private OpretproduktgruppeWindow opretproduktgruppe;
     private Produktwindow produktWindow;
     private NyOrdreWindow ordreWindow;
 
