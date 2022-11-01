@@ -17,8 +17,8 @@ public class NyOrdreWindow extends Stage {
 
         Scene scene = new Scene(pane);
         setScene(scene);
-        setHeight(500);
-        setWidth(800);
+        setHeight(800);
+        setWidth(500);
         //stage.show();
     }
 
@@ -47,9 +47,5 @@ public class NyOrdreWindow extends Stage {
         tabOpretOrdre.setOnSelectionChanged(event -> nyOrdreTab.updateControls());
         tabOpretUdlejning.setOnSelectionChanged(event -> udlejningTab.updateControls());
     }
-
-    private void updateControls() {
-    }
-
 
 }
