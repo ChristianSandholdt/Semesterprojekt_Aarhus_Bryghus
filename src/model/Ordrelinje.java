@@ -8,7 +8,7 @@ public class Ordrelinje {
 
     public int antal;
     private final ArrayList<Rundvisning> rundvisninger = new ArrayList<>();
-    Produkt produkt;
+    Produkt produkt; // OBS: Package visible
 
     // ------------------------------------------------------------------------------------------
 
