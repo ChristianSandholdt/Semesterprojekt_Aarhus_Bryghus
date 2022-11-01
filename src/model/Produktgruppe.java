@@ -20,6 +20,7 @@ public class Produktgruppe implements Serializable {
 
     public void tilfoejProdukt(Produkt produkt){
         produkter.add(produkt);
+        produkt.produktgruppe=this;
     }
 
     public void fjernProdukt(Produkt produkt){

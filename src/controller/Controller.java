@@ -34,7 +34,7 @@ public abstract class Controller {
 
     public static void updateProdukt(Produkt produkt, String name, String beskrivelse, Produktgruppe produktgruppe){
         produkt.setNavn(name);
-        produkt.setBeskrivelse(name);
+        produkt.setBeskrivelse(beskrivelse);
         produkt.setProduktgruppe(produktgruppe);
     }
 

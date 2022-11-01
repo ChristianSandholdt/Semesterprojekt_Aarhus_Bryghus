@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Produkt implements Serializable {
     private String navn;
     private String beskrivelse;
-    private Produktgruppe produktgruppe;
+    Produktgruppe produktgruppe;
     // ----------------------------------------------------------------------
     public Produkt(String navn, String beskrivelse, Produktgruppe produktgruppe) {
         this.navn = navn;
