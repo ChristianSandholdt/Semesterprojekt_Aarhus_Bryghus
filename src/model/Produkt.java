@@ -7,7 +7,6 @@ public class Produkt implements Serializable {
     private String navn;
     private String beskrivelse;
     private Produktgruppe produktgruppe;
-    private final ArrayList<Pris> priser = new ArrayList<>();
     // ----------------------------------------------------------------------
     public Produkt(String navn, String beskrivelse, Produktgruppe produktgruppe) {
         this.navn = navn;
@@ -29,10 +28,6 @@ public class Produkt implements Serializable {
 
     public Produktgruppe getProduktgruppe() {
         return produktgruppe;
-    }
-
-    public ArrayList<Pris> getPriser() {
-        return priser;
     }
 
     public void setProduktgruppe(Produktgruppe produktgruppe) {

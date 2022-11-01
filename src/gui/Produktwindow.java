@@ -115,7 +115,7 @@ public class Produktwindow extends Stage{
         if (produktgruppe == null){
             return;
         }
-        lvwProdukt.getItems().setAll(Controller.getStorage().getProduktgruppe()
+        //lvwProdukt.getItems().setAll(Controller.getStorage().getProduktgruppe()
     }
 
 
