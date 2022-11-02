@@ -152,11 +152,15 @@ public class Produktwindow extends Stage{
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
         redigerprodukt.txfNavn.setText(lvwProdukt.getSelectionModel().getSelectedItem().getNavn());
         redigerprodukt.txfBeskrivelse.setText(lvwProdukt.getSelectionModel().getSelectedItem().getBeskrivelse());
+
         redigerprodukt.showAndWait();
-        Controller.updateProdukt(produkt,redigerprodukt.txfNavn.getText()
-                ,redigerprodukt.txfBeskrivelse.getText(),
-                redigerprodukt.lvwProduktGruppe.getSelectionModel().getSelectedItem());
-        //Kan ikke opdatere produktgruppen
+
+        Produktgruppe produktgruppe = redigerprodukt.lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        Controller.updateProdukt(produkt,redigerprodukt.txfNavn.getText(),
+        redigerprodukt.txfBeskrivelse.getText(), produktgruppe);
+
+        update();
+        //Kan ikke fjerne den gamle forbindelse mellem produktet og den gamle produktgruppe
     }
 
     private void fillProduktList(Produktgruppe produktgruppe){
@@ -166,6 +170,12 @@ public class Produktwindow extends Stage{
 
     public Produkt getProdukt(){
         return lvwProdukt.getSelectionModel().getSelectedItem();
+    }
+
+    public void update(){
+        lvwProduktGruppe.getItems().clear();
+        lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
+
     }
 
 }

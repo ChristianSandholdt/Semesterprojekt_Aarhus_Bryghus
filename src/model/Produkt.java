@@ -32,7 +32,11 @@ public class Produkt implements Serializable {
     }
 
     public void setProduktgruppe(Produktgruppe produktgruppe) {
-        this.produktgruppe = produktgruppe;
+        produktgruppe.tilfoejProdukt(this);
+    }
+
+    public void fjernProduktgruppe(Produktgruppe produktgruppe) {
+        produktgruppe.fjernProdukt(this);
     }
 
     @Override

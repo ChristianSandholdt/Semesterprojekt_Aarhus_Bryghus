@@ -80,6 +80,8 @@ public class Redigerprodukt extends Stage {
     }
 
     private void btnOpdaterOnAction(){
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        //System.out.println(produktgruppe);
         close();
     }
 

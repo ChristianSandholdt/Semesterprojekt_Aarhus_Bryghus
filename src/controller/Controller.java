@@ -41,7 +41,11 @@ public abstract class Controller {
     public static void updateProdukt(Produkt produkt, String name, String beskrivelse, Produktgruppe produktgruppe){
         produkt.setNavn(name);
         produkt.setBeskrivelse(beskrivelse);
+        if (produkt.getProduktgruppe() != null){
+            produkt.fjernProduktgruppe(produkt.getProduktgruppe());
+        }
         produkt.setProduktgruppe(produktgruppe);
+
     }
 
     //---------------------------------------------------------------------------
