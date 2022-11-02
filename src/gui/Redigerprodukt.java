@@ -80,8 +80,6 @@ public class Redigerprodukt extends Stage {
     }
 
     private void btnOpdaterOnAction(){
-        Controller.updateProdukt(produktwindow.getProdukt(), txfNavn.getText(),
-                txfBeskrivelse.getText(),lvwProduktGruppe.getSelectionModel().getSelectedItem());
         close();
     }
 

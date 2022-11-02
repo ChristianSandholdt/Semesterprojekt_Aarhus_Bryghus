@@ -153,6 +153,10 @@ public class Produktwindow extends Stage{
         redigerprodukt.txfNavn.setText(lvwProdukt.getSelectionModel().getSelectedItem().getNavn());
         redigerprodukt.txfBeskrivelse.setText(lvwProdukt.getSelectionModel().getSelectedItem().getBeskrivelse());
         redigerprodukt.showAndWait();
+        Controller.updateProdukt(produkt,redigerprodukt.txfNavn.getText()
+                ,redigerprodukt.txfBeskrivelse.getText(),
+                redigerprodukt.lvwProduktGruppe.getSelectionModel().getSelectedItem());
+        //Kan ikke opdatere produktgruppen
     }
 
     private void fillProduktList(Produktgruppe produktgruppe){
