@@ -11,6 +11,7 @@ public class Produkt implements Serializable {
     public Produkt(String navn, String beskrivelse, Produktgruppe produktgruppe) {
         this.navn = navn;
         this.beskrivelse = beskrivelse;
+        produktgruppe.tilfoejProdukt(this);
         this.produktgruppe = produktgruppe;
     }
     public void setNavn(String navn) {
