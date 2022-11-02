@@ -87,6 +87,7 @@ public class Produktwindow extends Stage{
         //Fjern produkt
         btnFjernProdukt.setText("Fjern produkt");
         pane.add(btnFjernProdukt,1,3);
+        btnFjernProdukt.setOnAction(event -> btnFjernProduktAction());
 
         //Rediger produkt
         Button btnRedigerProdukt = new Button("Rediger produkt");
@@ -121,8 +122,7 @@ public class Produktwindow extends Stage{
             return;
         }
         Controller.deleteProdukt(produkt, produkt.getProduktgruppe());
-        btnFjernProdukt.setDisable(true);
-        lvwProdukt.getItems().setAll(lvwProduktGruppe.getSelectionModel().getSelectedItem().getProdukter());
+        this.fillProduktList(produkt.getProduktgruppe());
     }
 
     private void fillProduktGruppeList(){
