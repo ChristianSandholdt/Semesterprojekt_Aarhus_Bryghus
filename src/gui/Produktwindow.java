@@ -109,8 +109,8 @@ public class Produktwindow extends Stage{
     }
 
     private void btnOpretProduktAction(){
-        opretproduktWindow.showAndWait();
         opretproduktWindow.update();
+        opretproduktWindow.showAndWait();
     }
 
     private void fillProduktGruppeList(){
@@ -119,7 +119,8 @@ public class Produktwindow extends Stage{
     }
 
     private void fillProduktList(Produktgruppe produktgruppe){
-        lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
+        lvwProdukt.getItems().clear();
+        lvwProdukt.getItems().addAll(produktgruppe.getProdukter());
     }
 
     private void selectedProduktGruppeChanged(){

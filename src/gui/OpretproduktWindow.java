@@ -75,7 +75,8 @@ public class OpretproduktWindow extends Stage {
     }
 
     public void update(){
-        lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
+        lvwProduktGruppe.getItems().clear();
+        lvwProduktGruppe.getItems().addAll(Controller.getStorage().getProduktgruppe());
     }
 
 
