@@ -1,54 +1,82 @@
 package gui;
 
 import controller.Controller;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
 
 public class NyOrdreTab extends GridPane {
+
+    private NyOrdreWindow nyOrdreWindow;
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdrelinje = new ListView<>();
+    private final TextField txfSum = new TextField();
+    private final Label lblTotal = new Label("Total: ");
+
+    private final Button btnAnnuller = new Button("Annuller");
     private final Button btnBetal = new Button("Betal");
-    public NyOrdreTab() {
+    public NyOrdreTab(NyOrdreWindow nyOrdreWindow) {
         this.setPadding(new Insets(20));
         this.setHgap(20);
         this.setVgap(10);
         this.setGridLinesVisible(false);
+        this.nyOrdreWindow = nyOrdreWindow;
 
-        Label lblProduktGruppe = new Label("Produktgrupper");
+        Label lblProduktGruppe = new Label("Produktgrupper:");
         this.add(lblProduktGruppe,0,0);
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
-        lvwProduktGruppe.getSelectionModel().selectedIndexProperty().addListener(observable -> {
-            lvwProdukt.getItems().setAll(
-                    lvwProduktGruppe.getSelectionModel().getSelectedItem().getProdukter());
-        });
-        lvwProduktGruppe.getSelectionModel().selectFirst();
-
         this.add(lvwProduktGruppe,0,1);
 
-        Label lblProdukt = new Label("Produkter i gruppe");
+        ChangeListener<Produktgruppe> listener = (ov, o, n) -> this.selectedProduktgruppeChanged();
+        lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
+
+        Label lblProdukt = new Label("Produkter:");
         this.add(lblProdukt, 1, 0);
         this.add(lvwProdukt, 1, 1);
-        lvwProdukt.getSelectionModel().selectedItemProperty().addListener(observable -> {
-           // lvwOrdrelinje.getItems().add(lvwProdukt.getSelectionModel().getSelectedItem().getNavn());
-        });
 
-        Label lblOrdrelinje = new Label("Vare i ordre:");
+
+        Label lblOrdrelinje = new Label("Kurv:");
         this.add(lblOrdrelinje, 0, 2);
         this.add(lvwOrdrelinje,0 , 3, 2, 2);
 
+        this.add(txfSum, 0, 6);
 
-        this.add(btnBetal, 0, 6);
+        HBox box = new HBox(20,btnAnnuller,btnBetal);
+        this.add(box, 1, 6, 1, 1);
+        box.setAlignment(Pos.CENTER_RIGHT);
+        btnAnnuller.setOnAction(event -> this.annullerAction());
+
+        HBox box2 = new HBox(10,lblTotal,txfSum);
+        this.add(box2,0,6 , 1, 1);
+        box2.setAlignment(Pos.CENTER_LEFT);
+
+
+
     }
+    private void annullerAction() {
+        lvwProdukt.getItems().clear();
+        lvwOrdrelinje.getItems().clear();
+        txfSum.clear();
+        nyOrdreWindow.hide();
 
-
-
-    public void updateControls() {
+    }
+    private void selectedProduktgruppeChanged() {
+        this.updateControlsProdukt();
+    }
+    public void updateControlsProdukt() {
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        if (produktgruppe != null) {
+            lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
+        }
     }
 }
