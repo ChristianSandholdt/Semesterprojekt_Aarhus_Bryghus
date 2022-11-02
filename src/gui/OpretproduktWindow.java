@@ -37,6 +37,7 @@ public class OpretproduktWindow extends Stage {
     private final TextField txfBeskrivelse = new TextField();
 
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
+
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -53,10 +54,8 @@ public class OpretproduktWindow extends Stage {
         pane.add(txfBeskrivelse,0,3);
         txfBeskrivelse.setEditable(true);
 
-        ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
         pane.add(lvwProduktGruppe,0,4);
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
-
 
         Button btnOpret = new Button("Opret");
         pane.add(btnOpret,0,5);
@@ -67,11 +66,10 @@ public class OpretproduktWindow extends Stage {
     private void btnOpretProduktAction(){
         String navn = txfNavn.getText().trim();
         String beskrivelse = txfBeskrivelse.getText().trim();
-        if (lvwProduktGruppe.getSelectionModel().getSelectedItem() == null){
-            return;
-        }
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         Controller.createProdukt(navn,beskrivelse, lvwProduktGruppe.getSelectionModel().getSelectedItem());
         close();
+
     }
 
     public void update(){

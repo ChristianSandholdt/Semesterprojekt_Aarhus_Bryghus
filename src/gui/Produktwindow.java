@@ -47,6 +47,8 @@ public class Produktwindow extends Stage{
 
     private final Button btnFjernProduktGruppe = new Button();
 
+    private final Button btnFjernProdukt = new Button();
+
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -83,7 +85,7 @@ public class Produktwindow extends Stage{
         pane.add(btnTilfoejProdukt,1,2);
         btnTilfoejProdukt.setOnAction(event -> btnOpretProduktAction());
         //Fjern produkt
-        Button btnFjernProdukt = new Button("Fjern produkt");
+        btnFjernProdukt.setText("Fjern produkt");
         pane.add(btnFjernProdukt,1,3);
 
         //Rediger produkt
@@ -111,6 +113,16 @@ public class Produktwindow extends Stage{
     private void btnOpretProduktAction(){
         opretproduktWindow.update();
         opretproduktWindow.showAndWait();
+    }
+
+    private void btnFjernProduktAction(){
+        Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
+        if (produkt == null){
+            return;
+        }
+        Controller.deleteProdukt(produkt, produkt.getProduktgruppe());
+        btnFjernProdukt.setDisable(true);
+        lvwProdukt.getItems().setAll(lvwProduktGruppe.getSelectionModel().getSelectedItem().getProdukter());
     }
 
     private void fillProduktGruppeList(){
