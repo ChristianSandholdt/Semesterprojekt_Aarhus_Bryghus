@@ -149,9 +149,10 @@ public class Produktwindow extends Stage{
     }
 
     private void btnRedigerProduktAction() {
-        redigerprodukt.showAndWait();
+        Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
         redigerprodukt.txfNavn.setText(lvwProdukt.getSelectionModel().getSelectedItem().getNavn());
         redigerprodukt.txfBeskrivelse.setText(lvwProdukt.getSelectionModel().getSelectedItem().getBeskrivelse());
+        redigerprodukt.showAndWait();
     }
 
     private void fillProduktList(Produktgruppe produktgruppe){
