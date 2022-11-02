@@ -1,11 +1,27 @@
 package controller;
 
+import model.Ordre;
+import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
 
 import java.util.List;
 
 public interface Storage {
+
+
+    //-------------------------------------------------------------------------------------------------
+    List<Ordre> getOrdre();
+
+    void storeOrdre(Ordre ordre);
+
+    void deleteOrdre(Ordre ordre);
+
+    List<Ordrelinje> getOrdrelinjer();
+
+    void storeOrdrelinje(Ordrelinje ordrelinje);
+
+    void deleteOrdreLinje(Ordrelinje ordrelinje);
 
     //--------------------------------------------------------------------------------------------------
     List<Produktgruppe> getProduktgruppe();

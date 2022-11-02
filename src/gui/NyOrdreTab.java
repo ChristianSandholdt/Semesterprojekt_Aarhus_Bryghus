@@ -22,6 +22,8 @@ public class NyOrdreTab extends GridPane {
     private final ListView<Produkt> lvwProdukt = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdrelinje = new ListView<>();
     private final TextField txfSum = new TextField();
+    private Ordre ordre;
+
     private final Label lblTotal = new Label("Total: ");
 
     private final Button btnAnnuller = new Button("Annuller");
@@ -84,10 +86,12 @@ public class NyOrdreTab extends GridPane {
     public void updateControlsProdukt(){
         int antal = 0;
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
-        Ordrelinje ordrelinje = new Ordrelinje(antal,produkt);
-        if (produkt != null){
-            lvwOrdrelinje.getItems().setAll();
+        if(ordre == null) {
+            ordre = new Ordre(false ,1); //lav med controller så den gemmer i storage
         }
+        Ordrelinje ordrelinje = new Ordrelinje(antal, produkt); // //lav med controller så den gemmer i storage
+        ordre.addOrdrelinje(ordrelinje);
+            lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
     }
     public void updateControlsProduktgruppe() {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();

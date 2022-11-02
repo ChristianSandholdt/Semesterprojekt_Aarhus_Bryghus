@@ -32,12 +32,16 @@ public class Ordrelinje {
         return produkt;
     }
 
+    @Override
+    public String toString() {
+        return "" + produkt + " " + antal;
+    }
+
+
     public Rundvisning createRundvisning(double pris, int antalPersoner, LocalDate dato, LocalDateTime startTid, LocalDateTime slutTid) {
         Rundvisning rundvisning = new Rundvisning(pris, antalPersoner, dato, startTid, slutTid);
         rundvisninger.add(rundvisning);
         rundvisning.ordrelinje = this;
         return rundvisning;
-
-
     }
 }
