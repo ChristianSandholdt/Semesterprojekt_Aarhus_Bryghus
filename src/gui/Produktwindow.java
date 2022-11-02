@@ -97,6 +97,7 @@ public class Produktwindow extends Stage{
         //Rediger produkt
         Button btnRedigerProdukt = new Button("Rediger produkt");
         pane.add(btnRedigerProdukt,1,4);
+        btnRedigerProdukt.setOnAction(event -> btnRedigerProduktAction());
 
         this.fillProduktGruppeList();
 
@@ -147,8 +148,10 @@ public class Produktwindow extends Stage{
         this.fillProduktList(produkt.getProduktgruppe());
     }
 
-    private void btnRedigerProduktAction(){
+    private void btnRedigerProduktAction() {
         redigerprodukt.showAndWait();
+        redigerprodukt.txfNavn.setText(lvwProdukt.getSelectionModel().getSelectedItem().getNavn());
+        redigerprodukt.txfBeskrivelse.setText(lvwProdukt.getSelectionModel().getSelectedItem().getBeskrivelse());
     }
 
     private void fillProduktList(Produktgruppe produktgruppe){
@@ -156,9 +159,8 @@ public class Produktwindow extends Stage{
         lvwProdukt.getItems().addAll(produktgruppe.getProdukter());
     }
 
-
-
-
-
+    public Produkt getProdukt(){
+        return lvwProdukt.getSelectionModel().getSelectedItem();
+    }
 
 }
