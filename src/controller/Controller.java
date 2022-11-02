@@ -22,9 +22,7 @@ public abstract class Controller {
     public static Produkt createProdukt(String name, String beskrivelse, Produktgruppe produktgruppe){
         Produkt produkt = new Produkt(name,beskrivelse, produktgruppe);
         storage.storeProdukt(produkt);
-        produktgruppe.tilfoejProdukt(produkt);
         return produkt;
-
     }
 
     public static void deleteProdukt(Produkt produkt, Produktgruppe produktgruppe){

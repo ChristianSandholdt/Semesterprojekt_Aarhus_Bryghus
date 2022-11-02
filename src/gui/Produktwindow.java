@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -73,6 +74,10 @@ public class Produktwindow extends Stage{
         pane.add(btnFjernProduktGruppe,0,3);
         btnFjernProduktGruppe.setOnAction(event -> btnFjernProduktGruppeAction());
 
+        //Listener til produktgruppe
+        ChangeListener<Produktgruppe> listener = (obs, o, n) -> this.selectedProduktGruppeChanged();
+        lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
+
         //Tilføj nyt produkt
         Button btnTilfoejProdukt = new Button("Tilføj nyt produkt");
         pane.add(btnTilfoejProdukt,1,2);
@@ -84,6 +89,9 @@ public class Produktwindow extends Stage{
         //Rediger produkt
         Button btnRedigerProdukt = new Button("Rediger produkt");
         pane.add(btnRedigerProdukt,1,4);
+
+        this.fillProduktGruppeList();
+
     }
 
     private void btnOpretProduktGruppeAction(){
@@ -95,11 +103,6 @@ public class Produktwindow extends Stage{
         if (produktgruppe == null){
             return;
         }
-        for (Produktgruppe p : lvwProduktGruppe.getItems()){
-            if (p.getProdukter().size() > 0){
-                p.getProdukter().removeAll(p.getProdukter());
-            }
-        }
         Controller.deleteProduktGruppe(produktgruppe);
         btnFjernProduktGruppe.setDisable(true);
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
@@ -107,15 +110,23 @@ public class Produktwindow extends Stage{
 
     private void btnOpretProduktAction(){
         opretproduktWindow.showAndWait();
-        lvwProdukt.getItems().setAll(Controller.getStorage().getProdukt());
+        opretproduktWindow.update();
+    }
+
+    private void fillProduktGruppeList(){
+        lvwProduktGruppe.getItems().clear();
+        lvwProduktGruppe.getItems().addAll(Controller.getStorage().getProduktgruppe());
+    }
+
+    private void fillProduktList(Produktgruppe produktgruppe){
+        lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
     }
 
     private void selectedProduktGruppeChanged(){
-        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
-        if (produktgruppe == null){
-            return;
+        Produktgruppe selectedItem = lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        if (selectedItem != null){
+            this.fillProduktList(selectedItem);
         }
-        //lvwProdukt.getItems().setAll(Controller.getStorage().getProduktgruppe()
     }
 
 
