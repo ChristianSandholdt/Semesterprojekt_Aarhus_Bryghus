@@ -3,16 +3,17 @@ package gui;
 import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Ordrelinje;
+import model.Produkt;
 import model.Produktgruppe;
+
+import java.util.Optional;
 
 
 public class UdlejningTab extends GridPane {
@@ -20,6 +21,7 @@ public class UdlejningTab extends GridPane {
     private final ListView<Produktgruppe> lvwAnlæg = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdreLinje = new ListView<>();
     private final ListView<Produktgruppe> lvwFustage = new ListView<>();
+    private final ListView<Produkt> lvwProdukt = new ListView<>();
     private final TextField txfAntal1 = new TextField();
     private final TextField txfAntal2 = new TextField();
     private final TextField txfPris = new TextField();
@@ -83,6 +85,7 @@ public class UdlejningTab extends GridPane {
         HBox hbox3 = new HBox(btnAdd);
         hbox3.setAlignment(Pos.CENTER);
         this.add(hbox3, 0, 3,2,1);
+        btnAdd.setOnAction(event -> this.btnTilføj());
 
         // Fjern fra kurv knap - (sat i hbox for at align i midten)
         Button btnRemove = new Button("Fjern fra kurv");
@@ -90,6 +93,7 @@ public class UdlejningTab extends GridPane {
         hbox4.setAlignment(Pos.CENTER);
         btnRemove.setMaxWidth(200);
         this.add(hbox4, 0,4,2,1);
+        btnRemove.setOnAction(event -> this.btnRemove());
 
         // Label & ListView Kurv
         Label lblKurv = new Label("Kurv");
@@ -100,12 +104,16 @@ public class UdlejningTab extends GridPane {
         this.add(lvwOrdreLinje, 0, 5,1,2);
 
         // Mellemregning
-        Label lblPris = new Label("                                       Pris");
-        Label lblPant = new Label("                                       Pant");
-        Label lblSum = new Label("                                       Sum");
+//        Label lblPris = new Label("                               Pris");
+//        Label lblPant = new Label("                               Pant");
+//        Label lblSum = new Label("                               Sum");
+        Label lblPris = new Label("        Pris:");
+        Label lblPant = new Label("        Pant:");
+        Label lblSum = new Label("        Sum:");
 
         VBox vbox1 = new VBox(10,txfPris,txfPant,txfSum);
         add(vbox1, 1, 5);
+        vbox1.setAlignment(Pos.CENTER);
         txfPris.setMaxWidth(100);
         txfPant.setMaxWidth(100);
         txfSum.setMaxWidth(100);
@@ -147,6 +155,10 @@ public class UdlejningTab extends GridPane {
     }
 
     public void updateControls() {
+        Produktgruppe produktgruppe = lvwAnlæg.getSelectionModel().getSelectedItem();
+        if (produktgruppe != null) {
+            lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -177,13 +189,37 @@ public class UdlejningTab extends GridPane {
     }
 
     private void btnTilføj() {
-
+        Produktgruppe produktgruppe = lvwAnlæg.getSelectionModel().getSelectedItem();
+        String antal = txfAntal1.getText();
+        if (produktgruppe != null) {
+            Produkt p = new Produkt(antal,"",produktgruppe);
+            lvwOrdreLinje.getItems().add(new Ordrelinje(Integer.parseInt(antal),p));
+            txfAntal1.setText("1");
+            txfAntal2.setText("1");
+        }
     }
 
     private void btnRemove() {
-        int index = lvwOrdreLinje.getSelectionModel().getSelectedIndex();
-        if (index >= 0) {
+        Produktgruppe produktgruppe = lvwAnlæg.getSelectionModel().getSelectedItem();
+        Ordrelinje o = lvwOrdreLinje.getSelectionModel().getSelectedItem();
+        if (o != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Fjern vare fra kurv");
+            alert.setHeaderText("Er du sikker?");
+            Optional<ButtonType> resultat = alert.showAndWait();
 
+            if (resultat.isPresent() && (resultat.get() == ButtonType.OK)) {
+                Controller.deleteProduktGruppe(produktgruppe);
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Fjern ordre fra kurv");
+            alert.setHeaderText("Ingen ordre valgt");
+            alert.setContentText("Vælg en ordre som skal fjernes");
+            alert.show();
         }
     }
 }

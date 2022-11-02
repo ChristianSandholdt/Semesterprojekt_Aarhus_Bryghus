@@ -49,6 +49,7 @@ public class BetalingsWindow extends Stage {
 
 
 
+
         // -------------------------------------------------------------------------
 
         // Button actions

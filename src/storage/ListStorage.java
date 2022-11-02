@@ -112,6 +112,4 @@ public class ListStorage implements Storage, Serializable {
             return null;
         }
     }
-
-
 }
