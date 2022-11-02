@@ -52,7 +52,6 @@ public class Rundvisning {
 
     // Setters
 
-
     public void setPris(double pris) {
         this.pris = pris;
     }

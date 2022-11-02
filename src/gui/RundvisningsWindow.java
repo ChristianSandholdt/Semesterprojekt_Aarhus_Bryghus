@@ -1,14 +1,12 @@
 package gui;
 
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.skin.DatePickerSkin;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -29,7 +27,7 @@ public class RundvisningsWindow extends Stage {
         this.setResizable(true);
 
         this.setTitle(title);
-        BorderPane pane = new BorderPane();
+        GridPane pane = new GridPane();
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
@@ -38,24 +36,25 @@ public class RundvisningsWindow extends Stage {
 
     private final TextField txfReservation = new TextField();
     private final Button btnReserver = new Button("Reserver");
-    private void initContent(BorderPane pane) {
-        pane.setPadding(new Insets(40));
+    private void initContent(GridPane pane) {
+        pane.setPadding(new Insets(20));
 
         DatePicker datePicker = new DatePicker(LocalDate.now());
-        DatePickerSkin datePickerSkin = new DatePickerSkin(new DatePicker(LocalDate.now()));
-        Node popupContent = datePickerSkin.getPopupContent();
-
-        pane.setTop(popupContent);
+        datePicker.setEditable(false);
+        pane.add(datePicker, 0, 0);
 
         Label lblDatoValgt = new Label("Reservation");
-        pane.setLeft(lblDatoValgt);
+        pane.add(lblDatoValgt, 0, 1);
 
-        pane.setCenter(txfReservation);
-        txfReservation.setPrefWidth(500);
-        datePicker.valueProperty().addListener(
-                (observable, oldValue, newValue) ->
-                        System.out.println("" + oldValue + newValue));
+        pane.add(txfReservation, 0, 2);
+        txfReservation.setPrefWidth(250);
+        txfReservation.setEditable(false);
 
-        pane.setRight(btnReserver);
+        pane.add(btnReserver, 2, 2);
+        btnReserver.setOnAction(event -> btnAction());
+    }
+
+    private void btnAction() {
+
     }
 }
