@@ -44,7 +44,7 @@ public class NyOrdreWindow extends Stage {
         tabPane.getTabs().add(tabOpretOrdre);
         tabPane.getTabs().add(tabOpretUdlejning);
 
-        tabOpretOrdre.setOnSelectionChanged(event -> nyOrdreTab.updateControlsProdukt());
+        tabOpretOrdre.setOnSelectionChanged(event -> nyOrdreTab.updateControlsProduktgruppe());
         tabOpretUdlejning.setOnSelectionChanged(event -> udlejningTab.updateControls());
     }
 

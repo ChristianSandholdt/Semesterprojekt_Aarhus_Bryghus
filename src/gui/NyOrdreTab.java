@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import model.Ordre;
 import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
@@ -45,6 +46,8 @@ public class NyOrdreTab extends GridPane {
         this.add(lvwProdukt, 1, 1);
 
 
+        ChangeListener<Produkt> listener2 = (ov, o, n) -> this.selectedProduktChanged();
+        lvwProdukt.getSelectionModel().selectedItemProperty().addListener(listener2);
         Label lblOrdrelinje = new Label("Kurv:");
         this.add(lblOrdrelinje, 0, 2);
         this.add(lvwOrdrelinje,0 , 3, 2, 2);
@@ -71,9 +74,22 @@ public class NyOrdreTab extends GridPane {
 
     }
     private void selectedProduktgruppeChanged() {
+        this.updateControlsProduktgruppe();
+    }
+
+    private void selectedProduktChanged() {
         this.updateControlsProdukt();
     }
-    public void updateControlsProdukt() {
+
+    public void updateControlsProdukt(){
+        int antal = 0;
+        Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
+        Ordrelinje ordrelinje = new Ordrelinje(antal,produkt);
+        if (produkt != null){
+            lvwOrdrelinje.getItems().setAll();
+        }
+    }
+    public void updateControlsProduktgruppe() {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
             lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
