@@ -6,35 +6,44 @@ public class Ordre {
     public boolean betalt;
     public int sum;
     public String betalingsform;
-    public String ordreID;
+    public int ordreID;
 
-    public Ordre(boolean betalt, int sum, String betalingsform, String ordreID) {
+    private Kunde kunde;
+
+    public Ordre(boolean betalt, int ordreID) {
         this.betalt = betalt;
-        this.sum = sum;
-        this.betalingsform = betalingsform;
         this.ordreID = ordreID;
     }
 
     // Aggregation -> 0..*
-    private final ArrayList<Ordrelinje> orderLines = new ArrayList<>();
+    private final ArrayList<Ordrelinje> ordreLinjer = new ArrayList<>();
 
-    public ArrayList<Ordrelinje> getOrdrelinjes() {
-        return new ArrayList<>(orderLines);
-    }
+
 
     public Ordrelinje createOrderLine(int antal, Produkt produkt){
         Ordrelinje orderLine = new Ordrelinje(antal,produkt);
-        orderLines.add(orderLine);
+        ordreLinjer.add(orderLine);
         return orderLine;
     }
-
+    public ArrayList<Ordrelinje> getOrdrelinjer() {
+        return new ArrayList<>(ordreLinjer);
+    }
     //Pre: The OrderLine is not connected to an Order.
-    public void addOrderLine(Ordrelinje ordrelinje){
-        orderLines.add(ordrelinje);
+    public void addOrdrelinje(Ordrelinje ordrelinje){
+        ordreLinjer.add(ordrelinje);
     }
 
     //Pre: The OrderLine is connected to an Order.
-    public void removeOrderLine(Ordrelinje ordrelinje){
-        orderLines.remove(ordrelinje);
+    public void removeOrdrelinje(Ordrelinje ordrelinje){
+        ordreLinjer.remove(ordrelinje);
     }
+
+
+    public void addOrdre(Ordre ordre) {
+        ordre.addOrdre(ordre);
+    }
+    public void removeOrdre(Ordre ordre){
+        removeOrdre(ordre);
+    }
+
 }

@@ -2,6 +2,7 @@ package storage;
 
 import controller.Storage;
 import model.Ordre;
+import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
 
@@ -13,6 +14,37 @@ public class ListStorage implements Storage, Serializable {
 
     private List<Produkt> produkter = new ArrayList<>();
     private List<Produktgruppe> produktgrupper = new ArrayList<>();
+
+    private List<Ordre> ordre = new ArrayList<>();
+    private List<Ordrelinje> ordrelinjer = new ArrayList<>();
+
+
+    @Override
+    public List<Ordre> getOrdre(){
+        return new ArrayList<>(ordre);
+    }
+
+    @Override
+    public void storeOrdre(Ordre ordre){
+        ordre.addOrdre(ordre);
+    }
+    @Override
+    public void deleteOrdre(Ordre ordre) {
+        ordre.removeOrdre(ordre);
+    }
+
+    @Override
+    public List<Ordrelinje> getOrdrelinjer(){
+        return new ArrayList<>(ordrelinjer);
+    }
+    @Override
+    public void storeOrdrelinje(Ordrelinje ordrelinje){
+        ordrelinjer.add(ordrelinje);
+    }
+    @Override
+    public void deleteOrdreLinje(Ordrelinje ordrelinje){
+        ordrelinjer.remove(ordrelinje);
+    }
 
     @Override
     public List<Produktgruppe> getProduktgruppe() {

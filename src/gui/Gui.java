@@ -24,6 +24,7 @@ public class Gui extends Application {
 
         produktWindow = new Produktwindow("Produkter", stage);
         ordreWindow = new NyOrdreWindow();
+        rundvisningsWindow = new RundvisningsWindow("Rundvisnings Window", stage);
     }
 
     @Override
@@ -32,9 +33,9 @@ public class Gui extends Application {
     }
     //--------------------------------------------------------------------------------
 
-    private OpretproduktgruppeWindow opretproduktgruppe;
     private Produktwindow produktWindow;
     private NyOrdreWindow ordreWindow;
+    private RundvisningsWindow rundvisningsWindow;
 
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
@@ -67,6 +68,7 @@ public class Gui extends Application {
         btnRundvisning.setMinHeight(100);
         btnRundvisning.setMinWidth(120);
         pane.add(btnRundvisning,1,1);
+        btnRundvisning.setOnAction(event -> this.btnRundvisningAction());
     }
 
     private void btnProduktAction(){
@@ -77,5 +79,6 @@ public class Gui extends Application {
        ordreWindow.show();
     }
 
-
+    private void btnRundvisningAction() { rundvisningsWindow.show();
+    }
 }

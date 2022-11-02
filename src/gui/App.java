@@ -3,6 +3,8 @@ package gui;
 import controller.Controller;
 import controller.Storage;
 import javafx.application.Application;
+import model.Produkt;
+import model.Produktgruppe;
 import storage.ListStorage;
 
 public class App {
@@ -16,5 +18,9 @@ public class App {
         Controller.setStorage(storage);
 
         Application.launch(Gui.class);
+
+        Produktgruppe p1 = new Produktgruppe("Øl", "Hvede");
+        Controller.createProdukt("Klosterbryg","Dejlig hvedeøl",p1);
+        System.out.println(p1.getProdukter());
     }
 }

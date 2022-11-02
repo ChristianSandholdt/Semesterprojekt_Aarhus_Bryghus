@@ -5,11 +5,8 @@ import java.util.ArrayList;
 public class Kunde {
 
     // Association -> 0..x Ordre
-    private final ArrayList<Ordre> ordrer = new ArrayList<>();
+    private final ArrayList<Ordre> ordre = new ArrayList<>();
 
-    public ArrayList<Ordre> getOrdrer(){
-        return new ArrayList<>(ordrer);
-    }
     private final String name;
     private final String email;
     private final int telefonNr;
@@ -31,10 +28,13 @@ public class Kunde {
      */
     public boolean godKunde(){
         boolean god = false;
-        if (getOrdrer().size() >= 5){
+        if (getOrdre().size() >= 5){
             god = true;
         }
         return god;
+    }
+    public ArrayList<Ordre> getOrdre(){
+        return new ArrayList<>(ordre);
     }
 
 

@@ -11,6 +11,7 @@ public class Produkt implements Serializable {
     public Produkt(String navn, String beskrivelse, Produktgruppe produktgruppe) {
         this.navn = navn;
         this.beskrivelse = beskrivelse;
+        produktgruppe.tilfoejProdukt(this);
         this.produktgruppe = produktgruppe;
     }
     public void setNavn(String navn) {
@@ -31,7 +32,11 @@ public class Produkt implements Serializable {
     }
 
     public void setProduktgruppe(Produktgruppe produktgruppe) {
-        this.produktgruppe = produktgruppe;
+        produktgruppe.tilfoejProdukt(this);
+    }
+
+    public void fjernProduktgruppe(Produktgruppe produktgruppe) {
+        produktgruppe.fjernProdukt(this);
     }
 
     @Override
