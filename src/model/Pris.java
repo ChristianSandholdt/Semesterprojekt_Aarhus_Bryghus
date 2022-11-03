@@ -6,6 +6,8 @@ public class Pris {
     private final String navn;
     private final double pris;
     private final String beskrivelse;
+    private Prisliste prisliste;
+    private Produkt produkt;
 
     public Pris(String navn, double pris, String beskrivelse) {
         this.navn = navn;

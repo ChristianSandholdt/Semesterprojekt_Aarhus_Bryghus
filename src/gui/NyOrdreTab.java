@@ -12,6 +12,8 @@ import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
 
+import java.text.Format;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class NyOrdreTab extends GridPane {
@@ -53,9 +55,11 @@ public class NyOrdreTab extends GridPane {
 
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");
+        txfAntal.setAlignment(Pos.CENTER);
         HBox hbox1 = new HBox(5,btnFjern, btnDecrease, txfAntal, btnIncrease, btnTilføj);
         this.add(hbox1, 1, 2);
         hbox1.setAlignment(Pos.CENTER);
+
         btnIncrease.setOnAction(event -> this.btnIncreaseAction());
         btnDecrease.setOnAction(event -> this.btnDecreaseAction());
         btnTilføj.setOnAction(event -> this.tilføjAction());
