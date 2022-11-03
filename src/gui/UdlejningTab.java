@@ -150,8 +150,6 @@ public class UdlejningTab extends GridPane {
         // Betalings window
         betalingsWindow = new BetalingsWindow("Betaling", new Stage());
 
-
-
     }
 
     public void updateControls() {
@@ -200,25 +198,24 @@ public class UdlejningTab extends GridPane {
     }
 
     private void btnRemove() {
-        Produktgruppe produktgruppe = lvwAnlæg.getSelectionModel().getSelectedItem();
-        Ordrelinje o = lvwOrdreLinje.getSelectionModel().getSelectedItem();
-        if (o != null) {
+        Ordrelinje ordrelinje = lvwOrdreLinje.getSelectionModel().getSelectedItem();
+        if (ordrelinje != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(this.getScene().getWindow());
-            alert.setTitle("Fjern vare fra kurv");
+            alert.setTitle("Fjern varer fra kurv");
             alert.setHeaderText("Er du sikker?");
             Optional<ButtonType> resultat = alert.showAndWait();
 
             if (resultat.isPresent() && (resultat.get() == ButtonType.OK)) {
-                Controller.deleteProduktGruppe(produktgruppe);
+                lvwOrdreLinje.getItems().setAll(Controller.getStorage().getOrdrelinjer());
             }
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initOwner(this.getScene().getWindow());
-            alert.setTitle("Fjern ordre fra kurv");
+            alert.setTitle("Fjern ordrer fra kurv");
             alert.setHeaderText("Ingen ordre valgt");
-            alert.setContentText("Vælg en ordre som skal fjernes");
+            alert.setContentText("Klik på kurven for at fjerne ordrene");
             alert.show();
         }
     }
