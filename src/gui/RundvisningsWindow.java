@@ -11,11 +11,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.rmi.server.RemoteServer;
 import java.time.LocalDate;
 
 public class RundvisningsWindow extends Stage {
 
+    private ReserveWindow reserveWindow;
     private String title;
+    private Stage stage;
 
     public RundvisningsWindow(String title, Stage owner) {
         this.title = title;
@@ -24,7 +27,7 @@ public class RundvisningsWindow extends Stage {
         this.initModality(Modality.APPLICATION_MODAL);
         this.setMinHeight(500);
         this.setMinWidth(500);
-        this.setResizable(true);
+        this.setResizable(false);
 
         this.setTitle(title);
         GridPane pane = new GridPane();
@@ -32,6 +35,8 @@ public class RundvisningsWindow extends Stage {
 
         Scene scene = new Scene(pane);
         this.setScene(scene);
+
+        reserveWindow = new ReserveWindow("Rerserver Rundvisning", stage);
     }
 
     private final TextField txfReservation = new TextField();
@@ -51,10 +56,11 @@ public class RundvisningsWindow extends Stage {
         txfReservation.setEditable(false);
 
         pane.add(btnReserver, 2, 2);
-        btnReserver.setOnAction(event -> btnAction());
+        btnReserver.setOnAction(event -> this.btnAction());
     }
 
     private void btnAction() {
-
+        reserveWindow.update();
+        reserveWindow.showAndWait();
     }
 }
