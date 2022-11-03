@@ -53,8 +53,8 @@ public abstract class Controller {
     /**
      * Opretter en produktgruppe
      * */
-    public static Produktgruppe createProduktGruppe(String name, String type){
-        Produktgruppe produktgruppe = new Produktgruppe(name,type);
+    public static Produktgruppe createProduktGruppe(String name, String type, boolean udlejning){
+        Produktgruppe produktgruppe = new Produktgruppe(name,type,udlejning);
         storage.storeProduktgruppe(produktgruppe);
         return produktgruppe;
     }

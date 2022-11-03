@@ -6,12 +6,18 @@ import java.util.ArrayList;
 public class Produktgruppe implements Serializable {
     private String navn;
     private String type;
+    private boolean udlejning;
 
     private ArrayList<Produkt> produkter = new ArrayList<>();
 
-    public Produktgruppe(String navn, String type) {
+    public Produktgruppe(String navn, String type, boolean udlejning) {
         this.navn = navn;
         this.type = type;
+        this.udlejning = udlejning;
+    }
+
+    public boolean getUdlejning(){
+        return this.udlejning;
     }
 
     public ArrayList<Produkt> getProdukter() {
