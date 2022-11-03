@@ -1,5 +1,7 @@
 package controller;
 
+import model.Ordre;
+import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
 
@@ -15,6 +17,39 @@ public abstract class Controller {
     }
 
     //------------------------------------------------------------------------
+
+    /**
+     * Skaber en ordre
+     */
+    public static Ordre createOrdre(boolean betalt, int ordreID){
+        Ordre ordre = new Ordre(betalt,ordreID);
+        storage.storeOrdre(ordre);
+        return ordre;
+    }
+    /**
+     *Sletter et produkt
+     * Pre: Ordren er skabt
+     */
+    public static void deleteOrdre(Ordre ordre){
+        ordre.removeOrdre(ordre);
+        storage.deleteOrdre(ordre);
+    }
+    /**
+     * Skabet en ordrelinje
+     */
+    public static Ordrelinje createOrdrelinje(int antal, Produkt produkt){
+        Ordrelinje ordrelinje = new Ordrelinje(antal,produkt);
+        storage.storeOrdrelinje(ordrelinje);
+        return ordrelinje;
+    }
+    /**
+     * Sletter en ordrelinje
+     * Pre: Ordrelinjen er skabt
+     */
+    public static void deleteOrdrelinje(Ordrelinje ordrelinje, Ordre ordre){
+        ordre.removeOrdrelinje(ordrelinje);
+        storage.deleteOrdreLinje(ordrelinje);
+    }
 
     /**
      * Skaber et nyt objekt

@@ -14,8 +14,8 @@ import javafx.stage.StageStyle;
 import model.Produkt;
 import model.Produktgruppe;
 
-public class Produktwindow extends Stage{
 
+public class Produktwindow extends Stage{
 
     private OpretproduktWindow opretproduktWindow;
     private OpretproduktgruppeWindow opretproduktgruppe;
@@ -42,7 +42,6 @@ public class Produktwindow extends Stage{
         opretproduktgruppe = new OpretproduktgruppeWindow("Opret produktgruppe", stage);
         opretproduktWindow = new OpretproduktWindow("Opret produkt", stage);
         redigerprodukt = new Redigerprodukt("Rediger produkt", stage);
-
 
     }
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
