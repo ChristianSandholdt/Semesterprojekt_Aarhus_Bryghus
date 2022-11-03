@@ -25,6 +25,23 @@ public class Ordre {
         ordreLinjer.add(orderLine);
         return orderLine;
     }
+
+    public boolean isBetalt() {
+        return betalt;
+    }
+
+    public void setBetalt(boolean betalt) {
+        this.betalt = betalt;
+    }
+
+    public int getOrdreID() {
+        return ordreID;
+    }
+
+    public void setOrdreID(int ordreID) {
+        this.ordreID = ordreID;
+    }
+
     public ArrayList<Ordrelinje> getOrdrelinjer() {
         return new ArrayList<>(ordreLinjer);
     }

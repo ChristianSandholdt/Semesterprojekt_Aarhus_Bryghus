@@ -19,7 +19,7 @@ public class App {
 
         Application.launch(Gui.class);
 
-        Produktgruppe p1 = new Produktgruppe("Øl", "Hvede");
+        Produktgruppe p1 = new Produktgruppe("Øl", "Hvede", false);
         Controller.createProdukt("Klosterbryg","Dejlig hvedeøl",p1);
         System.out.println(p1.getProdukter());
     }
