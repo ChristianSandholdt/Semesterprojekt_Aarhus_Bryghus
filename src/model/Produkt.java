@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Produkt implements Serializable {
     private String navn;
     private String beskrivelse;
+    private final ArrayList<Pris> priser = new ArrayList<>();
     Produktgruppe produktgruppe; // OBS: Package visible
     // ----------------------------------------------------------------------
     public Produkt(String navn, String beskrivelse, Produktgruppe produktgruppe) {
@@ -27,6 +28,9 @@ public class Produkt implements Serializable {
         return beskrivelse;
     }
 
+    public ArrayList<Pris> getPriser() {
+        return priser;
+    }
     public Produktgruppe getProduktgruppe() {
         return produktgruppe;
     }

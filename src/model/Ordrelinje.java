@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class Ordrelinje {
 
     public int antal;
+
     private final ArrayList<Rundvisning> rundvisninger = new ArrayList<>();
     Produkt produkt; // OBS: Package visible
 
@@ -34,6 +35,7 @@ public class Ordrelinje {
 
     @Override
     public String toString() {
+        String str = String.format("%15s %5d %.2f", produkt.getNavn(), antal,produkt.getPriser());
         return "" + produkt + " " + antal;
     }
 
