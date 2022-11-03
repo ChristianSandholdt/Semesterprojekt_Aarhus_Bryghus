@@ -4,16 +4,15 @@ import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.Ordre;
 import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
+
+import java.util.Optional;
 
 public class NyOrdreTab extends GridPane {
 
@@ -54,12 +53,13 @@ public class NyOrdreTab extends GridPane {
 
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");
-        HBox hbox1 = new HBox(5, btnDecrease, txfAntal, btnIncrease, btnTilføj);
+        HBox hbox1 = new HBox(5,btnFjern, btnDecrease, txfAntal, btnIncrease, btnTilføj);
         this.add(hbox1, 1, 2);
         hbox1.setAlignment(Pos.CENTER);
         btnIncrease.setOnAction(event -> this.btnIncreaseAction());
         btnDecrease.setOnAction(event -> this.btnDecreaseAction());
         btnTilføj.setOnAction(event -> this.tilføjAction());
+        btnFjern.setOnAction(event -> this.fjernAction());
         
         Label lblOrdrelinje = new Label("Kurv:");
         this.add(lblOrdrelinje, 0, 2);
@@ -91,9 +91,6 @@ public class NyOrdreTab extends GridPane {
         this.updateControlsProduktgruppe();
     }
 
-    private void selectedProduktChanged() {
-        this.tilføjAction();
-    }
 
     public void tilføjAction() {
         int ordreID = 1;
@@ -108,6 +105,30 @@ public class NyOrdreTab extends GridPane {
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
 
+    }
+
+    private void fjernAction() {
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        Ordrelinje o = lvwOrdrelinje.getSelectionModel().getSelectedItem();
+        if (o != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Fjern vare fra kurv");
+            alert.setHeaderText("Er du sikker?");
+            Optional<ButtonType> resultat = alert.showAndWait();
+
+            if (resultat.isPresent() && (resultat.get() == ButtonType.OK)) {
+                Controller.deleteProduktGruppe(produktgruppe);
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Fjern ordre fra kurv");
+            alert.setHeaderText("Ingen ordre valgt");
+            alert.setContentText("Vælg en ordre som skal fjernes");
+            alert.show();
+        }
     }
 
     public void updateControlsProduktgruppe() {
