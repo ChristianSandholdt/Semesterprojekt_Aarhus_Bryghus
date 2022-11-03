@@ -17,6 +17,7 @@ public class Ordre {
 
     // Aggregation -> 0..*
     private final ArrayList<Ordrelinje> ordreLinjer = new ArrayList<>();
+    private final ArrayList<Ordre> ordrer = new ArrayList<>();
 
 
 
@@ -57,7 +58,7 @@ public class Ordre {
 
 
     public void addOrdre(Ordre ordre) {
-        ordre.addOrdre(ordre);
+        ordrer.add(ordre);
     }
     public void removeOrdre(Ordre ordre){
         removeOrdre(ordre);
