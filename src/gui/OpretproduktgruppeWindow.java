@@ -2,11 +2,15 @@ package gui;
 
 import controller.Controller;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -34,6 +38,7 @@ public class OpretproduktgruppeWindow extends Stage {
     }
     private final TextField txfNavn = new TextField();
     private final TextField txfType = new TextField();
+    private final CheckBox chkUdlejning = new CheckBox();
 
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
@@ -51,16 +56,24 @@ public class OpretproduktgruppeWindow extends Stage {
         pane.add(txfType,0,3);
         txfType.setEditable(true);
 
+
+
         Button btnOpret = new Button("Opret");
-        pane.add(btnOpret,0,4);
+        pane.add(btnOpret,0,6);
         btnOpret.setOnAction(event -> btnOpretAction());
+
+
+        Label lblUdlejning = new Label("Udlejning");
+        pane.add(lblUdlejning,0,4);
+        pane.add(chkUdlejning, 0,5);
 
     }
 
     private void btnOpretAction(){
         String navn = txfNavn.getText();
         String type = txfType.getText();
-        Controller.createProduktGruppe(navn,type);
+        boolean udlejning = chkUdlejning.isSelected();
+        Controller.createProduktGruppe(navn,type,udlejning);
         txfNavn.clear();
         txfType.clear();
         close();
