@@ -64,8 +64,6 @@ public class OpretproduktWindow extends Stage {
     }
 
     private void btnOpretProduktAction(){
-        txfBeskrivelse.clear();
-        txfNavn.clear();
         String navn = txfNavn.getText().trim();
         String beskrivelse = txfBeskrivelse.getText().trim();
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
