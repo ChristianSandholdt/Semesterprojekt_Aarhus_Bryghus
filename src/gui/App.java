@@ -15,6 +15,7 @@ public class App {
             storage = new ListStorage();
             System.out.println("Empty liststorage created");
         }
+
         Controller.setStorage(storage);
 
         Application.launch(Gui.class);
