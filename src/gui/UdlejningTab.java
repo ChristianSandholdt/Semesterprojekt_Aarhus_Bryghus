@@ -38,7 +38,7 @@ public class UdlejningTab extends GridPane {
         this.setGridLinesVisible(false);
 
         // Label & ListView Anlæg
-        Label lblAnlæg = new Label("Anlæg");
+        Label lblAnlæg = new Label("Anlæg:");
         this.add(lblAnlæg, 0, 0);
         // Indsæt shit her makker
         lvwAnlæg.getItems().setAll(Controller.getStorage().getProduktgruppe());
@@ -47,7 +47,7 @@ public class UdlejningTab extends GridPane {
         lvwAnlæg.getSelectionModel().selectFirst();
 
         // Label & ListView Fustage
-        Label lblFustage = new Label("Fustage");
+        Label lblFustage = new Label("Fustage:");
         this.add(lblFustage, 1, 0);
         // Indsæt shit her makker
 
@@ -88,7 +88,7 @@ public class UdlejningTab extends GridPane {
         btnAdd.setOnAction(event -> this.btnTilføj());
 
         // Fjern fra kurv knap - (sat i hbox for at align i midten)
-        Button btnRemove = new Button("Fjern fra kurv");
+        Button btnRemove = new Button("Tøm kurv");
         HBox hbox4 = new HBox(btnRemove);
         hbox4.setAlignment(Pos.CENTER);
         btnRemove.setMaxWidth(200);
@@ -126,30 +126,34 @@ public class UdlejningTab extends GridPane {
         btnBetaling.setAlignment(Pos.BOTTOM_CENTER);
         this.add(btnBetaling, 1, 6);
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
 
         // Tilbage aflevering
 
         Label lblTilbageAflevering = new Label("Tilbage Aflevering");
         this.add(lblTilbageAflevering, 0, 7);
-        add(txfAntalReturn, 0, 8);
-        add(txfPantReturn, 0, 9);
-        Label lblAntalTilbage = new Label("Antal Tilbage");
-        Label lblPantTilbage = new Label("Pant Tilbage");
-        lblAntalTilbage.setAlignment(Pos.BASELINE_LEFT);
-        lblPantTilbage.setAlignment(Pos.BASELINE_LEFT);
-        add(lblAntalTilbage, 1, 8);
-        add(lblPantTilbage, 1, 9);
+//        add(txfAntalReturn, 0, 8);
+//        add(txfPantReturn, 0, 9);
+        Label lblAntalTilbage = new Label("Antal Tilbage:");
+        Label lblPantTilbage = new Label("Pant Tilbage:  ");
+//        lblAntalTilbage.setAlignment(Pos.BASELINE_LEFT);
+//        lblPantTilbage.setAlignment(Pos.BASELINE_LEFT);
+//        add(lblAntalTilbage, 1, 8);
+//        add(lblPantTilbage, 1, 9);
+
+        txfAntalReturn.setPrefWidth(100);
+        txfPantReturn.setPrefWidth(100);
+        HBox eyyo = new HBox(5,lblAntalTilbage,txfAntalReturn);
+        HBox eyyo1 = new HBox(5,lblPantTilbage,txfPantReturn);
+        this.add(eyyo, 0, 8);
+        this.add(eyyo1, 0, 9);
 
 
-        Button btnUdbetal = new Button("Udbetal");
+        // Udbetal knap
+        Button btnUdbetal = new Button("Udbetal:");
         add(btnUdbetal, 0, 10,2,1);
         btnUdbetal.setAlignment(Pos.CENTER);
         btnUdbetal.setMaxWidth(500);
-
-
-        // Betalings window
-        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
-
     }
 
     public void updateControls() {
