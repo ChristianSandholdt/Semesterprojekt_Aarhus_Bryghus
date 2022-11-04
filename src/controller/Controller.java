@@ -53,8 +53,8 @@ public abstract class Controller {
     /**
      * Skaber et nyt objekt
      */
-    public static Produkt createProdukt(String name, String beskrivelse, Produktgruppe produktgruppe){
-        Produkt produkt = new Produkt(name,beskrivelse, produktgruppe);
+    public static Produkt createProdukt(String name, Produktgruppe produktgruppe){
+        Produkt produkt = new Produkt(name, produktgruppe);
         storage.storeProdukt(produkt);
         return produkt;
     }
@@ -72,9 +72,8 @@ public abstract class Controller {
      * Opdaterer et produkt
      * Pre: Produktet er skabt
      */
-    public static void updateProdukt(Produkt produkt, String name, String beskrivelse, Produktgruppe produktgruppe){
+    public static void updateProdukt(Produkt produkt, String name, Produktgruppe produktgruppe){
         produkt.setNavn(name);
-        produkt.setBeskrivelse(beskrivelse);
         if (produkt.getProduktgruppe() != null){
             produkt.fjernProduktgruppe(produkt.getProduktgruppe());
         }
@@ -87,8 +86,8 @@ public abstract class Controller {
     /**
      * Opretter en produktgruppe
      * */
-    public static Produktgruppe createProduktGruppe(String name, String type, boolean udlejning){
-        Produktgruppe produktgruppe = new Produktgruppe(name,type,udlejning);
+    public static Produktgruppe createProduktGruppe(String name, boolean udlejning){
+        Produktgruppe produktgruppe = new Produktgruppe(name,udlejning);
         storage.storeProduktgruppe(produktgruppe);
         return produktgruppe;
     }
