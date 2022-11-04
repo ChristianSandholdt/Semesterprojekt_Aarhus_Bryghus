@@ -1,9 +1,8 @@
 package controller;
 
-import model.Ordre;
-import model.Ordrelinje;
-import model.Produkt;
-import model.Produktgruppe;
+import model.*;
+
+import java.time.LocalDate;
 
 public abstract class Controller {
 
@@ -102,6 +101,13 @@ public abstract class Controller {
         storage.deleteProduktgruppe(produktgruppe);
     }
 
-
+    //---------------------------------------------------------------------------
+    public static Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner,
+                                                LocalDate dato, String startTid, String slutTid){
+        Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner,
+                dato, startTid, slutTid);
+        storage.storeRundvisning(rundvisning);
+        return rundvisning;
+    }
 
 }

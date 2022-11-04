@@ -11,12 +11,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import controller.Controller;
 import javafx.util.Callback;
+import model.Rundvisning;
 
 import java.time.LocalDate;
 
 public class RundvisningsWindow extends Stage {
 
     private String title;
+    private LocalDate date;
 
     public RundvisningsWindow(String title, Stage owner) {
         this.title = title;
@@ -61,17 +63,17 @@ public class RundvisningsWindow extends Stage {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (!empty && item != null) {
-                            if(Controller.getStorage().getRundvisning().contains(item)) {
-                                this.setStyle("-fx-background-color: pink");
+                        if (item != null) {
+                            for (Rundvisning r : Controller.getStorage().getRundvisning()){
+                                if (item.equals(r.getDato())){
+                                    this.setStyle("-fx-background-color: pink");
+                                }
                             }
                         }
                     }
                 };
             }
         });
-
-        pane.add(btnReserver, 0, 11);
 
         Label lblNavn = new Label("Navn");
         pane.add(lblNavn, 0,3);
@@ -99,6 +101,8 @@ public class RundvisningsWindow extends Stage {
         txfDato.setEditable(false);
         datePicker.valueProperty().addListener((ov, oldValue, newValue) -> {
             txfDato.setText("" + newValue);
+            date = newValue;
+            this.reservationsDatoValgt();
         });
 
         Label lblStartTid = new Label("Start Tid");
@@ -108,5 +112,37 @@ public class RundvisningsWindow extends Stage {
         Label lblSluttid = new Label("Slut Tid");
         pane.add(lblSluttid, 1, 9);
         pane.add(txfSlutTid, 1, 10);
+
+        pane.add(btnReserver, 0, 11);
+        btnReserver.setOnAction(event -> btnReserverAction());
+    }
+
+    private void btnReserverAction() {
+        String navn = txfNavn.getText();
+        String email = txfEmail.getText();
+        int tlfNummer = Integer.parseInt(txfTlf.getText());
+        int antalPersoner = Integer.parseInt(txfAntalPersoner.getText());
+        String startTid = txfStartTid.getText();
+        String slutTid = txfSlutTid.getText();
+        Controller.createRundvisning(navn,email,tlfNummer,0,antalPersoner,date,startTid, slutTid);
+    }
+
+    private void reservationsDatoValgt() {
+        txfNavn.clear();
+        txfEmail.clear();
+        txfTlf.clear();
+        txfAntalPersoner.clear();
+        txfStartTid.clear();
+        txfSlutTid.clear();
+        for (Rundvisning r : Controller.getStorage().getRundvisning()){
+            if (date.equals(r.getDato())){
+                txfNavn.setText(r.getNavn());
+                txfEmail.setText(r.getEmail());
+                txfTlf.setText(String.valueOf(r.getTlfNummer()));
+                txfAntalPersoner.setText(String.valueOf(r.getAntalPersoner()));
+                txfStartTid.setText(r.getStartTid());
+                txfSlutTid.setText(r.getSlutTid());
+            }
+        }
     }
 }

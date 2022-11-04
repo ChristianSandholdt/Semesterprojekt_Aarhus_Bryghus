@@ -51,7 +51,7 @@ public class Ordre {
         removeOrdre(ordre);
     }
 
-    public Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner, LocalDate dato, LocalDateTime startTid, LocalDateTime slutTid) {
+    public Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner, LocalDate dato, String startTid, String slutTid) {
         Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner, dato, startTid, slutTid);
         rundvisninger.add(rundvisning);
         rundvisning.ordre = this;
