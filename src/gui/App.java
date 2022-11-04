@@ -25,6 +25,7 @@ public class App {
         System.out.println(p1.getProdukter());
     }
 
+
     Produktgruppe pg1 = new Produktgruppe("Flaske", false);
     Produkt p1 = new Produkt("Klosterbryg",pg1);
     Produkt p2 = new Produkt("Sweet Georgia Brown",pg1);
@@ -89,12 +90,6 @@ public class App {
     Produkt p53 = new Produkt("Pant",pg5);
     Produkt p54 = new Produkt("4 kg",pg5);
     Produkt p55 = new Produkt("10 kg",pg5);
-
-    Produktgruppe
-    Produkt p = new Produkt("",pg5);
-    Produkt p = new Produkt("",pg5);
-    Produkt p = new Produkt("",pg5);
-    Produkt p = new Produkt("",pg5);
 
 
 

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Produktgruppe implements Serializable {
     private String navn;
-    private String type;
     private boolean udlejning;
 
     private ArrayList<Produkt> produkter = new ArrayList<>();
@@ -34,6 +33,6 @@ public class Produktgruppe implements Serializable {
 
     @Override
     public String toString() {
-        return navn + ", " + type;
+        return navn + "" ;
     }
 }

@@ -162,13 +162,11 @@ public class Produktwindow extends Stage{
     private void btnRedigerProduktAction() {
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
         redigerprodukt.txfNavn.setText(lvwProdukt.getSelectionModel().getSelectedItem().getNavn());
-        redigerprodukt.txfBeskrivelse.setText(lvwProdukt.getSelectionModel().getSelectedItem().getBeskrivelse());
 
         redigerprodukt.showAndWait();
 
         Produktgruppe produktgruppe = redigerprodukt.lvwProduktGruppe.getSelectionModel().getSelectedItem();
-        Controller.updateProdukt(produkt,redigerprodukt.txfNavn.getText(),
-        redigerprodukt.txfBeskrivelse.getText(), produktgruppe);
+        Controller.updateProdukt(produkt,redigerprodukt.txfNavn.getText(),produktgruppe);
 
         update();
     }
