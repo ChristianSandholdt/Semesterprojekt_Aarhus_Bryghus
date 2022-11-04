@@ -192,7 +192,7 @@ public class UdlejningTab extends GridPane {
         Produktgruppe produktgruppe = lvwAnlæg.getSelectionModel().getSelectedItem();
         String antal = txfAntal1.getText();
         if (produktgruppe != null) {
-            Produkt p = new Produkt(antal,"",produktgruppe);
+            Produkt p = new Produkt(antal,produktgruppe);
             lvwOrdreLinje.getItems().add(new Ordrelinje(Integer.parseInt(antal),p));
             txfAntal1.setText("1");
             txfAntal2.setText("1");

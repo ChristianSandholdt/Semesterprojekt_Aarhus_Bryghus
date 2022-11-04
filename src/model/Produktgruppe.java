@@ -33,6 +33,6 @@ public class Produktgruppe implements Serializable {
 
     @Override
     public String toString() {
-        return navn + "" ;
+        return navn;
     }
 }

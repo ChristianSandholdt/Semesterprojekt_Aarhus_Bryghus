@@ -18,6 +18,8 @@ public class App {
 
         Controller.setStorage(storage);
 
+        //initStorage();
+
         Application.launch(Gui.class);
 
         Produktgruppe p1 = new Produktgruppe("Øl", false);
@@ -25,71 +27,114 @@ public class App {
         System.out.println(p1.getProdukter());
     }
 
+    public static void initStorage(){
+        Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
+        Controller.createProdukt("Klosterbryg",pg1);
+        Controller.createProdukt("Sweet Georgie Brown", pg1);
+        Controller.createProdukt("Extra Pilsner",pg1);
+        Controller.createProdukt("Celebration",pg1);
+        Controller.createProdukt("Blondie",pg1);
+        Controller.createProdukt("Forårsbryg",pg1);
+        Controller.createProdukt("India Pale Ale",pg1);
+        Controller.createProdukt("Julebryg",pg1);
+        Controller.createProdukt("Juletønden",pg1);
+        Controller.createProdukt("Old Strong Ale",pg1);
+        Controller.createProdukt("Fregatten Jylland",pg1);
+        Controller.createProdukt("Imperial Stout",pg1);
+        Controller.createProdukt("Tribute",pg1);
+        Controller.createProdukt("Black Monster",pg1);
 
-    Produktgruppe pg1 = new Produktgruppe("Flaske", false);
-    Produkt p1 = new Produkt("Klosterbryg",pg1);
-    Produkt p2 = new Produkt("Sweet Georgia Brown",pg1);
-    Produkt p3 = new Produkt("Extra Pilsner",pg1);
-    Produkt p4 = new Produkt("Celebration",pg1);
-    Produkt p5 = new Produkt("Blondie",pg1);
-    Produkt p6 = new Produkt("Forårsbryg", pg1);
-    Produkt p7 = new Produkt("India Pale Ale",pg1);
-    Produkt p8 = new Produkt("Julebryg", pg1);
-    Produkt p9 = new Produkt("Juletønden",pg1);
-    Produkt p10 = new Produkt("Old Strong Ale", pg1);
-    Produkt p11 = new Produkt("Fregatten Jylland",pg1);
-    Produkt p12 = new Produkt("Imperial Stout",pg1);
-    Produkt p13 = new Produkt("Tribute",pg1);
-    Produkt p14 = new Produkt("Black Monster",pg1);
+        Produktgruppe pg2 = Controller.createProduktGruppe("Fadøl 40 cl",false);
+        Controller.createProdukt("Klosterbryg",pg2);
+        Controller.createProdukt("Jazz Classic",pg2);
+        Controller.createProdukt("Extra pilsner",pg2);
+        Controller.createProdukt("Celebration",pg2);
+        Controller.createProdukt("Blondie",pg2);
+        Controller.createProdukt("Forårsbryg",pg2);
+        Controller.createProdukt("India Pale Ale",pg2);
+        Controller.createProdukt("Julebryg",pg2);
+        Controller.createProdukt("Imperial Stout",pg2);
+        Controller.createProdukt("Special",pg2);
+        Controller.createProdukt("Æblebrus",pg2);
+        Controller.createProdukt("Chips",pg2);
+        Controller.createProdukt("Peanuts",pg2);
+        Controller.createProdukt("Cola",pg2);
+        Controller.createProdukt("Nikoline",pg2);
+        Controller.createProdukt("7-Up",pg2);
+        Controller.createProdukt("Vand",pg2);
+        Controller.createProdukt("Ølpølser",pg2);
 
-    Produktgruppe pg2 = new Produktgruppe("Fadøl 40 cl",false);
-    Produkt p15 = new Produkt("Klosterbryg",pg2);
-    Produkt p16 = new Produkt("Jazz Classic",pg2);
-    Produkt p17 = new Produkt("Extra Pilsner",pg2);
-    Produkt p18 = new Produkt("Celebration",pg2);
-    Produkt p19 = new Produkt("Blondie",pg2);
-    Produkt p20 = new Produkt("Forårsbryg",pg2);
-    Produkt p21 = new Produkt("India Pale Ale",pg2);
-    Produkt p22 = new Produkt("Julebryg",pg2);
-    Produkt p23 = new Produkt("Imperial Stout",pg2);
-    Produkt p24 = new Produkt("Special",pg2);
-    Produkt p25 = new Produkt("Æblebrus",pg2);
-    Produkt p26 = new Produkt("Chips",pg2);
-    Produkt p27 = new Produkt("Peanuts",pg2);
-    Produkt p28 = new Produkt("Cola",pg2);
-    Produkt p29 = new Produkt("Nikoline",pg2);
-    Produkt p30 = new Produkt("7-up",pg2);
-    Produkt p31 = new Produkt("Vand",pg2);
-    Produkt p32 = new Produkt("Ølpølser",pg2);
+        Produktgruppe pg3 = Controller.createProduktGruppe("Spiritus",false);
+        Controller.createProdukt("Whisky 43% 50 cl rør",pg3);
+        Controller.createProdukt("u/ egesplint",pg3);
+        Controller.createProdukt("m/ egesplint",pg3);
+        Controller.createProdukt("2*whisky glas + brikker",pg3);
+        Controller.createProdukt("Liquor of Aarhus",pg3);
+        Controller.createProdukt("Lyng gin 50 cl",pg3);
+        Controller.createProdukt("Lyng gin 4 cl",pg3);
 
-    Produktgruppe pg3 = new Produktgruppe("Spiritus",false);
-    Produkt p33 = new Produkt("Whisky 45% 50 cl rør",pg3);
-    Produkt p34 = new Produkt("Whisky 4 cl",pg3);
-    Produkt p35 = new Produkt("Whisky 43% 50 cl rør",pg3);
-    Produkt p36 = new Produkt("u/ egesplint",pg3);
-    Produkt p37 = new Produkt("m/ egesplint",pg3);
-    Produkt p38 = new Produkt("2*whisky glas + brikker",pg3);
-    Produkt p39 = new Produkt("Liquor of Aarhus",pg3);
-    Produkt p40 = new Produkt("Lyng gin 50 cl",pg3);
-    Produkt p41 = new Produkt("Lyng gin 4 cl",pg3);
 
-    Produktgruppe pg4 = new Produktgruppe("Fustage", true);
-    Produkt p42 = new Produkt("Klosterbryg, 20 liter",pg4);
-    Produkt p43 = new Produkt("Jazz Classic, 25 liter",pg4);
-    Produkt p44 = new Produkt("Extra Pilsner, 25 liter",pg4);
-    Produkt p45 = new Produkt("Celebration, 20 liter",pg4);
-    Produkt p46 = new Produkt("Blondie, 25 liter",pg4);
-    Produkt p47 = new Produkt("Forårsbryg, 20 liter",pg4);
-    Produkt p48 = new Produkt("India Pale Ale, 20 liter",pg4);
-    Produkt p49 = new Produkt("Julebryg, 20 liter",pg4);
-    Produkt p50 = new Produkt("Imperial Stout, 20 liter",pg4);
-    Produkt p51 = new Produkt("Pant",pg4);
+        Produktgruppe pg4 = Controller.createProduktGruppe("Fustage",true);
+        Controller.createProdukt("Klosterbryg, 20 liter",pg4);
+        Controller.createProdukt("Jazz Classic, 25 liter",pg4);
+        Controller.createProdukt("Extra Pilsner, 25 liter",pg4);
+        Controller.createProdukt("Celebration, 20 liter",pg4);
+        Controller.createProdukt("Blondie, 25 liter",pg4);
+        Controller.createProdukt("Forårsbryg, 20 liter",pg4);
+        Controller.createProdukt("India Pale Ale, 20 liter",pg4);
+        Controller.createProdukt("Julebryg, 20 liter",pg4);
+        Controller.createProdukt("Imperial Stout, 20 liter",pg4);
+        Controller.createProdukt("Pant",pg4);
 
-    Produktgruppe pg5 = new Produktgruppe("Kulsyre", true);
-    Produkt p52 = new Produkt("6 kg",pg5);
-    Produkt p53 = new Produkt("Pant",pg5);
-    Produkt p54 = new Produkt("4 kg",pg5);
-    Produkt p55 = new Produkt("10 kg",pg5);
+        Produktgruppe pg5 = Controller.createProduktGruppe("Kulsyre",true);
+        Controller.createProdukt("4 kg",pg5);
+        Controller.createProdukt("6 kg",pg5);
+        Controller.createProdukt("10",pg5);
+        Controller.createProdukt("Pant",pg5);
+
+        Produktgruppe pg6 = Controller.createProduktGruppe("Malt",false);
+        Controller.createProdukt("25 kg sæk",pg6);
+
+        Produktgruppe pg7 = Controller.createProduktGruppe("Beklædning",false);
+        Controller.createProdukt("T-shirt",pg7);
+        Controller.createProdukt("Polo",pg7);
+        Controller.createProdukt("Cap",pg7);
+
+        Produktgruppe pg8 = Controller.createProduktGruppe("Anlæg",true);
+        Controller.createProdukt("1-hane",pg8);
+        Controller.createProdukt("2-haner",pg8);
+        Controller.createProdukt("Bar med flere haner",pg8);
+        Controller.createProdukt("Levering",pg8);
+        Controller.createProdukt("Krus",pg8);
+
+        Produktgruppe pg9 = Controller.createProduktGruppe("Glas",false);
+        Controller.createProdukt("Glas",pg9);
+
+
+        Produktgruppe pg10 = Controller.createProduktGruppe("Sampakninger",false);
+
+        Controller.createProdukt("Gaveæske med 2 øl, 2 glas",pg10);
+        Controller.createProdukt("gaveæske 4 øl",pg10);
+        Controller.createProdukt("trækasse 6 øl",pg10);
+        Controller.createProdukt("gavekurv 6 øl, 2 glas",pg10);
+        Controller.createProdukt("trækasse 6 øl, 6 glas",pg10);
+        Controller.createProdukt("trækasse 12 øl",pg10);
+        Controller.createProdukt("papkasse 12 øl",pg10);
+
+
+
+
+
+    }
+
+
+    Produktgruppe pg6 = new Produktgruppe("Malt", false);
+    Produkt p56 = new Produkt("25 kg sæk",pg6);
+
+    Produktgruppe pg7 = new Produktgruppe("Beklædning", false);
+    Produkt p57 = new Produkt("t-shirt",pg7);
+    Produkt p58 = new Produkt("polo",pg7);
+    Produkt p59 = new Produkt("cap",pg7);
 
 
 
