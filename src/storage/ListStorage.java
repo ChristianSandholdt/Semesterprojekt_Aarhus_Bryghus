@@ -1,10 +1,7 @@
 package storage;
 
 import controller.Storage;
-import model.Ordre;
-import model.Ordrelinje;
-import model.Produkt;
-import model.Produktgruppe;
+import model.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ public class ListStorage implements Storage, Serializable {
     private List<Ordre> ordre = new ArrayList<>();
     private List<Ordrelinje> ordrelinjer = new ArrayList<>();
 
+    private List<Rundvisning> rundvisninger = new ArrayList<>();
 
     @Override
     public List<Ordre> getOrdre(){
@@ -58,6 +56,7 @@ public class ListStorage implements Storage, Serializable {
     public void deleteProduktgruppe(Produktgruppe produktgruppe) {
         produktgrupper.remove(produktgruppe);
     }
+
     @Override
     public List<Produkt> getProdukt() {
         return new ArrayList<>(produkter);
@@ -73,6 +72,20 @@ public class ListStorage implements Storage, Serializable {
         produkter.remove(produkt);
     }
 
+    @Override
+    public List<Rundvisning> getRundvisning() {
+        return new ArrayList<>(rundvisninger);
+    }
+
+    @Override
+    public void storeRundvisning(Rundvisning rundvisning) {
+        rundvisninger.add(rundvisning);
+    }
+
+    @Override
+    public void deleteRundvisning(Rundvisning rundvisning) {
+        rundvisninger.remove(rundvisning);
+    }
 
     public static void saveStorage(Storage storage){
         String fileName = "src/test/storage.ser";
@@ -87,7 +100,6 @@ public class ListStorage implements Storage, Serializable {
             throw new RuntimeException();
         }
     }
-
 
     public static ListStorage loadStorage(){
         String fileName = "src/test/storage.ser";
@@ -112,6 +124,4 @@ public class ListStorage implements Storage, Serializable {
             return null;
         }
     }
-
-
 }

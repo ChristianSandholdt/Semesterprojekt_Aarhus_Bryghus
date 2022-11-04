@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,8 +15,8 @@ import javafx.stage.StageStyle;
 import model.Produkt;
 import model.Produktgruppe;
 
-public class Produktwindow extends Stage{
 
+public class Produktwindow extends Stage{
 
     private OpretproduktWindow opretproduktWindow;
     private OpretproduktgruppeWindow opretproduktgruppe;
@@ -43,7 +44,6 @@ public class Produktwindow extends Stage{
         opretproduktWindow = new OpretproduktWindow("Opret produkt", stage);
         redigerprodukt = new Redigerprodukt("Rediger produkt", stage);
 
-
     }
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
@@ -52,7 +52,8 @@ public class Produktwindow extends Stage{
 
     private final Button btnFjernProdukt = new Button();
 
-    private final Button btnRedigerProdukt = new Button();
+    private final TextArea txaVisBeskrivelse = new TextArea();
+
 
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
@@ -98,6 +99,16 @@ public class Produktwindow extends Stage{
         Button btnRedigerProdukt = new Button("Rediger produkt");
         pane.add(btnRedigerProdukt,1,4);
         btnRedigerProdukt.setOnAction(event -> btnRedigerProduktAction());
+
+        //Listener til produkt
+        ChangeListener<Produkt> listener1 = (obs, o, n) -> this.selectedProduktChanged();
+        lvwProdukt.getSelectionModel().selectedItemProperty().addListener(listener1);
+
+        //Vis beskrivelse af produkt i et TextArea
+        pane.add(txaVisBeskrivelse, 2,1);
+        txaVisBeskrivelse.setEditable(false);
+        txaVisBeskrivelse.setPrefRowCount(5);
+        txaVisBeskrivelse.setPrefColumnCount(20);
 
         this.fillProduktGruppeList();
 
@@ -160,7 +171,6 @@ public class Produktwindow extends Stage{
         redigerprodukt.txfBeskrivelse.getText(), produktgruppe);
 
         update();
-        //Kan ikke fjerne den gamle forbindelse mellem produktet og den gamle produktgruppe
     }
 
     private void fillProduktList(Produktgruppe produktgruppe){
@@ -176,6 +186,21 @@ public class Produktwindow extends Stage{
         lvwProduktGruppe.getItems().clear();
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
 
+    }
+
+    private void fillProduktBeskrivelse(Produkt produkt){
+        txaVisBeskrivelse.clear();
+        txaVisBeskrivelse.appendText(produkt.getBeskrivelse());
+    }
+
+    private void selectedProduktChanged(){
+        Produkt selectedItem = lvwProdukt.getSelectionModel().getSelectedItem();
+        if (selectedItem != null){
+            this.fillProduktBeskrivelse(selectedItem);
+        }
+        else {
+            txaVisBeskrivelse.clear();
+        }
     }
 
 }

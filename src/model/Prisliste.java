@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Prisliste {
     private double pris;
-    private Produkt produkt;
+    private ArrayList<Pris> priser = new ArrayList<>();
 
     public Prisliste(double pris) {
         this.pris = pris;
@@ -18,11 +18,7 @@ public class Prisliste {
         this.pris = pris;
     }
 
-    public Produkt getProdukt() {
-        return produkt;
-    }
-
-    public void setProdukt(Produkt produkt) {
-        this.produkt = produkt;
+    public ArrayList<Pris> getPriser() {
+        return priser;
     }
 }
