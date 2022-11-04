@@ -68,8 +68,6 @@ public class OpretproduktWindow extends Stage {
         String beskrivelse = txfBeskrivelse.getText().trim();
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         Controller.createProdukt(navn,beskrivelse, lvwProduktGruppe.getSelectionModel().getSelectedItem());
-        txfNavn.clear();
-        txfBeskrivelse.clear();
         close();
 
     }

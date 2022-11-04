@@ -1,9 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 public class Ordrelinje {
 
     public int antal;
@@ -28,6 +24,8 @@ public class Ordrelinje {
 
     @Override
     public String toString() {
-        return "" + produkt + " " + antal;
+//        String str = String.format("%15s %.2f %5d", produkt.getNavn(),produkt.getPriser(), antal);
+        String str = String.format("%5s %25d", produkt.getNavn(),antal);
+        return str;
     }
 }
