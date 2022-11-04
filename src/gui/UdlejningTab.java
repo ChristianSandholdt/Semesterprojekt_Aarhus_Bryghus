@@ -55,15 +55,15 @@ public class UdlejningTab extends GridPane {
         this.add(lvwFustage, 1, 1);
 
         // Button; Increase
-        Button btnIncrease1 = new Button(">");
+        Button btnIncrease1 = new Button("+");
         btnIncrease1.setOnAction(event -> this.btn1IncreaseAction());
-        Button btnIncrease2 = new Button(">");
+        Button btnIncrease2 = new Button("+");
         btnIncrease2.setOnAction(event -> this.btn2IncreaseAction());
 
         // Button; Decrease
-        Button btnDecrease1 = new Button("<");
+        Button btnDecrease1 = new Button("-");
         btnDecrease1.setOnAction(event -> this.btn1DecreaseAction());
-        Button btnDecrease2 = new Button("<");
+        Button btnDecrease2 = new Button("-");
         btnDecrease2.setOnAction(event -> this.btn2DecreaseAction());
 
         // HBox 1
