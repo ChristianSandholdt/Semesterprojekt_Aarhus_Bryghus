@@ -9,9 +9,8 @@ public class Produkt implements Serializable {
     private final ArrayList<Pris> priser = new ArrayList<>();
     Produktgruppe produktgruppe; // OBS: Package visible
     // ----------------------------------------------------------------------
-    public Produkt(String navn, String beskrivelse, Produktgruppe produktgruppe) {
+    public Produkt(String navn, Produktgruppe produktgruppe) {
         this.navn = navn;
-        this.beskrivelse = beskrivelse;
         produktgruppe.tilfoejProdukt(this);
         this.produktgruppe = produktgruppe;
     }

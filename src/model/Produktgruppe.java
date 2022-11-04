@@ -10,9 +10,8 @@ public class Produktgruppe implements Serializable {
 
     private ArrayList<Produkt> produkter = new ArrayList<>();
 
-    public Produktgruppe(String navn, String type, boolean udlejning) {
+    public Produktgruppe(String navn, boolean udlejning) {
         this.navn = navn;
-        this.type = type;
         this.udlejning = udlejning;
     }
 
