@@ -61,15 +61,15 @@ public class BetalingsWindow extends Stage {
         // Total pris
         Label lblPris = new Label("Pris:     ");
         txfPris.setMaxWidth(50);
-        HBox hbox = new HBox(5,lblPris,txfPris);
+        HBox hbox = new HBox(10,lblPris,txfPris);
         hbox.setMaxWidth(200);
         pane.add(hbox, 0, 0);
 
 
         // Rabat
-        Label lblRabat = new Label("Rabat:");
+        Label lblRabat = new Label("Rabat :");
         txfRabat.setMaxWidth(50);
-        HBox hbox2 = new HBox(5,lblRabat,txfRabat);
+        HBox hbox2 = new HBox(10,lblRabat,txfRabat);
         hbox2.setMaxWidth(200);
         pane.add(hbox2, 0, 1);
 
