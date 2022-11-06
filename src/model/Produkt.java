@@ -5,27 +5,19 @@ import java.util.ArrayList;
 
 public class Produkt implements Serializable {
     private String navn;
-    private String beskrivelse;
     private final ArrayList<Pris> priser = new ArrayList<>();
     Produktgruppe produktgruppe; // OBS: Package visible
     // ----------------------------------------------------------------------
-    public Produkt(String navn, String beskrivelse, Produktgruppe produktgruppe) {
+    public Produkt(String navn, Produktgruppe produktgruppe) {
         this.navn = navn;
-        this.beskrivelse = beskrivelse;
         produktgruppe.tilfoejProdukt(this);
         this.produktgruppe = produktgruppe;
     }
     public void setNavn(String navn) {
         this.navn = navn;
     }
-    public void setBeskrivelse(String beskrivelse) {
-        this.beskrivelse = beskrivelse;
-    }
     public String getNavn() {
         return navn;
-    }
-    public String getBeskrivelse() {
-        return beskrivelse;
     }
 
     public ArrayList<Pris> getPriser() {

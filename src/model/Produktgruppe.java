@@ -5,14 +5,12 @@ import java.util.ArrayList;
 
 public class Produktgruppe implements Serializable {
     private String navn;
-    private String type;
     private boolean udlejning;
 
     private ArrayList<Produkt> produkter = new ArrayList<>();
 
-    public Produktgruppe(String navn, String type, boolean udlejning) {
+    public Produktgruppe(String navn, boolean udlejning) {
         this.navn = navn;
-        this.type = type;
         this.udlejning = udlejning;
     }
 
@@ -35,6 +33,6 @@ public class Produktgruppe implements Serializable {
 
     @Override
     public String toString() {
-        return navn + ", " + type;
+        return navn;
     }
 }

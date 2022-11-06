@@ -52,7 +52,6 @@ public class Produktwindow extends Stage{
 
     private final Button btnFjernProdukt = new Button();
 
-    private final TextArea txaVisBeskrivelse = new TextArea();
 
 
     private void initContent(GridPane pane){
@@ -100,16 +99,6 @@ public class Produktwindow extends Stage{
         pane.add(btnRedigerProdukt,1,4);
         btnRedigerProdukt.setOnAction(event -> btnRedigerProduktAction());
 
-        //Listener til produkt
-        ChangeListener<Produkt> listener1 = (obs, o, n) -> this.selectedProduktChanged();
-        lvwProdukt.getSelectionModel().selectedItemProperty().addListener(listener1);
-
-        //Vis beskrivelse af produkt i et TextArea
-        pane.add(txaVisBeskrivelse, 2,1);
-        txaVisBeskrivelse.setEditable(false);
-        txaVisBeskrivelse.setPrefRowCount(5);
-        txaVisBeskrivelse.setPrefColumnCount(20);
-
         this.fillProduktGruppeList();
 
     }
@@ -126,7 +115,6 @@ public class Produktwindow extends Stage{
             return;
         }
         Controller.deleteProduktGruppe(produktgruppe);
-        btnFjernProduktGruppe.setDisable(true);
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
     }
     private void fillProduktGruppeList(){
@@ -162,13 +150,11 @@ public class Produktwindow extends Stage{
     private void btnRedigerProduktAction() {
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
         redigerprodukt.txfNavn.setText(lvwProdukt.getSelectionModel().getSelectedItem().getNavn());
-        redigerprodukt.txfBeskrivelse.setText(lvwProdukt.getSelectionModel().getSelectedItem().getBeskrivelse());
 
         redigerprodukt.showAndWait();
 
         Produktgruppe produktgruppe = redigerprodukt.lvwProduktGruppe.getSelectionModel().getSelectedItem();
-        Controller.updateProdukt(produkt,redigerprodukt.txfNavn.getText(),
-        redigerprodukt.txfBeskrivelse.getText(), produktgruppe);
+        Controller.updateProdukt(produkt,redigerprodukt.txfNavn.getText(), produktgruppe);
 
         update();
     }
@@ -188,19 +174,5 @@ public class Produktwindow extends Stage{
 
     }
 
-    private void fillProduktBeskrivelse(Produkt produkt){
-        txaVisBeskrivelse.clear();
-        txaVisBeskrivelse.appendText(produkt.getBeskrivelse());
-    }
-
-    private void selectedProduktChanged(){
-        Produkt selectedItem = lvwProdukt.getSelectionModel().getSelectedItem();
-        if (selectedItem != null){
-            this.fillProduktBeskrivelse(selectedItem);
-        }
-        else {
-            txaVisBeskrivelse.clear();
-        }
-    }
 
 }

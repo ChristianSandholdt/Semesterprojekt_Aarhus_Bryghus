@@ -73,11 +73,10 @@ public class OpretproduktgruppeWindow extends Stage {
         String navn = txfNavn.getText();
         String type = txfType.getText();
         boolean udlejning = chkUdlejning.isSelected();
-        Controller.createProduktGruppe(navn,type,udlejning);
+        Controller.createProduktGruppe(navn,udlejning);
         txfNavn.clear();
         txfType.clear();
         close();
-
     }
 
 

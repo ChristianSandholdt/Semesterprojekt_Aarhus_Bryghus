@@ -1,9 +1,8 @@
 package controller;
 
-import model.Ordre;
-import model.Ordrelinje;
-import model.Produkt;
-import model.Produktgruppe;
+import model.*;
+
+import java.time.LocalDate;
 
 public abstract class Controller {
 
@@ -54,8 +53,8 @@ public abstract class Controller {
     /**
      * Skaber et nyt objekt
      */
-    public static Produkt createProdukt(String name, String beskrivelse, Produktgruppe produktgruppe){
-        Produkt produkt = new Produkt(name,beskrivelse, produktgruppe);
+    public static Produkt createProdukt(String name, Produktgruppe produktgruppe){
+        Produkt produkt = new Produkt(name, produktgruppe);
         storage.storeProdukt(produkt);
         return produkt;
     }
@@ -73,9 +72,8 @@ public abstract class Controller {
      * Opdaterer et produkt
      * Pre: Produktet er skabt
      */
-    public static void updateProdukt(Produkt produkt, String name, String beskrivelse, Produktgruppe produktgruppe){
+    public static void updateProdukt(Produkt produkt, String name, Produktgruppe produktgruppe){
         produkt.setNavn(name);
-        produkt.setBeskrivelse(beskrivelse);
         if (produkt.getProduktgruppe() != null){
             produkt.fjernProduktgruppe(produkt.getProduktgruppe());
         }
@@ -88,8 +86,8 @@ public abstract class Controller {
     /**
      * Opretter en produktgruppe
      * */
-    public static Produktgruppe createProduktGruppe(String name, String type, boolean udlejning){
-        Produktgruppe produktgruppe = new Produktgruppe(name,type,udlejning);
+    public static Produktgruppe createProduktGruppe(String name, boolean udlejning){
+        Produktgruppe produktgruppe = new Produktgruppe(name,udlejning);
         storage.storeProduktgruppe(produktgruppe);
         return produktgruppe;
     }
@@ -102,6 +100,13 @@ public abstract class Controller {
         storage.deleteProduktgruppe(produktgruppe);
     }
 
-
+    //---------------------------------------------------------------------------
+    public static Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner,
+                                                LocalDate dato, String startTid, String slutTid){
+        Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner,
+                dato, startTid, slutTid);
+        storage.storeRundvisning(rundvisning);
+        return rundvisning;
+    }
 
 }

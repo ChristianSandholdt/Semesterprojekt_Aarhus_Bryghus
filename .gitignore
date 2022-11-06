@@ -1,0 +1,6 @@
+/shelf/
+/workspace.xml
+*.iml
+*.class
+out\
+\misc.xml

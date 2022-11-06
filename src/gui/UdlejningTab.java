@@ -1,27 +1,30 @@
 package gui;
 
 import controller.Controller;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.Ordre;
 import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 
 public class UdlejningTab extends GridPane {
 
-    private final ListView<Produktgruppe> lvwAnlæg = new ListView<>();
+
+    private final ArrayList<Produktgruppe> produktgrupper = new ArrayList<>();
+    private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdreLinje = new ListView<>();
-    private final ListView<Produktgruppe> lvwFustage = new ListView<>();
-    private final ListView<Produkt> lvwProdukt = new ListView<>();
+    private final ListView<Produkt> lvwProdukter = new ListView<>();
     private final TextField txfAntal1 = new TextField();
     private final TextField txfAntal2 = new TextField();
     private final TextField txfPris = new TextField();
@@ -30,6 +33,8 @@ public class UdlejningTab extends GridPane {
     private final TextField txfAntalReturn = new TextField();
     private final TextField txfPantReturn = new TextField();
     private BetalingsWindow betalingsWindow;
+    private Ordre ordre;
+    private Ordrelinje ordrelinje;
 
     public UdlejningTab() {
         this.setPadding(new Insets(20));
@@ -38,40 +43,45 @@ public class UdlejningTab extends GridPane {
         this.setGridLinesVisible(false);
 
         // Label & ListView Anlæg
-        Label lblAnlæg = new Label("Anlæg:");
+        Label lblAnlæg = new Label("Produktgrupper: ");
         this.add(lblAnlæg, 0, 0);
         // Indsæt shit her makker
-        lvwAnlæg.getItems().setAll(Controller.getStorage().getProduktgruppe());
-        this.add(lvwAnlæg, 0, 1);
-
-        lvwAnlæg.getSelectionModel().selectFirst();
+        txfAntal1.setAlignment(Pos.CENTER);
+        add(lvwProduktGruppe, 0, 1);
+        for (Produktgruppe p : Controller.getStorage().getProduktgruppe()) {
+            if (p.getUdlejning() == true) {
+                produktgrupper.add(p);
+                lvwProduktGruppe.getItems().setAll(produktgrupper);
+            }
+        }
+        // lvwAnlæg.getSelectionModel().selectFirst();
 
         // Label & ListView Fustage
-        Label lblFustage = new Label("Fustage:");
+        Label lblFustage = new Label("Produkter: ");
         this.add(lblFustage, 1, 0);
-        // Indsæt shit her makker
-
-        lvwFustage.getSelectionModel().selectFirst();
-        this.add(lvwFustage, 1, 1);
+        ChangeListener<Produktgruppe> listener = (ov, o, n) -> this.selectedProduktgruppeChanged();
+        lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
+        lvwProdukter.getSelectionModel().selectFirst();
+        this.add(lvwProdukter, 1, 1);
 
         // Button; Increase
-        Button btnIncrease1 = new Button(">");
-        btnIncrease1.setOnAction(event -> this.btn1IncreaseAction());
-        Button btnIncrease2 = new Button(">");
+        // Button btnIncrease1 = new Button("+");
+        // btnIncrease1.setOnAction(event -> this.btn1IncreaseAction());
+        Button btnIncrease2 = new Button("+");
         btnIncrease2.setOnAction(event -> this.btn2IncreaseAction());
 
         // Button; Decrease
-        Button btnDecrease1 = new Button("<");
-        btnDecrease1.setOnAction(event -> this.btn1DecreaseAction());
-        Button btnDecrease2 = new Button("<");
+        // Button btnDecrease1 = new Button("-");
+        // btnDecrease1.setOnAction(event -> this.btn1DecreaseAction());
+        Button btnDecrease2 = new Button("-");
         btnDecrease2.setOnAction(event -> this.btn2DecreaseAction());
 
         // HBox 1
-        txfAntal1.setMaxWidth(30);
-        txfAntal1.setText("1");
-        HBox hbox1 = new HBox(5,btnDecrease1,txfAntal1, btnIncrease1);
-        this.add(hbox1, 0, 2);
-        hbox1.setAlignment(Pos.CENTER);
+//        txfAntal1.setMaxWidth(30);
+//        txfAntal1.setText("1");
+//        HBox hbox1 = new HBox(5,btnDecrease1,txfAntal1, btnIncrease1);
+//        this.add(hbox1, 0, 2);
+//        hbox1.setAlignment(Pos.CENTER);
 
         // HBox 2
         txfAntal2.setMaxWidth(30);
@@ -81,32 +91,27 @@ public class UdlejningTab extends GridPane {
         hbox2.setAlignment(Pos.CENTER);
 
         // Add til kurv knap - (sat i hbox for at align i midten)
-        Button btnAdd = new Button(" Tilføj til kurv ");
+        Button btnAdd = new Button(" Tilføj til kurv: ");
         HBox hbox3 = new HBox(btnAdd);
         hbox3.setAlignment(Pos.CENTER);
-        this.add(hbox3, 0, 3,2,1);
+        this.add(hbox3, 1, 3);
         btnAdd.setOnAction(event -> this.btnTilføj());
 
         // Fjern fra kurv knap - (sat i hbox for at align i midten)
-        Button btnRemove = new Button("Tøm kurv");
+        Button btnRemove = new Button("Tøm kurv: ");
         HBox hbox4 = new HBox(btnRemove);
         hbox4.setAlignment(Pos.CENTER);
         btnRemove.setMaxWidth(200);
-        this.add(hbox4, 0,4,2,1);
+        this.add(hbox4, 0,4);
         btnRemove.setOnAction(event -> this.btnRemove());
 
         // Label & ListView Kurv
-        Label lblKurv = new Label("Kurv");
+        Label lblKurv = new Label("Kurv: ");
         this.add(lblKurv, 0, 4);
         // Indsæt shit her makker
 
         lvwOrdreLinje.getSelectionModel().selectFirst();
         this.add(lvwOrdreLinje, 0, 5,1,2);
-
-        // Mellemregning
-//        Label lblPris = new Label("                               Pris");
-//        Label lblPant = new Label("                               Pant");
-//        Label lblSum = new Label("                               Sum");
         Label lblPris = new Label("        Pris:");
         Label lblPant = new Label("        Pant:");
         Label lblSum = new Label("        Sum:");
@@ -126,40 +131,42 @@ public class UdlejningTab extends GridPane {
         btnBetaling.setAlignment(Pos.BOTTOM_CENTER);
         this.add(btnBetaling, 1, 6);
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
-        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
 
         // Tilbage aflevering
 
-        Label lblTilbageAflevering = new Label("Tilbage Aflevering");
+        Label lblTilbageAflevering = new Label("Tilbage Aflevering: ");
         this.add(lblTilbageAflevering, 0, 7);
-//        add(txfAntalReturn, 0, 8);
-//        add(txfPantReturn, 0, 9);
+        add(txfAntalReturn, 0, 8);
+        add(txfPantReturn, 0, 9);
         Label lblAntalTilbage = new Label("Antal Tilbage:");
-        Label lblPantTilbage = new Label("Pant Tilbage:  ");
-//        lblAntalTilbage.setAlignment(Pos.BASELINE_LEFT);
-//        lblPantTilbage.setAlignment(Pos.BASELINE_LEFT);
-//        add(lblAntalTilbage, 1, 8);
-//        add(lblPantTilbage, 1, 9);
-
-        txfAntalReturn.setPrefWidth(100);
-        txfPantReturn.setPrefWidth(100);
-        HBox eyyo = new HBox(5,lblAntalTilbage,txfAntalReturn);
-        HBox eyyo1 = new HBox(5,lblPantTilbage,txfPantReturn);
-        this.add(eyyo, 0, 8);
-        this.add(eyyo1, 0, 9);
+        Label lblPantTilbage = new Label("Pant Tilbage:");
+        lblAntalTilbage.setAlignment(Pos.BASELINE_LEFT);
+        lblPantTilbage.setAlignment(Pos.BASELINE_LEFT);
+        add(lblAntalTilbage, 1, 8);
+        add(lblPantTilbage, 1, 9);
 
 
-        // Udbetal knap
-        Button btnUdbetal = new Button("Udbetal:");
+        Button btnUdbetal = new Button("Udbetal");
         add(btnUdbetal, 0, 10,2,1);
         btnUdbetal.setAlignment(Pos.CENTER);
         btnUdbetal.setMaxWidth(500);
+
+
+        // Betalings window
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
+
+
+
+    }
+
+    private void selectedProduktgruppeChanged() {
+        this.updateControlsProduktgruppe();
     }
 
     public void updateControls() {
-        Produktgruppe produktgruppe = lvwAnlæg.getSelectionModel().getSelectedItem();
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
-            lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
+            lvwProdukter.getItems().setAll(produktgruppe.getProdukter());
         }
     }
 
@@ -191,36 +198,46 @@ public class UdlejningTab extends GridPane {
     }
 
     private void btnTilføj() {
-        Produktgruppe produktgruppe = lvwAnlæg.getSelectionModel().getSelectedItem();
-        String antal = txfAntal1.getText();
-        if (produktgruppe != null) {
-            Produkt p = new Produkt(antal,"",produktgruppe);
-            lvwOrdreLinje.getItems().add(new Ordrelinje(Integer.parseInt(antal),p));
-            txfAntal1.setText("1");
-            txfAntal2.setText("1");
+        int ordreID = 1;
+        int antal = Integer.parseInt(txfAntal2.getText().trim());
+        Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
+        if (ordre == null) {
+            ordre = Controller.createOrdre(false, ordreID);
+            ordreID++;
         }
+        ordrelinje = Controller.createOrdrelinje(antal, produkt);
+        ordre.addOrdrelinje(ordrelinje);
+        lvwOrdreLinje.getItems().setAll(ordre.getOrdrelinjer());
+        txfAntal2.setText("1");
     }
 
     private void btnRemove() {
-        Ordrelinje ordrelinje = lvwOrdreLinje.getSelectionModel().getSelectedItem();
-        if (ordrelinje != null) {
+        Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
+        Ordrelinje o = lvwOrdreLinje.getSelectionModel().getSelectedItem();
+        if (o != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(this.getScene().getWindow());
-            alert.setTitle("Fjern varer fra kurv");
+            alert.setTitle("Fjern vare fra kurv");
             alert.setHeaderText("Er du sikker?");
             Optional<ButtonType> resultat = alert.showAndWait();
 
             if (resultat.isPresent() && (resultat.get() == ButtonType.OK)) {
-                lvwOrdreLinje.getItems().setAll(Controller.getStorage().getOrdrelinjer());
+
             }
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initOwner(this.getScene().getWindow());
-            alert.setTitle("Fjern ordrer fra kurv");
+            alert.setTitle("Fjern ordre fra kurv");
             alert.setHeaderText("Ingen ordre valgt");
-            alert.setContentText("Klik på kurven for at fjerne ordrene");
+            alert.setContentText("Vælg en ordre som skal fjernes");
             alert.show();
+        }
+    }
+    public void updateControlsProduktgruppe() {
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
+        if (produktgruppe != null) {
+            lvwProdukter.getItems().setAll(produktgruppe.getProdukter());
         }
     }
 }
