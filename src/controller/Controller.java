@@ -124,4 +124,36 @@ public abstract class Controller {
         }
         storage.storeRundvisning(rundvisning);
     }
+    //---------------------------------------------------------------------------
+
+    /**
+     * Skaber en ny prisliste og gemmer den i storage
+     */
+    public static Prisliste createPrisliste(String navn){
+        Prisliste prisliste = new Prisliste(navn);
+        storage.storePrisliste(prisliste);
+        return prisliste;
+    }
+
+    /**
+     * Sletter en prisliste
+     * Pre: Prislisten er skabt
+     */
+    public static void deletePrisliste(Prisliste prisliste){
+        storage.deletePrisliste(prisliste);
+    }
+
+    /**
+     * Opdaterer en prisliste
+     * Pre: Prislisten er skabt
+     */
+    public static void updatePrisliste(Prisliste prisliste, String navn){
+        prisliste.setNavn(navn);
+    }
+
+    public static void createPris(Produkt produkt, Prisliste prisliste,int pris,int prisIKlip){
+        Pris p = new Pris(pris);
+        prisliste.addPris(p);
+        p.setProdukt(produkt);
+    }
 }

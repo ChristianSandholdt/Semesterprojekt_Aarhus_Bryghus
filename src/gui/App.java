@@ -3,6 +3,7 @@ package gui;
 import controller.Controller;
 import controller.Storage;
 import javafx.application.Application;
+import model.Prisliste;
 import model.Produkt;
 import model.Produktgruppe;
 import storage.ListStorage;
@@ -28,8 +29,13 @@ public class App {
     }
 
     public static void initStorage(){
+        Prisliste butik = Controller.createPrisliste("Butik");
+        Prisliste fredagsbar = Controller.createPrisliste("Fredagsbar");
+
+
         Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
-        Controller.createProdukt("Klosterbryg",pg1);
+        Produkt p1 = Controller.createProdukt("Klosterbryg",pg1);
+        Controller.createPris(p1,butik,36,2);
         Controller.createProdukt("Sweet Georgie Brown", pg1);
         Controller.createProdukt("Extra Pilsner",pg1);
         Controller.createProdukt("Celebration",pg1);
@@ -126,19 +132,4 @@ public class App {
 
 
     }
-
-
-    Produktgruppe pg6 = new Produktgruppe("Malt", false);
-    Produkt p56 = new Produkt("25 kg sæk",pg6);
-
-    Produktgruppe pg7 = new Produktgruppe("Beklædning", false);
-    Produkt p57 = new Produkt("t-shirt",pg7);
-    Produkt p58 = new Produkt("polo",pg7);
-    Produkt p59 = new Produkt("cap",pg7);
-
-
-
-
-
-
 }
