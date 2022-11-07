@@ -6,6 +6,8 @@ public class Prisliste {
     private String navn;
     private ArrayList<Pris> priser = new ArrayList<>();
 
+    private ArrayList<Produktgruppe> produktgrupper = new ArrayList<>();
+
     public Prisliste(String navn) {
         this.navn = navn;
     }
@@ -15,7 +17,11 @@ public class Prisliste {
     }
 
     public ArrayList<Pris> getPriser() {
-        return priser;
+        return new ArrayList<>(priser);
+    }
+
+    public ArrayList<Produktgruppe> getProduktgrupper() {
+        return new ArrayList<>(produktgrupper);
     }
 
     public void addPris(Pris pris){
