@@ -24,11 +24,15 @@ public class Prisliste {
         return pris;
     }
 
-    public void setPris(int pris) {
+    public void setPris(double pris) {
         this.pris = pris;
     }
 
     public ArrayList<Pris> getPriser() {
         return priser;
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
     }
 }

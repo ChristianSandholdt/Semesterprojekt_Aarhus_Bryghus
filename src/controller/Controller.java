@@ -124,4 +124,20 @@ public abstract class Controller {
         }
         storage.storeRundvisning(rundvisning);
     }
+    //---------------------------------------------------------------------------
+
+    public static Prisliste createPrisliste(String navn,double pris){
+        Prisliste prisliste = new Prisliste(pris,navn);
+        storage.storePrisliste(prisliste);
+        return prisliste;
+    }
+
+    public static void deletePrisliste(Prisliste prisliste){
+        storage.deletePrisliste(prisliste);
+    }
+
+    public static void updatePrisliste(Prisliste prisliste, String navn, double pris){
+        prisliste.setPris(pris);
+        prisliste.setNavn(navn);
+    }
 }

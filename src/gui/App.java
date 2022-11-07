@@ -126,19 +126,4 @@ public class App {
 
 
     }
-
-
-    Produktgruppe pg6 = new Produktgruppe("Malt", false);
-    Produkt p56 = new Produkt("25 kg sæk",pg6);
-
-    Produktgruppe pg7 = new Produktgruppe("Beklædning", false);
-    Produkt p57 = new Produkt("t-shirt",pg7);
-    Produkt p58 = new Produkt("polo",pg7);
-    Produkt p59 = new Produkt("cap",pg7);
-
-
-
-
-
-
 }
