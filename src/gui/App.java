@@ -34,7 +34,8 @@ public class App {
 
 
         Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
-        Controller.createProdukt("Klosterbryg",pg1);
+        Produkt p1 = Controller.createProdukt("Klosterbryg",pg1);
+        Controller.createPris(p1,butik,36,2);
         Controller.createProdukt("Sweet Georgie Brown", pg1);
         Controller.createProdukt("Extra Pilsner",pg1);
         Controller.createProdukt("Celebration",pg1);
