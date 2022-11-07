@@ -26,7 +26,7 @@ public abstract class Controller {
         return ordre;
     }
     /**
-     *Sletter et produkt
+     * Sletter en ordre
      * Pre: Ordren er skabt
      */
     public static void deleteOrdre(Ordre ordre){
