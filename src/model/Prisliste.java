@@ -25,4 +25,7 @@ public class Prisliste {
     public void setNavn(String navn) {
         this.navn = navn;
     }
+
+    public void setPris(double pris) {
+    }
 }
