@@ -30,10 +30,10 @@ public class Ordrelinje {
         double pr = 0;
         for (Pris p : produkt.getPriser()) {
             assert false;
-            if(Objects.equals(produkt.getNavn(), String.valueOf(pris.getNavn())))
+            if(Objects.equals(produkt.getNavn(), pris.getNavn()))
                 pr = p.getPris();
         }
-        String str = String.format("%15s %.2f %5d", produkt.getNavn(),pr, antal);
+        String str = String.format("%15s        %.2f kr,-        %5d", produkt.getNavn(),pr, antal);
         return str;
     }
 }

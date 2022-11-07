@@ -109,4 +109,19 @@ public abstract class Controller {
         return rundvisning;
     }
 
+    public static void deleteRundvisning(Rundvisning rundvisning) {
+        storage.deleteRundvisning(rundvisning);
+    }
+
+    public static void updateRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner,
+                                         LocalDate dato, String startTid, String slutTid){
+        Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner,
+                dato, startTid, slutTid);
+        for (Rundvisning r : Controller.getStorage().getRundvisning()){
+            if (r.getDato() == rundvisning.getDato()){
+                Controller.getStorage().deleteRundvisning(r);
+            }
+        }
+        storage.storeRundvisning(rundvisning);
+    }
 }
