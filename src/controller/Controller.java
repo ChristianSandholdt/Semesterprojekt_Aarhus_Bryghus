@@ -147,8 +147,13 @@ public abstract class Controller {
      * Opdaterer en prisliste
      * Pre: Prislisten er skabt
      */
-    public static void updatePrisliste(Prisliste prisliste, String navn, double pris){
-        prisliste.setPris(pris);
+    public static void updatePrisliste(Prisliste prisliste, String navn){
         prisliste.setNavn(navn);
+    }
+
+    public static void createPris(Produkt produkt, Prisliste prisliste,int pris,int prisIKlip){
+        Pris p = new Pris(pris);
+        prisliste.addPris(p);
+        p.setProdukt(produkt);
     }
 }

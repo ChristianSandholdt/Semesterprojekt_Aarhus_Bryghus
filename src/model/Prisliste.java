@@ -18,6 +18,10 @@ public class Prisliste {
         return priser;
     }
 
+    public void addPris(Pris pris){
+        priser.add(pris);
+    }
+
     public void setNavn(String navn) {
         this.navn = navn;
     }
