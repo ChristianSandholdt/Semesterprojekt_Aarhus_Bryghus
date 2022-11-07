@@ -7,10 +7,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import model.Ordre;
-import model.Ordrelinje;
-import model.Produkt;
-import model.Produktgruppe;
+import model.*;
+
 import java.util.Optional;
 
 public class NyOrdreTab extends GridPane {
@@ -18,6 +16,7 @@ public class NyOrdreTab extends GridPane {
     private Ordre ordre;
     private Ordrelinje ordrelinje;
     private NyOrdreWindow nyOrdreWindow;
+    private final ComboBox<Prisliste> cbxPrisliste = new ComboBox<>();
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdrelinje = new ListView<>();
@@ -38,23 +37,37 @@ public class NyOrdreTab extends GridPane {
         this.setGridLinesVisible(false);
         this.nyOrdreWindow = nyOrdreWindow;
 
+        Label lblPrisListe = new Label("Prisliste: ");
+        HBox prisBox = new HBox(2, lblPrisListe, cbxPrisliste);
+        this.add(prisBox, 0,0,2,1);
+        cbxPrisliste.setPromptText("Prisliste: ");
+        cbxPrisliste.getItems().addAll(Controller.getStorage().getPrisliste());
+        cbxPrisliste.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) ->
+        {
+            for (Produktgruppe p : Controller.getStorage().getProduktgruppe()){
+                if (Controller.getStorage().getPrisliste().contains(p)){
+                    lvwProduktGruppe.getItems().setAll(p);
+                }
+            }
+        });
+
         Label lblProduktGruppe = new Label("Produktgrupper:");
-        this.add(lblProduktGruppe, 0, 0);
-        this.add(lvwProduktGruppe, 0, 1);
+        this.add(lblProduktGruppe, 0, 1);
+        this.add(lvwProduktGruppe, 0, 2);
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
 
         ChangeListener<Produktgruppe> listener = (ov, o, n) -> this.selectedProduktgruppeChanged();
         lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
 
         Label lblProdukt = new Label("Produkter:");
-        this.add(lblProdukt, 1, 0);
-        this.add(lvwProdukt, 1, 1);
+        this.add(lblProdukt, 1, 1);
+        this.add(lvwProdukt, 1, 2);
 
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");
         txfAntal.setAlignment(Pos.CENTER);
         HBox hbox1 = new HBox(5,btnFjern, btnDecrease, txfAntal, btnIncrease, btnTilføj);
-        this.add(hbox1, 1, 2);
+        this.add(hbox1, 1, 3);
         hbox1.setAlignment(Pos.CENTER);
 
         btnIncrease.setOnAction(event -> this.btnIncreaseAction());
@@ -63,18 +76,18 @@ public class NyOrdreTab extends GridPane {
         btnFjern.setOnAction(event -> this.fjernAction());
         
         Label lblOrdrelinje = new Label("Kurv:");
-        this.add(lblOrdrelinje, 0, 2);
-        this.add(lvwOrdrelinje, 0, 3, 2, 2);
+        this.add(lblOrdrelinje, 0, 3);
+        this.add(lvwOrdrelinje, 0, 4, 2, 2);
 
-        this.add(txfSum, 0, 6);
+        this.add(txfSum, 0, 7);
 
         HBox box = new HBox(20, btnAnnuller, btnBetal);
-        this.add(box, 1, 6, 1, 1);
+        this.add(box, 1, 7, 1, 1);
         box.setAlignment(Pos.CENTER_RIGHT);
         btnAnnuller.setOnAction(event -> this.annullerAction());
 
         HBox box2 = new HBox(10, lblTotal, txfSum);
-        this.add(box2, 0, 6, 1, 1);
+        this.add(box2, 0, 7, 1, 1);
         box2.setAlignment(Pos.CENTER_LEFT);
 
 

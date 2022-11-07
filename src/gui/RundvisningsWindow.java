@@ -145,7 +145,17 @@ public class RundvisningsWindow extends Stage {
 
     // Pre: TextField skal være udfyldt
     private void btnDeleteAction() {
-
+        for (Rundvisning r : Controller.getStorage().getRundvisning()){
+            if (date.equals(r.getDato())){
+                Controller.deleteRundvisning(r);
+            }
+            txfNavn.clear();
+            txfEmail.clear();
+            txfTlf.clear();
+            txfAntalPersoner.clear();
+            txfStartTid.clear();
+            txfSlutTid.clear();
+        }
     }
 
     private void reservationsDatoValgt() {
