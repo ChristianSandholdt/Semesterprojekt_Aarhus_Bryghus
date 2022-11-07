@@ -109,6 +109,8 @@ public class NyOrdreTab extends GridPane {
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
 
+
+
     }
 
     private void fjernAction() {
