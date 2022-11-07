@@ -126,16 +126,27 @@ public abstract class Controller {
     }
     //---------------------------------------------------------------------------
 
+    /**
+     * Skaber en ny prisliste og gemmer den i storage
+     */
     public static Prisliste createPrisliste(String navn,double pris){
         Prisliste prisliste = new Prisliste(pris,navn);
         storage.storePrisliste(prisliste);
         return prisliste;
     }
 
+    /**
+     * Sletter en prisliste
+     * Pre: Prislisten er skabt
+     */
     public static void deletePrisliste(Prisliste prisliste){
         storage.deletePrisliste(prisliste);
     }
 
+    /**
+     * Opdaterer en prisliste
+     * Pre: Prislisten er skabt
+     */
     public static void updatePrisliste(Prisliste prisliste, String navn, double pris){
         prisliste.setPris(pris);
         prisliste.setNavn(navn);
