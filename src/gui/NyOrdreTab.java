@@ -11,9 +11,6 @@ import model.Ordre;
 import model.Ordrelinje;
 import model.Produkt;
 import model.Produktgruppe;
-
-import java.text.Format;
-import java.util.ArrayList;
 import java.util.Optional;
 
 public class NyOrdreTab extends GridPane {

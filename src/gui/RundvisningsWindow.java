@@ -45,6 +45,8 @@ public class RundvisningsWindow extends Stage {
     private final TextField txfStartTid = new TextField();
     private final TextField txfSlutTid = new TextField();
     private final Button btnReserver = new Button("Reserver");
+    private final Button btnUpdate = new Button("Opdatere");
+    private final Button btnDelete = new Button("Slet");
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(30));
         pane.setHgap(10);
@@ -113,8 +115,11 @@ public class RundvisningsWindow extends Stage {
         pane.add(lblSluttid, 1, 9);
         pane.add(txfSlutTid, 1, 10);
 
-        pane.add(btnReserver, 0, 11);
+        HBox btnBox = new HBox(btnReserver, btnUpdate, btnDelete);
+        pane.add(btnBox, 0, 11, 3,1);
         btnReserver.setOnAction(event -> btnReserverAction());
+        btnUpdate.setOnAction(event -> btnUpdateAction());
+        btnDelete.setOnAction(event -> btnDeleteAction());
     }
 
     private void btnReserverAction() {
@@ -125,6 +130,22 @@ public class RundvisningsWindow extends Stage {
         String startTid = txfStartTid.getText();
         String slutTid = txfSlutTid.getText();
         Controller.createRundvisning(navn,email,tlfNummer,0,antalPersoner,date,startTid, slutTid);
+    }
+
+    // Pre: TextField skal være udfyldt
+    private void btnUpdateAction() {
+        String navn = txfNavn.getText();
+        String email = txfEmail.getText();
+        int tlfNummer = Integer.parseInt(txfTlf.getText());
+        int antalPersoner = Integer.parseInt(txfAntalPersoner.getText());
+        String startTid = txfStartTid.getText();
+        String slutTid = txfSlutTid.getText();
+        Controller.updateRundvisning(navn,email,tlfNummer,0,antalPersoner,date,startTid, slutTid);
+    }
+
+    // Pre: TextField skal være udfyldt
+    private void btnDeleteAction() {
+
     }
 
     private void reservationsDatoValgt() {

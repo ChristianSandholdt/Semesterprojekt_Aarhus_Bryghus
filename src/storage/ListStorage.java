@@ -17,6 +17,8 @@ public class ListStorage implements Storage, Serializable {
 
     private List<Rundvisning> rundvisninger = new ArrayList<>();
 
+    private List<Prisliste> prislister = new ArrayList<>();
+
     @Override
     public List<Ordre> getOrdre(){
         return new ArrayList<>(ordre);
@@ -85,6 +87,21 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public void deleteRundvisning(Rundvisning rundvisning) {
         rundvisninger.remove(rundvisning);
+    }
+
+    @Override
+    public List<Prisliste> getPrisliste() {
+        return new ArrayList<>(prislister);
+    }
+
+    @Override
+    public void storePrisliste(Prisliste prisliste) {
+        prislister.add(prisliste);
+    }
+
+    @Override
+    public void deletePrisliste(Prisliste prisliste) {
+        prislister.remove(prisliste);
     }
 
     public static void saveStorage(Storage storage){
