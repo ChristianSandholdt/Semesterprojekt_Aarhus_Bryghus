@@ -26,14 +26,8 @@ public class Ordrelinje {
 
     @Override
     public String toString() {
-        Pris pris = null;
-        double pr = 0;
-        for (Pris p : produkt.getPriser()) {
-            assert false;
-            if(Objects.equals(produkt.getNavn(), pris.getNavn()))
-                pr = p.getPris();
-        }
-        String str = String.format("%15s        %.2f kr,-        %5d", produkt.getNavn(),pr, antal);
+        Pris pris;
+        String str = String.format("%15s         %5d", produkt.getNavn(), antal);
         return str;
     }
 }

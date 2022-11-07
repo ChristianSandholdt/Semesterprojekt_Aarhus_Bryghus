@@ -19,8 +19,13 @@ public class Pris {
         return navn;
     }
 
-    public double getPris() {
-        return pris;
+    public double getPris(Prisliste pl, Produkt pr) {
+        double realOGPrice = 0;
+        for (Pris p : pl.getPriser()){
+            if(p.produkt.equals(pr))
+                realOGPrice = p.pris;
+        }
+        return realOGPrice;
     }
 
     public String getBeskrivelse() {
