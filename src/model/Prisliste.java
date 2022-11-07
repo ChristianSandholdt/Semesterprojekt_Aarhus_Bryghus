@@ -34,4 +34,8 @@ public class Prisliste {
 
     public void setPris(double pris) {
     }
+
+    public String toString() {
+        return navn;
+    }
 }
