@@ -98,7 +98,7 @@ public class UdlejningTab extends GridPane {
         btnAdd.setOnAction(event -> this.btnTilføj());
 
         // Fjern fra kurv knap - (sat i hbox for at align i midten)
-        Button btnRemove = new Button("Tøm kurv: ");
+        Button btnRemove = new Button("Fjern ordre: ");
         HBox hbox4 = new HBox(btnRemove);
         hbox4.setAlignment(Pos.CENTER);
         btnRemove.setMaxWidth(200);
@@ -212,23 +212,23 @@ public class UdlejningTab extends GridPane {
     }
 
     private void btnRemove() {
-        Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
         Ordrelinje o = lvwOrdreLinje.getSelectionModel().getSelectedItem();
+        int selectedID = lvwOrdreLinje.getSelectionModel().getSelectedIndex();
         if (o != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(this.getScene().getWindow());
-            alert.setTitle("Fjern vare fra kurv");
+            alert.setTitle("Fjern denne ordre fra kurv");
             alert.setHeaderText("Er du sikker?");
             Optional<ButtonType> resultat = alert.showAndWait();
 
             if (resultat.isPresent() && (resultat.get() == ButtonType.OK)) {
-
+                lvwOrdreLinje.getItems().remove(selectedID);
             }
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initOwner(this.getScene().getWindow());
-            alert.setTitle("Fjern ordre fra kurv");
+            alert.setTitle("Fjern en ordre fra kurv");
             alert.setHeaderText("Ingen ordre valgt");
             alert.setContentText("Vælg en ordre som skal fjernes");
             alert.show();
