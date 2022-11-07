@@ -10,8 +10,19 @@ public class Pris {
     public Pris(double pris) {
         this.pris = pris;
     }
+
+
+    public double getPris(Prisliste pl, Produkt pr) {
+        double realOGPrice = 0;
+        for (Pris p : pl.getPriser()) {
+            if (p.produkt.equals(pr))
+                realOGPrice = p.pris;
+        }
+        return realOGPrice;
+    }
     public double getPris() {
         return pris;
+
     }
 
     public Produkt getProdukt() {
