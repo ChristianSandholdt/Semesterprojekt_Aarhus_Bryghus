@@ -156,5 +156,7 @@ public abstract class Controller {
         Pris p = new Pris(pris);
         prisliste.addPris(p);
         p.setProdukt(produkt);
+        produkt.getProduktgruppe().addPrisliste(prisliste);
+        prisliste.addProduktgruppe(produkt.getProduktgruppe());
     }
 }
