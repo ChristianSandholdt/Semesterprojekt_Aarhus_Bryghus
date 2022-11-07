@@ -32,8 +32,6 @@ public class App {
         Prisliste butik = Controller.createPrisliste("Butik");
         Prisliste fredagsbar = Controller.createPrisliste("Fredagsbar");
 
-        butik.
-
 
         Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
         Controller.createProdukt("Klosterbryg",pg1);
