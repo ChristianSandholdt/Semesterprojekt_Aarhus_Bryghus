@@ -28,6 +28,10 @@ public class Produktgruppe implements Serializable {
         return new ArrayList<>(prislister);
     }
 
+    public void addPrisliste(Prisliste prisliste){
+        prislister.add(prisliste);
+    }
+
     public void tilfoejProdukt(Produkt produkt){
         produkter.add(produkt);
         produkt.produktgruppe=this;

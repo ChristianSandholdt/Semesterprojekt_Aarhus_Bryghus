@@ -20,12 +20,17 @@ public class Prisliste {
         return new ArrayList<>(priser);
     }
 
+
+    public void addPris(Pris pris){
+        priser.add(pris);
+    }
+
     public ArrayList<Produktgruppe> getProduktgrupper() {
         return new ArrayList<>(produktgrupper);
     }
 
-    public void addPris(Pris pris){
-        priser.add(pris);
+    public void addProduktgruppe(Produktgruppe produktgruppe){
+        produktgrupper.add(produktgruppe);
     }
 
     public void setNavn(String navn) {
