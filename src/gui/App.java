@@ -3,6 +3,7 @@ package gui;
 import controller.Controller;
 import controller.Storage;
 import javafx.application.Application;
+import model.Prisliste;
 import model.Produkt;
 import model.Produktgruppe;
 import storage.ListStorage;
@@ -28,8 +29,11 @@ public class App {
     }
 
     public static void initStorage(){
-        Controller.createPrisliste("Butik");
-        Controller.createPrisliste("Fredagsbar");
+        Prisliste butik = Controller.createPrisliste("Butik");
+        Prisliste fredagsbar = Controller.createPrisliste("Fredagsbar");
+
+        butik.
+
 
         Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
         Controller.createProdukt("Klosterbryg",pg1);

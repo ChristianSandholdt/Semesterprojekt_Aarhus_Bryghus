@@ -14,7 +14,6 @@ public class Prisliste {
         return navn;
     }
 
-
     public ArrayList<Pris> getPriser() {
         return priser;
     }
