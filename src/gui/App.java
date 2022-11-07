@@ -28,6 +28,9 @@ public class App {
     }
 
     public static void initStorage(){
+        Controller.createPrisliste("Butik");
+        Controller.createPrisliste("Fredagsbar");
+
         Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
         Controller.createProdukt("Klosterbryg",pg1);
         Controller.createProdukt("Sweet Georgie Brown", pg1);

@@ -129,8 +129,8 @@ public abstract class Controller {
     /**
      * Skaber en ny prisliste og gemmer den i storage
      */
-    public static Prisliste createPrisliste(String navn,double pris){
-        Prisliste prisliste = new Prisliste(pris,navn);
+    public static Prisliste createPrisliste(String navn){
+        Prisliste prisliste = new Prisliste(navn);
         storage.storePrisliste(prisliste);
         return prisliste;
     }
