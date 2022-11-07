@@ -25,7 +25,7 @@ public class UdlejningTab extends GridPane {
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdreLinje = new ListView<>();
     private final ListView<Produkt> lvwProdukter = new ListView<>();
-    private final TextField txfAntal1 = new TextField();
+    private final TextField txfAntal = new TextField();
     private final TextField txfPris = new TextField();
     private final TextField txfPant = new TextField();
     private final TextField txfSum = new TextField();
@@ -34,6 +34,7 @@ public class UdlejningTab extends GridPane {
     private BetalingsWindow betalingsWindow;
     private Ordre ordre;
     private Ordrelinje ordrelinje;
+    private Ordrelinje removeOrdrelinje;
 
     public UdlejningTab() {
         this.setPadding(new Insets(20));
@@ -67,9 +68,9 @@ public class UdlejningTab extends GridPane {
         btnDecrease.setOnAction(event -> this.btn2DecreaseAction());
 
         // HBox 1
-        txfAntal1.setMaxWidth(30);
-        txfAntal1.setText("1");
-        HBox hbox = new HBox(5,btnDecrease, txfAntal1, btnIncrease);
+        txfAntal.setMaxWidth(30);
+        txfAntal.setText("1");
+        HBox hbox = new HBox(5,btnDecrease, txfAntal, btnIncrease);
         this.add(hbox, 1, 2);
         hbox.setAlignment(Pos.CENTER);
 
@@ -148,13 +149,13 @@ public class UdlejningTab extends GridPane {
     // Button actions:
 
     private void btn2IncreaseAction() {
-        int increase = Integer.parseInt(txfAntal1.getText()) + 1;
-        txfAntal1.setText(Integer.toString(increase));
+        int increase = Integer.parseInt(txfAntal.getText()) + 1;
+        txfAntal.setText(Integer.toString(increase));
     }
 
     private void btn2DecreaseAction() {
-        int decrease = Integer.parseInt(txfAntal1.getText()) - 1;
-        txfAntal1.setText(Integer.toString(decrease));
+        int decrease = Integer.parseInt(txfAntal.getText()) - 1;
+        txfAntal.setText(Integer.toString(decrease));
     }
 
     private void btnÅbenBetalingAction() {
@@ -163,7 +164,7 @@ public class UdlejningTab extends GridPane {
 
     private void btnTilføj() {
         int ordreID = 1;
-        int antal = Integer.parseInt(txfAntal1.getText().trim());
+        int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
         if (ordre == null) {
             ordre = Controller.createOrdre(false, ordreID);
@@ -172,7 +173,7 @@ public class UdlejningTab extends GridPane {
         ordrelinje = Controller.createOrdrelinje(antal, produkt);
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdreLinje.getItems().setAll(ordre.getOrdrelinjer());
-        txfAntal1.setText("1");
+        txfAntal.setText("1");
     }
 
     private void btnRemove() {
@@ -187,6 +188,7 @@ public class UdlejningTab extends GridPane {
 
             if (resultat.isPresent() && (resultat.get() == ButtonType.OK)) {
                 lvwOrdreLinje.getItems().remove(selectedID);
+                Controller.deleteOrdrelinje(o, ordre);
             }
 
         } else {
