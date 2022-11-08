@@ -143,7 +143,7 @@ public class NyOrdreTab extends GridPane {
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-        System.out.println("Ny: " +ordre);
+        System.out.println("Ny: " + ordre);
         txfSum.setText(Controller.totalPris(ordre) + " kr.");
     }
 
