@@ -134,7 +134,6 @@ public class NyOrdreTab extends GridPane {
     }
 
     private void fjernAction() {
-        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         Ordrelinje o = lvwOrdrelinje.getSelectionModel().getSelectedItem();
         if (o != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -144,7 +143,8 @@ public class NyOrdreTab extends GridPane {
             Optional<ButtonType> resultat = alert.showAndWait();
 
             if (resultat.isPresent() && (resultat.get() == ButtonType.OK)) {
-                Controller.deleteProduktGruppe(produktgruppe);
+                lvwOrdrelinje.getItems().remove(o);
+                Controller.deleteOrdrelinje(o, ordre);
             }
 
         } else {
