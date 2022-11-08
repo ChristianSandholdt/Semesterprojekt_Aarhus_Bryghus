@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,8 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Ordre;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class DagensSalgStatistik extends Stage {
     private String title;
@@ -55,20 +58,26 @@ public class DagensSalgStatistik extends Stage {
 
         //Listener til dato
         ChangeListener<LocalDate> listener = (obs,o,n) -> this.selectedDateChanged();
-
+        datePicker.valueProperty().addListener(listener);
 
     }
 
         private void selectedDateChanged(){
             LocalDate selectedItem = datePicker.getValue();
             if (selectedItem != null){
-                this.fillTxfSalg(selectedItem);
+                this.fillTxfSalg();
             }
         }
 
         private void fillTxfSalg(){
         txfTotalSalg.clear();
-
-        txfTotalSalg.setText(""+ );
+            ArrayList<Ordre> ordrer = new ArrayList<>();
+            for (Ordre o : Controller.getStorage().getOrdre()){
+                if (o.getDato() == datePicker.getValue()){
+                    ordrer.add(o);
+                }
+            }
+            String s = "" + ordrer.size();
+        txfTotalSalg.setText(s);
         }
 }
