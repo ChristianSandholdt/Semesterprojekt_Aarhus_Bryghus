@@ -96,7 +96,6 @@ public class UdlejningTab extends GridPane {
         hBox.setAlignment(Pos.CENTER_RIGHT);
         this.add(hBox, 1, 7);
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
-        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
     }
 
     private void selectedProduktgruppeChanged() {
@@ -125,6 +124,7 @@ public class UdlejningTab extends GridPane {
     }
 
     private void btnÅbenBetalingAction() {
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre);
         betalingsWindow.show();
     }
 
