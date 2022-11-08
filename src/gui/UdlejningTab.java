@@ -9,10 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import model.Ordre;
-import model.Ordrelinje;
-import model.Produkt;
-import model.Produktgruppe;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -34,6 +31,7 @@ public class UdlejningTab extends GridPane {
     private final TextField txfPantReturn = new TextField();
     private BetalingsWindow betalingsWindow;
     private Ordre ordre;
+    private Pris pris;
     private Ordrelinje ordrelinje;
 
     public UdlejningTab() {
@@ -205,7 +203,12 @@ public class UdlejningTab extends GridPane {
             ordre = Controller.createOrdre(false, ordreID);
             ordreID++;
         }
-        ordrelinje = Controller.createOrdrelinje(antal, produkt);
+        for (Pris p : Controller.getStorage().getPris()){
+            if (produkt.getPriser().contains(p)){
+                pris = p;
+            }
+        }
+        ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdreLinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal2.setText("1");

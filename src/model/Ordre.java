@@ -22,8 +22,8 @@ public class Ordre {
     private final ArrayList<Rundvisning> rundvisninger = new ArrayList<>();
     private final ArrayList<Ordre> ordrer = new ArrayList<>();
 
-    public Ordrelinje createOrderLine(int antal, Produkt produkt){
-        Ordrelinje orderLine = new Ordrelinje(antal,produkt);
+    public Ordrelinje createOrderLine(int antal, Produkt produkt, Pris pris){
+        Ordrelinje orderLine = new Ordrelinje(antal,produkt,pris);
         ordreLinjer.add(orderLine);
         return orderLine;
     }

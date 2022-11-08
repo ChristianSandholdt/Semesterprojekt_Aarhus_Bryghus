@@ -19,6 +19,8 @@ public class ListStorage implements Storage, Serializable {
 
     private List<Prisliste> prislister = new ArrayList<>();
 
+    private List<Pris> priser = new ArrayList<>();
+
     @Override
     public List<Ordre> getOrdre(){
         return new ArrayList<>(ordre);
@@ -102,6 +104,21 @@ public class ListStorage implements Storage, Serializable {
     @Override
     public void deletePrisliste(Prisliste prisliste) {
         prislister.remove(prisliste);
+    }
+
+    @Override
+    public List<Pris> getPris() {
+        return new ArrayList<>(priser);
+    }
+
+    @Override
+    public void storePris(Pris pris) {
+        priser.add(pris);
+    }
+
+    @Override
+    public void deletePris(Pris pris) {
+        priser.remove(pris);
     }
 
     public static void saveStorage(Storage storage){

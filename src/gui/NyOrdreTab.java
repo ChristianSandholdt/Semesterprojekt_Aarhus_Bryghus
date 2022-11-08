@@ -13,6 +13,8 @@ import java.util.Optional;
 
 public class NyOrdreTab extends GridPane {
 
+    private Prisliste prisliste;
+    private Pris pris;
     private Ordre ordre;
     private Ordrelinje ordrelinje;
     private NyOrdreWindow nyOrdreWindow;
@@ -44,17 +46,14 @@ public class NyOrdreTab extends GridPane {
         cbxPrisliste.getItems().addAll(Controller.getStorage().getPrisliste());
         cbxPrisliste.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) ->
         {
-            for (Produktgruppe p : Controller.getStorage().getProduktgruppe()){
-                if (Controller.getStorage().getPrisliste().contains(p)){
-                    lvwProduktGruppe.getItems().setAll(p);
-                }
-            }
+            prisliste = newValue;
+            this.selectedPrisListeChanged();
         });
 
         Label lblProduktGruppe = new Label("Produktgrupper:");
         this.add(lblProduktGruppe, 0, 1);
         this.add(lvwProduktGruppe, 0, 2);
-        lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
+        //lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
 
         ChangeListener<Produktgruppe> listener = (ov, o, n) -> this.selectedProduktgruppeChanged();
         lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
@@ -93,6 +92,15 @@ public class NyOrdreTab extends GridPane {
 
     }
 
+    private void selectedPrisListeChanged() {
+        lvwProduktGruppe.getItems().clear();
+        for (Produktgruppe p : Controller.getStorage().getProduktgruppe()){
+            if (p.getPrislister().contains(prisliste)){
+                lvwProduktGruppe.getItems().add(p);
+            }
+        }
+    }
+
     private void annullerAction() {
         lvwProdukt.getItems().clear();
         lvwOrdrelinje.getItems().clear();
@@ -114,13 +122,15 @@ public class NyOrdreTab extends GridPane {
             ordre = Controller.createOrdre(false, ordreID);
             ordreID++;
         }
-        ordrelinje = Controller.createOrdrelinje(antal, produkt);
+        for (Pris p : Controller.getStorage().getPris()){
+            if (produkt.getPriser().contains(p) && prisliste.getPriser().contains(p)){
+                pris = p;
+            }
+        }
+        ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-
-
-
     }
 
     private void fjernAction() {
