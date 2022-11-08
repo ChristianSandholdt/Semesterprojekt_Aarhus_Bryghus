@@ -3,22 +3,44 @@ package model;
 import java.util.ArrayList;
 
 public class Prisliste {
-    private double pris;
+    private String navn;
     private ArrayList<Pris> priser = new ArrayList<>();
 
-    public Prisliste(double pris) {
-        this.pris = pris;
+    private ArrayList<Produktgruppe> produktgrupper = new ArrayList<>();
+
+    public Prisliste(String navn) {
+        this.navn = navn;
     }
 
-    public double getPris() {
-        return pris;
-    }
-
-    public void setPris(int pris) {
-        this.pris = pris;
+    public String getNavn() {
+        return navn;
     }
 
     public ArrayList<Pris> getPriser() {
-        return priser;
+        return new ArrayList<>(priser);
+    }
+
+
+    public void addPris(Pris pris){
+        priser.add(pris);
+    }
+
+    public ArrayList<Produktgruppe> getProduktgrupper() {
+        return new ArrayList<>(produktgrupper);
+    }
+
+    public void addProduktgruppe(Produktgruppe produktgruppe){
+        produktgrupper.add(produktgruppe);
+    }
+
+    public void setNavn(String navn) {
+        this.navn = navn;
+    }
+
+    public void setPris(double pris) {
+    }
+
+    public String toString() {
+        return navn;
     }
 }

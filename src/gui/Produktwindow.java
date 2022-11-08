@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -67,7 +66,6 @@ public class Produktwindow extends Stage{
         pane.add(lblProdukt,1,0);
 
         pane.add(lvwProduktGruppe,0,1);
-        //Lidt i tvivl om linjen herunder virker
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
         pane.add(lvwProdukt,1,1);
 

@@ -9,6 +9,8 @@ public class Produktgruppe implements Serializable {
 
     private ArrayList<Produkt> produkter = new ArrayList<>();
 
+    private ArrayList<Prisliste> prislister = new ArrayList<>();
+
     public Produktgruppe(String navn, boolean udlejning) {
         this.navn = navn;
         this.udlejning = udlejning;
@@ -20,6 +22,14 @@ public class Produktgruppe implements Serializable {
 
     public ArrayList<Produkt> getProdukter() {
         return new ArrayList<>(produkter);
+    }
+
+    public ArrayList<Prisliste> getPrislister() {
+        return new ArrayList<>(prislister);
+    }
+
+    public void addPrisliste(Prisliste prisliste){
+        prislister.add(prisliste);
     }
 
     public void tilfoejProdukt(Produkt produkt){

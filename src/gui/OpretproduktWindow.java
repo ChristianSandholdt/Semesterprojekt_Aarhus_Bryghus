@@ -8,6 +8,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Prisliste;
+import model.Produkt;
 import model.Produktgruppe;
 
 public class OpretproduktWindow extends Stage {
@@ -34,8 +36,13 @@ public class OpretproduktWindow extends Stage {
 
     private final TextField txfNavn = new TextField();
 
-
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
+
+    private final TextField txfpris = new TextField();
+
+    private final ComboBox<Prisliste> cbxPrisliste = new ComboBox<>();
+
+    private final ComboBox<Integer> cbxPrisIKlip = new ComboBox<>();
 
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
@@ -52,17 +59,37 @@ public class OpretproduktWindow extends Stage {
         pane.add(lvwProduktGruppe,0,4);
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
 
-        Button btnOpret = new Button("Opret");
-        pane.add(btnOpret,0,5);
-        btnOpret.setOnAction(event -> btnOpretProduktAction());
+        Label lblPrisliste = new Label("Prisliste");
+        pane.add(lblPrisliste,0,5);
+        pane.add(cbxPrisliste,0,6);
+        cbxPrisliste.getItems().setAll(Controller.getStorage().getPrisliste());
+        cbxPrisliste.setPromptText("Vælg prisliste");
 
+        Label lblPris = new Label("Pris");
+        pane.add(lblPris,0,7);
+        pane.add(txfpris,0,8);
+
+        Label lblPrisIKlip = new Label("Pris i klip");
+        pane.add(lblPrisIKlip,0,9);
+        pane.add(cbxPrisIKlip,0,10);
+        cbxPrisIKlip.setPromptText("Vælg antal klip");
+        for (int i = 1; i < 5; i++){
+            cbxPrisIKlip.getItems().addAll(i);
+        }
+
+
+        Button btnOpret = new Button("Opret");
+        pane.add(btnOpret,0,11);
+        btnOpret.setOnAction(event -> btnOpretProduktAction());
     }
 
     private void btnOpretProduktAction(){
         String navn = txfNavn.getText().trim();
-        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
-        Controller.createProdukt(navn, lvwProduktGruppe.getSelectionModel().getSelectedItem());
+        Produkt p1 = Controller.createProdukt(navn, lvwProduktGruppe.getSelectionModel().getSelectedItem());
+        Controller.createPris(p1,cbxPrisliste.getSelectionModel().getSelectedItem(),
+                Integer.parseInt(txfpris.getText()),cbxPrisIKlip.getSelectionModel().getSelectedItem());
         txfNavn.clear();
+        txfpris.clear();
         close();
 
     }

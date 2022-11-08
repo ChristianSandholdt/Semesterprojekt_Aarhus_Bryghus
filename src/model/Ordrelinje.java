@@ -5,13 +5,15 @@ import java.util.Objects;
 public class Ordrelinje {
 
     public int antal;
+    Pris pris; // OBS: Package visible
     Produkt produkt; // OBS: Package visible
 
     // ------------------------------------------------------------------------------------------
 
-    public Ordrelinje(int antal, Produkt produkt) {
+    public Ordrelinje(int antal, Produkt produkt, Pris pris) {
         this.antal = antal;
         this.produkt = produkt;
+        this.pris = pris;
     }
 
     // ------------------------------------------------------------------------------------------
@@ -26,14 +28,11 @@ public class Ordrelinje {
 
     @Override
     public String toString() {
-        Pris pris = null;
-        double pr = 0;
-        for (Pris p : produkt.getPriser()) {
-            assert false;
-            if(Objects.equals(produkt.getNavn(), String.valueOf(pris.getNavn())))
-                pr = p.getPris();
-        }
-        String str = String.format("%15s %.2f %5d", produkt.getNavn(),pr, antal);
+        String str = String.format("%-20s      %.5s kr.      %5d", produkt.getNavn(),pris, antal);
         return str;
+    }
+
+    public Pris getPrisOrdreLinje() {
+        return pris;
     }
 }

@@ -27,5 +27,11 @@ public interface Storage {
     void storeRundvisning(Rundvisning rundvisning);
     void deleteRundvisning(Rundvisning rundvisning);
     //--------------------------------------------------------------------------------------------------
-
+    List<Prisliste> getPrisliste();
+    void storePrisliste(Prisliste prisliste);
+    void deletePrisliste(Prisliste prisliste);
+    //--------------------------------------------------------------------------------------------------
+    List<Pris> getPris();
+    void storePris(Pris pris);
+    void deletePris(Pris pris);
 }

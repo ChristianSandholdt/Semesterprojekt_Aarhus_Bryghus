@@ -17,6 +17,10 @@ public class ListStorage implements Storage, Serializable {
 
     private List<Rundvisning> rundvisninger = new ArrayList<>();
 
+    private List<Prisliste> prislister = new ArrayList<>();
+
+    private List<Pris> priser = new ArrayList<>();
+
     @Override
     public List<Ordre> getOrdre(){
         return new ArrayList<>(ordre);
@@ -87,8 +91,38 @@ public class ListStorage implements Storage, Serializable {
         rundvisninger.remove(rundvisning);
     }
 
+    @Override
+    public List<Prisliste> getPrisliste() {
+        return new ArrayList<>(prislister);
+    }
+
+    @Override
+    public void storePrisliste(Prisliste prisliste) {
+        prislister.add(prisliste);
+    }
+
+    @Override
+    public void deletePrisliste(Prisliste prisliste) {
+        prislister.remove(prisliste);
+    }
+
+    @Override
+    public List<Pris> getPris() {
+        return new ArrayList<>(priser);
+    }
+
+    @Override
+    public void storePris(Pris pris) {
+        priser.add(pris);
+    }
+
+    @Override
+    public void deletePris(Pris pris) {
+        priser.remove(pris);
+    }
+
     public static void saveStorage(Storage storage){
-        String fileName = "src/test/storage.ser";
+        String fileName = "src/SerializableStorage/storage.ser";
         try (FileOutputStream fileOut = new FileOutputStream(fileName);
              ObjectOutputStream objOut = new ObjectOutputStream(fileOut)
         ) {
@@ -102,7 +136,7 @@ public class ListStorage implements Storage, Serializable {
     }
 
     public static ListStorage loadStorage(){
-        String fileName = "src/test/storage.ser";
+        String fileName = "src/SerializableStorage/storage.ser";
         try (FileInputStream fileIn = new FileInputStream(fileName);
              ObjectInputStream objIn = new ObjectInputStream(fileIn)
         ) {

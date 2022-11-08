@@ -10,11 +10,14 @@ public class Ordre {
     public String betalingsform;
     public int ordreID;
 
+    public LocalDate dato;
+
     private Kunde kunde;
 
-    public Ordre(boolean betalt, int ordreID) {
+    public Ordre(boolean betalt, int ordreID,LocalDate dato) {
         this.betalt = betalt;
         this.ordreID = ordreID;
+        this.dato = dato;
     }
 
     // Aggregation -> 0..*
@@ -22,8 +25,8 @@ public class Ordre {
     private final ArrayList<Rundvisning> rundvisninger = new ArrayList<>();
     private final ArrayList<Ordre> ordrer = new ArrayList<>();
 
-    public Ordrelinje createOrderLine(int antal, Produkt produkt){
-        Ordrelinje orderLine = new Ordrelinje(antal,produkt);
+    public Ordrelinje createOrderLine(int antal, Produkt produkt, Pris pris){
+        Ordrelinje orderLine = new Ordrelinje(antal,produkt,pris);
         ordreLinjer.add(orderLine);
         return orderLine;
     }
@@ -49,14 +52,11 @@ public class Ordre {
         ordrer.add(ordre);
     }
     public void removeOrdre(Ordre ordre){
-        removeOrdre(ordre);
+        ordrer.remove(ordre);
     }
 
-    public Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner, LocalDate dato, String startTid, String slutTid) {
-        Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner, dato, startTid, slutTid);
-        rundvisninger.add(rundvisning);
-        rundvisning.ordre = this;
-        return rundvisning;
+    public LocalDate getDato() {
+        return dato;
     }
 
 }

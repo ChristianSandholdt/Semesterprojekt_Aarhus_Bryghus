@@ -21,8 +21,13 @@ public class Produkt implements Serializable {
     }
 
     public ArrayList<Pris> getPriser() {
-        return priser;
+        return new ArrayList<>(priser);
     }
+
+    public void addPris(Pris pris){
+        priser.add(pris);
+    }
+
     public Produktgruppe getProduktgruppe() {
         return produktgruppe;
     }
