@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -200,7 +201,7 @@ public class UdlejningTab extends GridPane {
         int antal = Integer.parseInt(txfAntal2.getText().trim());
         Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
         if (ordre == null) {
-            ordre = Controller.createOrdre(false, ordreID);
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
             ordreID++;
         }
         for (Pris p : Controller.getStorage().getPris()){

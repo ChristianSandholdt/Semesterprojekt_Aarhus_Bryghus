@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.*;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 public class NyOrdreTab extends GridPane {
@@ -119,7 +120,7 @@ public class NyOrdreTab extends GridPane {
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
         if (ordre == null) {
-            ordre = Controller.createOrdre(false, ordreID);
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
             ordreID++;
         }
         for (Pris p : Controller.getStorage().getPris()){

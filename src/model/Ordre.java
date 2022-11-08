@@ -10,11 +10,14 @@ public class Ordre {
     public String betalingsform;
     public int ordreID;
 
+    public LocalDate localDate;
+
     private Kunde kunde;
 
-    public Ordre(boolean betalt, int ordreID) {
+    public Ordre(boolean betalt, int ordreID,LocalDate localDate) {
         this.betalt = betalt;
         this.ordreID = ordreID;
+        this.localDate = localDate;
     }
 
     // Aggregation -> 0..*
