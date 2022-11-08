@@ -20,8 +20,8 @@ public abstract class Controller {
     /**
      * Skaber en ordre
      */
-    public static Ordre createOrdre(boolean betalt, int ordreID){
-        Ordre ordre = new Ordre(betalt,ordreID);
+    public static Ordre createOrdre(boolean betalt, int ordreID,LocalDate localDate){
+        Ordre ordre = new Ordre(betalt,ordreID,localDate);
         storage.storeOrdre(ordre);
         return ordre;
     }
