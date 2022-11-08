@@ -29,9 +29,6 @@ public class Gui extends Application {
 
 
     }
-
-
-
     @Override
     public void stop() {
         ListStorage.saveStorage(Controller.getStorage());

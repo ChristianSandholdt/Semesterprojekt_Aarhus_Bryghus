@@ -64,15 +64,17 @@ public class DagensSalgStatistik extends Stage {
         private void selectedDateChanged(){
             LocalDate selectedItem = datePicker.getValue();
             if (selectedItem != null){
-                this.fillTxfSalg();
+                this.fillTxfSalg(selectedItem);
+                System.out.println(selectedItem);
             }
         }
 
-        private void fillTxfSalg(){
+        private void fillTxfSalg(LocalDate localDate){
         txfTotalSalg.clear();
             ArrayList<Ordre> ordrer = new ArrayList<>();
             for (Ordre o : Controller.getStorage().getOrdre()){
-                if (o.getDato() == datePicker.getValue()){
+                System.out.println(o.getDato());
+                if (o.getDato().equals(localDate)){
                     ordrer.add(o);
                 }
             }

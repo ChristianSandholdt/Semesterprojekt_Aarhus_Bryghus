@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Ordrelinje {
+public class Ordrelinje implements Serializable {
 
     public int antal;
     Pris pris; // OBS: Package visible

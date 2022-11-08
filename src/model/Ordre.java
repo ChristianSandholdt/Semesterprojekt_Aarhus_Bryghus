@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Ordre {
+public class Ordre implements Serializable {
     public boolean betalt;
     public int sum;
     public String betalingsform;
@@ -59,4 +60,7 @@ public class Ordre {
         return dato;
     }
 
+    public void setBetalt(boolean betalt) {
+        this.betalt = betalt;
+    }
 }
