@@ -32,9 +32,12 @@ public class StatistikWindow extends Stage {
         this.setScene(scene);
 
          dagensSalgStatistik = new DagensSalgStatistik("Statistik over dagens salg",stage);
+         klipStatistikWindow = new KlipStatistikWindow("Statistik over klippekort", stage);
 }
 
     private DagensSalgStatistik dagensSalgStatistik;
+
+    private KlipStatistikWindow klipStatistikWindow;
 
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
@@ -54,6 +57,7 @@ public class StatistikWindow extends Stage {
         pane.add(btnKlipStatistik,0,1);
         btnKlipStatistik.setPrefHeight(100);
         btnKlipStatistik.setPrefWidth(120);
+        btnKlipStatistik.setOnAction(event -> this.btnStatistikForKlipAction());
 
         //Udlejning statistik
         Button btnUdlejning = new Button("Udlejningsstatistik");
@@ -67,7 +71,9 @@ public class StatistikWindow extends Stage {
         dagensSalgStatistik.showAndWait();
     }
 
-
+    private void btnStatistikForKlipAction(){
+        klipStatistikWindow.showAndWait();
+    }
 
 
 }

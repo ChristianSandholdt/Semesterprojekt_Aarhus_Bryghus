@@ -48,7 +48,6 @@ public class DagensSalgStatistik extends Stage {
 
         //Datepicker
         pane.add(datePicker,0,0);
-        LocalDate localDate = datePicker.getValue();
 
         //Salg
         Label lblTotaltSalg = new Label("Totalt antal salg for den valgt dag:");
