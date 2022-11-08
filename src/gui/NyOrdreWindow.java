@@ -38,7 +38,7 @@ public class NyOrdreWindow extends Stage {
         NyOrdreTab nyOrdreTab = new NyOrdreTab(this);
         tabOpretOrdre.setContent(nyOrdreTab);
 
-        UdlejningTab udlejningTab = new UdlejningTab(this);
+        UdlejningTab udlejningTab = new UdlejningTab();
         tabOpretUdlejning.setContent(udlejningTab);
 
         tabPane.getTabs().add(tabOpretOrdre);

@@ -24,9 +24,6 @@ public class UdlejningTab extends GridPane {
     private final ListView<Produkt> lvwProdukter = new ListView<>();
     private final TextField txfAntal = new TextField();
     private final TextField txfSum = new TextField();
-    private final TextField txfFustage = new TextField();
-    private final TextField txfKulsyre = new TextField();
-    private final TextField txfPantRetur = new TextField();
     private BetalingsWindow betalingsWindow;
     private Ordre ordre;
     private Pris pris;
@@ -142,7 +139,7 @@ public class UdlejningTab extends GridPane {
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdreLinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-        //txfSum.setText(Controller.totalPris() + " kr.");
+        txfSum.setText(Controller.totalPris(ordre) + " kr.");
     }
 
     private void btnRemove() {

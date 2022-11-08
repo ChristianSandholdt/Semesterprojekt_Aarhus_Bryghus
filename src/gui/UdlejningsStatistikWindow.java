@@ -93,7 +93,6 @@ public class UdlejningsStatistikWindow extends Stage {
     }
 
     private void btnAnnullerAction() {
-        udlejningsStatistikWindow.close();
-        statistikWindow.close();
+        close();
     }
 }
