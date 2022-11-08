@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
 
@@ -26,12 +25,13 @@ public class UdlejningTab extends GridPane {
     private final TextField txfAntal = new TextField();
     private final TextField txfSum = new TextField();
     private final TextField txfFustage = new TextField();
-    private final TextField txfAnlæg = new TextField();
+    private final TextField txfKulsyre = new TextField();
     private final TextField txfPantRetur = new TextField();
     private BetalingsWindow betalingsWindow;
     private Ordre ordre;
     private Pris pris;
     private Ordrelinje ordrelinje;
+    private Prisliste prisliste;
 
     public UdlejningTab() {
         this.setPadding(new Insets(20));
@@ -92,7 +92,7 @@ public class UdlejningTab extends GridPane {
         Label lblKurv = new Label("Kurv: ");
         this.add(lblKurv, 0, 3);
         lvwOrdreLinje.getSelectionModel().selectFirst();
-        lvwOrdreLinje.setMaxHeight(150);
+        lvwOrdreLinje.setMaxHeight(300);
         this.add(lvwOrdreLinje, 0, 4,2,3);
 
         // Total
@@ -102,6 +102,7 @@ public class UdlejningTab extends GridPane {
         txfSum.setMaxWidth(150);
         this.add(hBox3, 0, 8);
 
+
         // Betaling
         Button btnBetaling = new Button("Betaling");
         btnBetaling.setMaxWidth(225);
@@ -110,24 +111,6 @@ public class UdlejningTab extends GridPane {
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
         betalingsWindow = new BetalingsWindow("Betaling", new Stage());
 
-        // Tilbage aflevering
-        Label lblTilbageAflevering = new Label("Tilbage Aflevering: ");
-        this.add(lblTilbageAflevering, 0, 9);
-        Label lblAnlægPant = new Label("Fustager:");
-        Label lblFustagePant = new Label("Anlæg:");
-        Label lblPantRetur = new Label("Pant Tilbage:");
-        HBox hbox4 = new HBox(12,lblFustagePant,txfFustage,lblAnlægPant,txfAnlæg,lblPantRetur, txfPantRetur);
-        txfFustage.setMaxWidth(80);
-        txfAnlæg.setMaxWidth(80);
-        txfPantRetur.setMaxWidth(80);
-        this.add(hbox4, 0, 10,2,1);
-
-
-
-        Button btnUdbetal = new Button("Udbetal");
-        add(btnUdbetal, 0, 11,2,1);
-        btnUdbetal.setAlignment(Pos.CENTER);
-        btnUdbetal.setMaxWidth(500);
     }
 
     private void selectedProduktgruppeChanged() {
@@ -167,15 +150,13 @@ public class UdlejningTab extends GridPane {
             ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
             ordreID++;
         }
-        for (Pris p : Controller.getStorage().getPris()){
-            if (produkt.getPriser().contains(p)){
-                pris = p;
-            }
-        }
+        prisliste = Controller.getStorage().getPrisliste().get(0);
+        pris = Controller.getPris(prisliste, produkt);
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdreLinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
+        txfSum.setText(Controller.totalPris() + " kr.");
     }
 
     private void btnRemove() {
