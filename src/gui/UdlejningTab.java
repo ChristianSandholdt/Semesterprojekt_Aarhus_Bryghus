@@ -43,7 +43,6 @@ public class UdlejningTab extends GridPane {
         Label lblAnlæg = new Label("Produktgrupper: ");
         this.add(lblAnlæg, 0, 0);
         add(lvwProduktGruppe, 0, 1);
-        lvwProduktGruppe.setMaxHeight(300);
         for (Produktgruppe p : Controller.getStorage().getProduktgruppe()) {
             if (p.getUdlejning() == true) {
                 produktgrupper.add(p);
@@ -57,7 +56,6 @@ public class UdlejningTab extends GridPane {
         ChangeListener<Produktgruppe> listener = (ov, o, n) -> this.selectedProduktgruppeChanged();
         lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
         lvwProdukter.getSelectionModel().selectFirst();
-        lvwProdukter.setMaxHeight(300);
         this.add(lvwProdukter, 1, 1);
 
         Button btnIncrease = new Button("+");
@@ -67,50 +65,38 @@ public class UdlejningTab extends GridPane {
         btnDecrease.setOnAction(event -> this.btn2DecreaseAction());
 
         // HBox 1
+        Button btnRemove = new Button("Fjern:");
+        Button btnAdd = new Button("Tilføj");
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");
-        HBox hbox = new HBox(5,btnDecrease, txfAntal, btnIncrease);
+        HBox hbox = new HBox(5,btnRemove,btnDecrease, txfAntal, btnIncrease,btnAdd);
         this.add(hbox, 1, 2);
         hbox.setAlignment(Pos.CENTER);
-
-        // Add til kurv knap - (sat i hbox for at align i midten)
-        Button btnAdd = new Button(" Tilføj til kurv: ");
-        HBox hbox1 = new HBox(btnAdd);
-        hbox1.setAlignment(Pos.CENTER);
-        this.add(hbox1, 1, 3);
-        btnAdd.setOnAction(event -> this.btnTilføj());
-
-        // Fjern fra kurv knap - (sat i hbox for at align i midten)
-        Button btnRemove = new Button("Fjern ordre: ");
-        HBox hbox2 = new HBox(btnRemove);
-        hbox2.setAlignment(Pos.CENTER);
-        btnRemove.setMaxWidth(200);
-        this.add(hbox2, 0,3);
         btnRemove.setOnAction(event -> this.btnRemove());
+        btnAdd.setOnAction(event -> this.btnTilføj());
 
         // Label & ListView Kurv
         Label lblKurv = new Label("Kurv: ");
-        this.add(lblKurv, 0, 3);
+        this.add(lblKurv, 0, 2);
         lvwOrdreLinje.getSelectionModel().selectFirst();
         lvwOrdreLinje.setMaxHeight(300);
-        this.add(lvwOrdreLinje, 0, 4,2,3);
+        this.add(lvwOrdreLinje, 0, 3,2,3);
 
         // Total
-        Label lblTotal = new Label("Total sum: ");
+        Label lblTotal = new Label("Total: ");
         HBox hBox3 = new HBox(10,lblTotal,txfSum);
-        txfSum.setAlignment(Pos.CENTER_RIGHT);
-        txfSum.setMaxWidth(150);
-        this.add(hBox3, 0, 8);
+        this.add(hBox3, 0, 7,1,1);
+        hBox3.setAlignment(Pos.CENTER_LEFT);
 
 
-        // Betaling
-        Button btnBetaling = new Button("Betaling");
-        btnBetaling.setMaxWidth(225);
-        btnBetaling.setAlignment(Pos.BOTTOM_CENTER);
-        this.add(btnBetaling, 1, 8);
+        // Betaling + annuller
+        Button btnAnnuller = new Button("Annuller");
+        Button btnBetaling = new Button("Betal");
+        HBox hBox = new HBox(20,btnAnnuller,btnBetaling);
+        hBox.setAlignment(Pos.CENTER_RIGHT);
+        this.add(hBox, 1, 7);
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
         betalingsWindow = new BetalingsWindow("Betaling", new Stage());
-
     }
 
     private void selectedProduktgruppeChanged() {
