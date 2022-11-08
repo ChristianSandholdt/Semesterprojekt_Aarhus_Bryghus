@@ -85,7 +85,6 @@ public class OpretproduktWindow extends Stage {
 
     private void btnOpretProduktAction(){
         String navn = txfNavn.getText().trim();
-        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         Produkt p1 = Controller.createProdukt(navn, lvwProduktGruppe.getSelectionModel().getSelectedItem());
         Controller.createPris(p1,cbxPrisliste.getSelectionModel().getSelectedItem(),
                 Integer.parseInt(txfpris.getText()),cbxPrisIKlip.getSelectionModel().getSelectedItem());
