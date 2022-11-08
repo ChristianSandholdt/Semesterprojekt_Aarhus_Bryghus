@@ -203,10 +203,6 @@ public abstract class Controller {
         double antal = 0;
         for (Ordre o : getStorage().getOrdre()){
             if (o.getDato().isAfter(dato1) && o.getDato().isBefore(dato2)){
-                System.out.println(o.getDato());
-                System.out.println(dato1);
-                System.out.println(dato2);
-                System.out.println(o.getBetalingsform());
                 if (o.getBetalingsform().equals("Klippekort")){
                     for (Ordrelinje ol : o.getOrdrelinjer()){
                         for (Pris p : ol.getProdukt().getPriser()){
