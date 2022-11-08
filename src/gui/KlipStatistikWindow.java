@@ -57,13 +57,16 @@ public class KlipStatistikWindow extends Stage {
 
 
         Label lblViserPeriode = new Label("I perioden mellem datoerne er der foretaget nedenstående salg af klippekort");
-        pane.add(lblViserPeriode,0,2);
+        pane.add(lblViserPeriode,0,2,1,2);
 
         Button btnVisSolgteKlipIPerioden = new Button("Vis solgte klip");
-        pane.add(btnVisSolgteKlipIPerioden,0,3);
+        pane.add(btnVisSolgteKlipIPerioden,0,4);
         btnVisSolgteKlipIPerioden.setOnAction(event -> btnVisAntalSolgteKlippeKortAction());
 
-        pane.add(lblAntalSolgt,0,4);
+        pane.add(lblAntalSolgt,0,5);
+
+
+
 
     }
 
