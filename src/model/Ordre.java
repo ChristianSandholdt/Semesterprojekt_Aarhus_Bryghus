@@ -72,4 +72,9 @@ public class Ordre implements Serializable {
     public void setBetalingsform(String betalingsform){
         this.betalingsform = betalingsform;
     }
+
+    @Override
+    public String toString() {
+        return "Ordre: " + ordreID;
+    }
 }

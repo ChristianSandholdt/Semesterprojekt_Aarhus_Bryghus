@@ -6,6 +6,7 @@ import model.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Controller {
 
@@ -223,4 +224,25 @@ public abstract class Controller {
         ordre.setBetalingsform(comboBox.getSelectionModel().getSelectedItem().toString());
     }
 
+    public static String visOrdreStatistik() {
+        String ordre = null;
+
+        for (Ordre o : getStorage().getOrdre()) {
+            ordre = o.toString();
+        }
+
+        return ordre;
+    }
+
+    public static String visUdlejningStatistik() {
+        String ordreLinje = null;
+
+        for (Ordre o : getStorage().getOrdre()) {
+            for (Ordrelinje ol : o.getOrdrelinjer()) {
+                ordreLinje = ol.toString();
+            }
+        }
+
+        return ordreLinje;
+    }
 }
