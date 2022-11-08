@@ -133,8 +133,10 @@ public class NyOrdreTab extends GridPane {
         int ordreID = 1;
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
-        ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
-        ordreID++;
+        if (ordre == null){
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
+            ordreID++;
+        }
         pris = Controller.getPris(prisliste, produkt);
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
