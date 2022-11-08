@@ -13,18 +13,21 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Ordre;
 
 
 public class BetalingsWindow extends Stage {
 
-    public BetalingsWindow(String title, Stage owner) {
+    private final Ordre ordre;
+
+    public BetalingsWindow(String title, Stage owner, Ordre ordre) {
         this.initOwner(owner);
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setMinHeight(100);
         this.setMinWidth(200);
         this.setResizable(true);
-
+        this.ordre = ordre;
 
         this.setTitle(title);
         GridPane pane = new GridPane();
@@ -38,7 +41,6 @@ public class BetalingsWindow extends Stage {
     private final TextField txfPris = new TextField();
     private final TextField txfRabat = new TextField();
     private final Button btnBetal = new Button("Betal");
-
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -63,7 +65,8 @@ public class BetalingsWindow extends Stage {
         hbox.setMaxWidth(200);
         hbox.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hbox, 0, 0, 2, 1);
-        txfPris.setText(Controller.totalPris());
+        System.out.println("Bet: " +ordre);
+        txfPris.setText(Controller.totalPris(ordre));
 
         // Rabat
         Label lblRabat = new Label("Rabat:");
@@ -78,6 +81,5 @@ public class BetalingsWindow extends Stage {
     }
 
     private void betalAction() {
-
     }
 }

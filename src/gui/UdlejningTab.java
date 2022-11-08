@@ -24,19 +24,20 @@ public class UdlejningTab extends GridPane {
     private final ListView<Produkt> lvwProdukter = new ListView<>();
     private final TextField txfAntal = new TextField();
     private final TextField txfSum = new TextField();
+    private final TextField txfFustage = new TextField();
+    private final TextField txfKulsyre = new TextField();
+    private final TextField txfPantRetur = new TextField();
     private BetalingsWindow betalingsWindow;
     private Ordre ordre;
     private Pris pris;
     private Ordrelinje ordrelinje;
     private Prisliste prisliste;
-    private NyOrdreWindow nyOrdreWindow;
 
-    public UdlejningTab(NyOrdreWindow nyOrdreWindow) {
+    public UdlejningTab() {
         this.setPadding(new Insets(20));
         this.setHgap(20);
         this.setVgap(10);
         this.setGridLinesVisible(false);
-        this.nyOrdreWindow = nyOrdreWindow;
 
         // Label & ListView Anlæg
         Label lblAnlæg = new Label("Produktgrupper: ");
@@ -95,8 +96,6 @@ public class UdlejningTab extends GridPane {
         hBox.setAlignment(Pos.CENTER_RIGHT);
         this.add(hBox, 1, 7);
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
-        btnAnnuller.setOnAction(event -> this.btnAnnullerAction());
-        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
     }
 
     private void selectedProduktgruppeChanged() {
@@ -124,14 +123,8 @@ public class UdlejningTab extends GridPane {
         txfAntal.setText(Integer.toString(decrease));
     }
 
-    private void btnAnnullerAction() {
-        lvwOrdreLinje.getItems().clear();
-        txfSum.clear();
-        ordre = null;
-        nyOrdreWindow.close();
-    }
-
     private void btnÅbenBetalingAction() {
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre);
         betalingsWindow.show();
     }
 
@@ -149,7 +142,7 @@ public class UdlejningTab extends GridPane {
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdreLinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-        txfSum.setText(Controller.totalPris(ordre) + " kr.");
+        //txfSum.setText(Controller.totalPris() + " kr.");
     }
 
     private void btnRemove() {

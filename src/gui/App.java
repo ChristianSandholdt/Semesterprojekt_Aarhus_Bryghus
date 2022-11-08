@@ -8,6 +8,8 @@ import model.Produkt;
 import model.Produktgruppe;
 import storage.ListStorage;
 
+import java.time.LocalDate;
+
 public class App {
 
     public static void main(String[] args) {

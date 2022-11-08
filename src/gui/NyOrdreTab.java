@@ -17,7 +17,7 @@ public class NyOrdreTab extends GridPane {
 
     private Prisliste prisliste;
     private Pris pris;
-    private Ordre ordre;
+    public static Ordre ordre;
     private BetalingsWindow betalingsWindow;
     private Ordrelinje ordrelinje;
     private NyOrdreWindow nyOrdreWindow;
@@ -99,12 +99,7 @@ public class NyOrdreTab extends GridPane {
         btnAnnuller.setOnAction(event -> this.annullerAction());
 
         //Vindue til betaling
-        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
-    }
-
-    //Action til at åbne betalingsvindue
-    private void betalAction() {
-        betalingsWindow.show();
+        //betalingsWindow = new BetalingsWindow("Betaling", new Stage());
     }
 
     //Finder og indsætter prislister og viser relevante produktgrupper
@@ -147,8 +142,16 @@ public class NyOrdreTab extends GridPane {
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
+        System.out.println("Ny: " +ordre);
         txfSum.setText(Controller.totalPris(ordre) + " kr.");
     }
+
+    //Action til at åbne betalingsvindue
+    private void betalAction() {
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre);
+        betalingsWindow.show();
+    }
+
     //Fjerner vare fra kurven
     private void fjernAction() {
         Ordrelinje o = lvwOrdrelinje.getSelectionModel().getSelectedItem();

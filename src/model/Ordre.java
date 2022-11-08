@@ -52,18 +52,11 @@ public class Ordre {
         ordrer.add(ordre);
     }
     public void removeOrdre(Ordre ordre){
-        removeOrdre(ordre);
+        ordrer.remove(ordre);
     }
 
     public LocalDate getDato() {
         return dato;
-    }
-
-    public Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner, LocalDate dato, String startTid, String slutTid) {
-        Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner, dato, startTid, slutTid);
-        rundvisninger.add(rundvisning);
-        rundvisning.ordre = this;
-        return rundvisning;
     }
 
 }
