@@ -63,4 +63,10 @@ public class Ordre implements Serializable {
     public void setBetalt(boolean betalt) {
         this.betalt = betalt;
     }
+
+
+    @Override
+    public String toString() {
+        return "Ordre: " + ordreID;
+    }
 }

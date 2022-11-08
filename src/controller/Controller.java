@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import model.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class Controller {
 

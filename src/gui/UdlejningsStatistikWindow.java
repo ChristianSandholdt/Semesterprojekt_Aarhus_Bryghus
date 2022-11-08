@@ -1,5 +1,7 @@
 package gui;
 
+import controller.Controller;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,10 +14,12 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Ordrelinje;
+import model.Produkt;
+import model.Produktgruppe;
 
 public class UdlejningsStatistikWindow extends Stage {
 
-    private StatistikWindow statistikWindow;
     private UdlejningsStatistikWindow udlejningsStatistikWindow;
 
     public UdlejningsStatistikWindow(StatistikWindow statistikWindow) {
@@ -24,7 +28,6 @@ public class UdlejningsStatistikWindow extends Stage {
         this.setMinHeight(100);
         this.setMinWidth(200);
         this.setResizable(false);
-        this.statistikWindow = statistikWindow;
 
 
         this.setTitle("Oversigt over udlejninger");
@@ -53,19 +56,22 @@ public class UdlejningsStatistikWindow extends Stage {
         Label lblUdlejninger = new Label("Udlejninger:");
         pane.add(lblUdlejninger, 0, 0);
         pane.add(lvwUdlejninger, 0, 1,1,6);
+        lvwUdlejninger.getItems().add(Controller.visOrdreStatistik());
 
 
         // Oversigt over den valgte udlejning
         Label lblOrdre = new Label("Ordre:");
         pane.add(lblOrdre, 1, 0);
         pane.add(lvwOrdre, 1, 1,1,6);
+//        ChangeListener<Ordrelinje> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
+//        lvwUdlejninger.getSelectionModel().selectedItemProperty().addListener(listener);
 
         // Udbetal pant
         Label lblPantRetur = new Label("Pant retur:");
         pane.add(lblPantRetur, 2, 0);
-        Label lblFustager = new Label("Fustager:");
-        Label lblKulsyre = new Label("Kulsyre:   ");
-        Label lblSum = new Label("Sum:         ");
+        Label lblFustager = new Label("Fustager:   ");
+        Label lblKulsyre = new Label("Kulsyre:     ");
+        Label lblSum = new Label("Sum:          ");
         HBox hBoxFustager = new HBox(10,lblFustager,txfFustage);
         pane.add(hBoxFustager, 2, 1);
         HBox hBoxKulsyre = new HBox(10,lblKulsyre,txfKulsyre);
@@ -85,8 +91,20 @@ public class UdlejningsStatistikWindow extends Stage {
         btnAnnuller.setOnAction(event -> btnAnnullerAction());
         btnUdbetal.setOnAction(event -> btnUdbetalAction());
 
-        // --------------------------------------------------------------------
     }
+//    private void selectedOrdreLinjeChanged() {
+//        this.updateControls();
+//    }
+//
+//    public void updateControls() {
+//        Ordrelinje ordrelinje = (Ordrelinje) lvwUdlejninger.getSelectionModel().getSelectedItem();
+//        if (ordrelinje != null) {
+//            lvwOrdre.getItems().setAll(Controller.visUdlejningStatistik());
+//        }
+//    }
+
+    // ------------------------------------------------------------------------------------------------
+
 
     private void btnUdbetalAction() {
 

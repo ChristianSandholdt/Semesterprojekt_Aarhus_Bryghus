@@ -29,12 +29,14 @@ public class UdlejningTab extends GridPane {
     private Pris pris;
     private Ordrelinje ordrelinje;
     private Prisliste prisliste;
+    private NyOrdreWindow nyOrdreWindow;
 
-    public UdlejningTab() {
+    public UdlejningTab(NyOrdreWindow nyOrdreWindow) {
         this.setPadding(new Insets(20));
         this.setHgap(20);
         this.setVgap(10);
         this.setGridLinesVisible(false);
+        this.nyOrdreWindow = nyOrdreWindow;
 
         // Label & ListView Anlæg
         Label lblAnlæg = new Label("Produktgrupper: ");
@@ -43,9 +45,10 @@ public class UdlejningTab extends GridPane {
         for (Produktgruppe p : Controller.getStorage().getProduktgruppe()) {
             if (p.getUdlejning() == true) {
                 produktgrupper.add(p);
-                lvwProduktGruppe.getItems().setAll(produktgrupper);
+                lvwProduktGruppe.getItems().add(p);
             }
         }
+
 
         // Label & ListView Fustage
         Label lblFustage = new Label("Produkter: ");
@@ -93,6 +96,8 @@ public class UdlejningTab extends GridPane {
         hBox.setAlignment(Pos.CENTER_RIGHT);
         this.add(hBox, 1, 7);
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
+        btnAnnuller.setOnAction(event -> this.btnAnnullerAction());
+
     }
 
     private void selectedProduktgruppeChanged() {
@@ -121,8 +126,12 @@ public class UdlejningTab extends GridPane {
     }
 
     private void btnÅbenBetalingAction() {
-        betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre);
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre, nyOrdreWindow);
         betalingsWindow.show();
+    }
+
+    private void btnAnnullerAction() {
+        nyOrdreWindow.close();
     }
 
     private void btnTilføj() {

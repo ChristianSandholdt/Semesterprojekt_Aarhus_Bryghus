@@ -42,7 +42,7 @@ public class NyOrdreTab extends GridPane {
         this.setGridLinesVisible(false);
         this.nyOrdreWindow = nyOrdreWindow;
 
-        //Dropdown-menu med prisliste
+        // Dropdown-menu med prisliste
         Label lblPrisListe = new Label("Prisliste: ");
         HBox prisBox = new HBox(2, lblPrisListe, cbxPrisliste);
         this.add(prisBox, 0,0,2,1);
@@ -54,7 +54,7 @@ public class NyOrdreTab extends GridPane {
             this.selectedPrisListeChanged();
         });
 
-        //Produktgrupper listview
+        // Produktgrupper listview
         Label lblProduktGruppe = new Label("Produktgrupper:");
         this.add(lblProduktGruppe, 0, 1);
         this.add(lvwProduktGruppe, 0, 2);
@@ -62,12 +62,12 @@ public class NyOrdreTab extends GridPane {
         ChangeListener<Produktgruppe> listener = (ov, o, n) -> this.selectedProduktgruppeChanged();
         lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
 
-        //Produkter til tilhørende gruppe listview
+        // Produkter til tilhørende gruppe listview
         Label lblProdukt = new Label("Produkter:");
         this.add(lblProdukt, 1, 1);
         this.add(lvwProdukt, 1, 2);
 
-        //Antal under produkter
+        // Antal under produkter
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");
         txfAntal.setAlignment(Pos.CENTER);
@@ -80,18 +80,18 @@ public class NyOrdreTab extends GridPane {
         btnTilføj.setOnAction(event -> this.tilføjAction());
         btnFjern.setOnAction(event -> this.fjernAction());
 
-        //Listview af ordrelinjer "kurv"
+        // Listview af ordrelinjer "kurv"
         Label lblOrdrelinje = new Label("Kurv:");
         this.add(lblOrdrelinje, 0, 3);
         this.add(lvwOrdrelinje, 0, 4, 2, 2);
 
-        //Textfield med totalpris af vare i ordrelinjer fra kurv listview
+        // Textfield med totalpris af vare i ordrelinjer fra kurv listview
         this.add(txfSum, 0, 7);
         HBox box2 = new HBox(10, lblTotal, txfSum);
         this.add(box2, 0, 7, 1, 1);
         box2.setAlignment(Pos.CENTER_LEFT);
 
-        //Annuller og betal knapper
+        // Annuller og betal knapper
         HBox box = new HBox(20, btnAnnuller, btnBetal);
         this.add(box, 1, 7, 1, 1);
         box.setAlignment(Pos.CENTER_RIGHT);
@@ -102,7 +102,7 @@ public class NyOrdreTab extends GridPane {
         //betalingsWindow = new BetalingsWindow("Betaling", new Stage());
     }
 
-    //Finder og indsætter prislister og viser relevante produktgrupper
+    // Finder og indsætter prislister og viser relevante produktgrupper
     private void selectedPrisListeChanged() {
         lvwProduktGruppe.getItems().clear();
         for (Produktgruppe p : Controller.getStorage().getProduktgruppe()){
@@ -122,13 +122,13 @@ public class NyOrdreTab extends GridPane {
         nyOrdreWindow.close();
     }
 
-    //Til at opdatere produkter når man vælger ny produktgruppe
+    // Til at opdatere produkter når man vælger ny produktgruppe
     private void selectedProduktgruppeChanged() {
         this.updateControlsProduktgruppe();
     }
 
 
-    //Tilføj vare til kurven
+    // Tilføj vare til kurven
     public void tilføjAction() {
         int ordreID = 1;
         int antal = Integer.parseInt(txfAntal.getText().trim());
@@ -146,13 +146,13 @@ public class NyOrdreTab extends GridPane {
         txfSum.setText(Controller.totalPris(ordre) + " kr.");
     }
 
-    //Action til at åbne betalingsvindue
+    // Action til at åbne betalingsvindue
     private void betalAction() {
-        betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre);
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre, nyOrdreWindow);
         betalingsWindow.show();
     }
 
-    //Fjerner vare fra kurven
+    // Fjerner vare fra kurven
     private void fjernAction() {
         Ordrelinje o = lvwOrdrelinje.getSelectionModel().getSelectedItem();
         if (o != null) {
@@ -177,7 +177,7 @@ public class NyOrdreTab extends GridPane {
         }
     }
 
-    //Opdatere produkt listview med relaterede produkter når der skiftes produktgruppe
+    // Opdatere produkt listview med relaterede produkter når der skiftes produktgruppe
     public void updateControlsProduktgruppe() {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
@@ -185,13 +185,13 @@ public class NyOrdreTab extends GridPane {
         }
     }
 
-    //Lægger 1 til antal
+    // Lægger 1 til antal
     private void btnIncreaseAction() {
         int increase = Integer.parseInt(txfAntal.getText()) + 1;
         txfAntal.setText(Integer.toString(increase));
     }
 
-    //Trækker 1 fra antal
+    // Trækker 1 fra antal
     private void btnDecreaseAction() {
         int decrease = Integer.parseInt(txfAntal.getText()) - 1;
         txfAntal.setText(Integer.toString(decrease));

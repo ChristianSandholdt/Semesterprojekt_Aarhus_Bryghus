@@ -19,8 +19,9 @@ import model.Ordre;
 public class BetalingsWindow extends Stage {
 
     private final Ordre ordre;
+    private NyOrdreWindow nyOrdreWindow;
 
-    public BetalingsWindow(String title, Stage owner, Ordre ordre) {
+    public BetalingsWindow(String title, Stage owner, Ordre ordre, NyOrdreWindow nyOrdreWindow) {
         this.initOwner(owner);
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -28,6 +29,7 @@ public class BetalingsWindow extends Stage {
         this.setMinWidth(200);
         this.setResizable(true);
         this.ordre = ordre;
+        this.nyOrdreWindow = nyOrdreWindow;
 
         this.setTitle(title);
         GridPane pane = new GridPane();
@@ -83,5 +85,7 @@ public class BetalingsWindow extends Stage {
     private void betalAction() {
         ordre.setBetalt(true);
         close();
+        nyOrdreWindow.close();
+
     }
 }
