@@ -43,6 +43,7 @@ public class BetalingsWindow extends Stage {
     private final TextField txfPris = new TextField();
     private final TextField txfRabat = new TextField();
     private final Button btnBetal = new Button("Betal");
+    private final ComboBox betalingsBox = new ComboBox<>();
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -50,7 +51,6 @@ public class BetalingsWindow extends Stage {
         pane.setVgap(10);
 
         // ComboBox
-        ComboBox betalingsBox = new ComboBox<>();
         HBox hboxtest = new HBox(5,betalingsBox);
         pane.add(betalingsBox, 3, 0);
         betalingsBox.setPromptText("Vælg Betaling");
@@ -83,9 +83,10 @@ public class BetalingsWindow extends Stage {
     }
 
     private void betalAction() {
-        ordre.setBetalt(true);
+        Controller.betalOrdre(ordre, betalingsBox);
         close();
         nyOrdreWindow.close();
 
     }
+
 }
