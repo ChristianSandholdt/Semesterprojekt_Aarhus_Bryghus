@@ -128,11 +128,12 @@ public class NyOrdreTab extends GridPane {
             ordre = Controller.createOrdre(false, ordreID);
             ordreID++;
         }
-        for (Pris p : Controller.getStorage().getPris()){
-            if (produkt.getPriser().contains(p) && prisliste.getPriser().contains(p)){
-                pris = p;
-            }
-        }
+        pris = Controller.getPris(prisliste, produkt);
+        //for (Pris p : Controller.getStorage().getPris()){
+            //if (produkt.getPriser().contains(p) && prisliste.getPriser().contains(p)){
+                //pris = p;
+            //}
+        //}
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());

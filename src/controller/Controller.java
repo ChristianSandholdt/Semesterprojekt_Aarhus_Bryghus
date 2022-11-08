@@ -161,4 +161,14 @@ public abstract class Controller {
         prisliste.addProduktgruppe(produkt.getProduktgruppe());
         storage.storePris(p);
     }
+
+    public static Pris getPris(Prisliste pl, Produkt pr){
+        Pris pris = null;
+        for (Pris p : storage.getPris()){
+            if (pr.getPriser().contains(p) && pl.getPriser().contains(p)){
+                pris = p;
+            }
+        }
+        return pris;
+    }
 }
