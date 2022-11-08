@@ -152,7 +152,7 @@ public abstract class Controller {
         prisliste.setNavn(navn);
     }
 
-    public static void createPris(Produkt produkt, Prisliste prisliste,int pris,int prisIKlip){
+    public static void createPris(Produkt produkt, Prisliste prisliste,double pris,int prisIKlip){
         Pris p = new Pris(pris);
         prisliste.addPris(p);
         produkt.addPris(p);

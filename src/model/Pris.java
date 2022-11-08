@@ -22,7 +22,6 @@ public class Pris {
     }
     public double getPris() {
         return pris;
-
     }
 
     public Produkt getProdukt() {

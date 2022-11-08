@@ -144,18 +144,13 @@ public class UdlejningTab extends GridPane {
         add(lblAntalTilbage, 1, 8);
         add(lblPantTilbage, 1, 9);
 
-
         Button btnUdbetal = new Button("Udbetal");
         add(btnUdbetal, 0, 10,2,1);
         btnUdbetal.setAlignment(Pos.CENTER);
         btnUdbetal.setMaxWidth(500);
 
-
         // Betalings window
         betalingsWindow = new BetalingsWindow("Betaling", new Stage());
-
-
-
     }
 
     private void selectedProduktgruppeChanged() {

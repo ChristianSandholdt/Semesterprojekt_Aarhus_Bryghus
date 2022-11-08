@@ -122,7 +122,7 @@ public class ListStorage implements Storage, Serializable {
     }
 
     public static void saveStorage(Storage storage){
-        String fileName = "src/test/storage.ser";
+        String fileName = "src/SerializableStorage/storage.ser";
         try (FileOutputStream fileOut = new FileOutputStream(fileName);
              ObjectOutputStream objOut = new ObjectOutputStream(fileOut)
         ) {
@@ -136,7 +136,7 @@ public class ListStorage implements Storage, Serializable {
     }
 
     public static ListStorage loadStorage(){
-        String fileName = "src/test/storage.ser";
+        String fileName = "src/SerializableStorage/storage.ser";
         try (FileInputStream fileIn = new FileInputStream(fileName);
              ObjectInputStream objIn = new ObjectInputStream(fileIn)
         ) {
