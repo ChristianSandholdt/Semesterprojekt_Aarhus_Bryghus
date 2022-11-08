@@ -25,6 +25,7 @@ public class Gui extends Application {
         produktWindow = new Produktwindow("Produkter", stage);
         ordreWindow = new NyOrdreWindow();
         rundvisningsWindow = new RundvisningsWindow("Rundvisnings Window", stage);
+        statistikWindow = new StatistikWindow("Statistik", stage);
 
 
     }
@@ -40,6 +41,7 @@ public class Gui extends Application {
     private Produktwindow produktWindow;
     private NyOrdreWindow ordreWindow;
     private RundvisningsWindow rundvisningsWindow;
+    private StatistikWindow statistikWindow;
 
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
@@ -66,6 +68,7 @@ public class Gui extends Application {
         btnStatistik.setMinHeight(100);
         btnStatistik.setMinWidth(120);
         pane.add(btnStatistik,0,1);
+        btnStatistik.setOnAction(event -> this.btnStatistiskAction());
 
         //Rundvisning
         Button btnRundvisning = new Button("Book Rundvisning");
@@ -83,6 +86,11 @@ public class Gui extends Application {
        ordreWindow.show();
     }
 
-    private void btnRundvisningAction() { rundvisningsWindow.show();
+    private void btnRundvisningAction(){
+        rundvisningsWindow.show();
+    }
+
+    private void btnStatistiskAction(){
+        statistikWindow.show();
     }
 }
