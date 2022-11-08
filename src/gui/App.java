@@ -228,12 +228,12 @@ public class App {
         Produkt GG2 = Controller.createProdukt("6 kg",pg5);
         Controller.createPris(GG2,butik,420, 0);
         Controller.createPris(GG2,fredagsbar,420, 0);
-        Produkt GG3 = Controller.createProdukt("10",pg5);
+        Produkt GG3 = Controller.createProdukt("10 kg",pg5);
         Controller.createPris(GG3,butik,700, 0);
         Controller.createPris(GG3,fredagsbar,700, 0);
         Produkt GG4 = Controller.createProdukt("Pant",pg5);
         Controller.createPris(GG4,butik,1000, 0);
-        Controller.createPris(GG4,fredagsbar,420, 0);
+        Controller.createPris(GG4,fredagsbar,1000, 0);
 
 
         Produktgruppe pg6 = Controller.createProduktGruppe("Malt",false);
@@ -282,10 +282,10 @@ public class App {
         Controller.createPris(GG17,fredagsbar,260, 0);
         Produkt GG18 = Controller.createProdukt("gavekurv 6 øl, 2 glas",pg10);
         Controller.createPris(GG18,butik,260, 0);
-        Controller.createPris(GG1,fredagsbar,260, 0);
+        Controller.createPris(GG18,fredagsbar,260, 0);
         Produkt GG19 = Controller.createProdukt("trækasse 6 øl, 6 glas",pg10);
         Controller.createPris(GG19,butik,350, 0);
-        Controller.createPris(GG1,fredagsbar,350, 0);
+        Controller.createPris(GG19,fredagsbar,350, 0);
         Produkt GG20 = Controller.createProdukt("trækasse 12 øl",pg10);
         Controller.createPris(GG20,butik,410, 0);
         Controller.createPris(GG20,fredagsbar,410, 0);

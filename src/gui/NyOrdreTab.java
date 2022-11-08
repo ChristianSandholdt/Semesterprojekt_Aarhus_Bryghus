@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import model.*;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ public class NyOrdreTab extends GridPane {
     private Prisliste prisliste;
     private Pris pris;
     private Ordre ordre;
+    private BetalingsWindow betalingsWindow;
     private Ordrelinje ordrelinje;
     private NyOrdreWindow nyOrdreWindow;
     private final ComboBox<Prisliste> cbxPrisliste = new ComboBox<>();
@@ -42,7 +44,7 @@ public class NyOrdreTab extends GridPane {
         Label lblPrisListe = new Label("Prisliste: ");
         HBox prisBox = new HBox(2, lblPrisListe, cbxPrisliste);
         this.add(prisBox, 0,0,2,1);
-        cbxPrisliste.setPromptText("Prisliste: ");
+        cbxPrisliste.setPromptText("Vælg Prisliste: ");
         cbxPrisliste.getItems().addAll(Controller.getStorage().getPrisliste());
         cbxPrisliste.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) ->
         {
@@ -53,7 +55,6 @@ public class NyOrdreTab extends GridPane {
         Label lblProduktGruppe = new Label("Produktgrupper:");
         this.add(lblProduktGruppe, 0, 1);
         this.add(lvwProduktGruppe, 0, 2);
-        //lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
 
         ChangeListener<Produktgruppe> listener = (ov, o, n) -> this.selectedProduktgruppeChanged();
         lvwProduktGruppe.getSelectionModel().selectedItemProperty().addListener(listener);
@@ -83,13 +84,18 @@ public class NyOrdreTab extends GridPane {
         HBox box = new HBox(20, btnAnnuller, btnBetal);
         this.add(box, 1, 7, 1, 1);
         box.setAlignment(Pos.CENTER_RIGHT);
+        btnBetal.setOnAction(event -> this.betalAction());
         btnAnnuller.setOnAction(event -> this.annullerAction());
 
         HBox box2 = new HBox(10, lblTotal, txfSum);
         this.add(box2, 0, 7, 1, 1);
         box2.setAlignment(Pos.CENTER_LEFT);
 
+        betalingsWindow = new BetalingsWindow("Betaling", new Stage());
+    }
 
+    private void betalAction() {
+        betalingsWindow.show();
     }
 
     private void selectedPrisListeChanged() {
