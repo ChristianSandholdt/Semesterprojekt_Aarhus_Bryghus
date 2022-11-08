@@ -12,6 +12,9 @@ import javafx.stage.StageStyle;
 public class StatistikWindow extends Stage {
 
     private String title;
+
+    private Stage stage;
+
     public StatistikWindow(String title, Stage owner) {
         this.title = title;
         this.initOwner(owner);
@@ -27,7 +30,12 @@ public class StatistikWindow extends Stage {
 
         Scene scene = new Scene(pane);
         this.setScene(scene);
+
+         dagensSalgStatistik = new DagensSalgStatistik("Statistik over dagens salg",stage);
 }
+
+    private DagensSalgStatistik dagensSalgStatistik;
+
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -39,6 +47,7 @@ public class StatistikWindow extends Stage {
         pane.add(btnDagensSalg,0,0);
         btnDagensSalg.setPrefHeight(100);
         btnDagensSalg.setPrefWidth(120);
+        btnDagensSalg.setOnAction(event -> this.btnDagensSalgAction());
 
         //Statistik for klip
         Button btnKlipStatistik = new Button("Statistik for klip");
@@ -53,6 +62,14 @@ public class StatistikWindow extends Stage {
         btnUdlejning.setPrefWidth(120);
 
     }
+
+    private void btnDagensSalgAction(){
+        dagensSalgStatistik.showAndWait();
+    }
+
+
+
+
 }
 
 

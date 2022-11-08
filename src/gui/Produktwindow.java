@@ -66,7 +66,6 @@ public class Produktwindow extends Stage{
         pane.add(lblProdukt,1,0);
 
         pane.add(lvwProduktGruppe,0,1);
-        //Lidt i tvivl om linjen herunder virker
         lvwProduktGruppe.getItems().setAll(Controller.getStorage().getProduktgruppe());
         pane.add(lvwProdukt,1,1);
 

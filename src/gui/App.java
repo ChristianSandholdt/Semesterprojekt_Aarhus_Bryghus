@@ -220,7 +220,6 @@ public class App {
         Produkt p51 = Controller.createProdukt("Pant",pg4);
         Controller.createPris(p51, butik, 200, 0);
 
-
         Produktgruppe pg5 = Controller.createProduktGruppe("Kulsyre",true);
         Produkt GG1 = Controller.createProdukt("4 kg",pg5);
         Controller.createPris(GG1,butik,280, 0);

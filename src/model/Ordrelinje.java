@@ -28,7 +28,11 @@ public class Ordrelinje {
 
     @Override
     public String toString() {
-        String str = String.format("%s    %.5s     %5d", produkt.getNavn(),pris, antal);
+        String str = String.format("%-20s %.5s kr. %5d", produkt.getNavn(),pris, antal);
         return str;
+    }
+
+    public Pris getPrisOrdreLinje() {
+        return pris;
     }
 }

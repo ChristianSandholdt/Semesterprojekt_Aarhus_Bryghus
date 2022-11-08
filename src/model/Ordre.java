@@ -10,11 +10,14 @@ public class Ordre {
     public String betalingsform;
     public int ordreID;
 
+    public LocalDate dato;
+
     private Kunde kunde;
 
-    public Ordre(boolean betalt, int ordreID) {
+    public Ordre(boolean betalt, int ordreID,LocalDate dato) {
         this.betalt = betalt;
         this.ordreID = ordreID;
+        this.dato = dato;
     }
 
     // Aggregation -> 0..*
@@ -50,6 +53,10 @@ public class Ordre {
     }
     public void removeOrdre(Ordre ordre){
         removeOrdre(ordre);
+    }
+
+    public LocalDate getDato() {
+        return dato;
     }
 
     public Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner, LocalDate dato, String startTid, String slutTid) {
