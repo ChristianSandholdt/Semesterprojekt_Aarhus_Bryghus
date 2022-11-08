@@ -16,25 +16,26 @@ import javafx.stage.StageStyle;
 
 public class UdlejningsStatistikWindow extends Stage {
 
-    private String title;
-    private Stage stage;
+    private StatistikWindow statistikWindow;
+    private UdlejningsStatistikWindow udlejningsStatistikWindow;
 
-    public UdlejningsStatistikWindow(String title, Stage owner) {
-        this.title = title;
-        this.initOwner(owner);
+    public UdlejningsStatistikWindow(StatistikWindow statistikWindow) {
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setMinHeight(100);
         this.setMinWidth(200);
         this.setResizable(false);
+        this.statistikWindow = statistikWindow;
 
-        this.setTitle(title);
+
+        this.setTitle("Oversigt over udlejninger");
         GridPane pane = new GridPane();
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
         this.setScene(scene);
     }
+    // --------------------------------------------------------------------
 
     private final ListView lvwUdlejninger = new ListView<>();
     private final ListView lvwOrdre = new ListView<>();
@@ -52,21 +53,20 @@ public class UdlejningsStatistikWindow extends Stage {
         // Oversigt over udlejninger
         Label lblUdlejninger = new Label("Udlejninger:");
         pane.add(lblUdlejninger, 0, 0);
-        pane.add(lvwUdlejninger, 0, 1,1,5);
+        pane.add(lvwUdlejninger, 0, 1,1,6);
 
 
-        // Oversigt over valgte udlejning
+        // Oversigt over den valgte udlejning
         Label lblOrdre = new Label("Ordre:");
         pane.add(lblOrdre, 1, 0);
-        pane.add(lvwOrdre, 1, 1,1,5);
+        pane.add(lvwOrdre, 1, 1,1,6);
 
-        // Udbetal pant retur (Horisontal)
+        // Udbetal pant
         Label lblPantRetur = new Label("Pant retur:");
         pane.add(lblPantRetur, 2, 0);
         Label lblFustager = new Label("Fustager:");
         Label lblKulsyre = new Label("Kulsyre:   ");
         Label lblSum = new Label("Sum:         ");
-
         HBox hBoxFustager = new HBox(10,lblFustager,txfFustage);
         pane.add(hBoxFustager, 2, 1);
         HBox hBoxKulsyre = new HBox(10,lblKulsyre,txfKulsyre);
@@ -76,11 +76,25 @@ public class UdlejningsStatistikWindow extends Stage {
         txfSum.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hBoxSum, 2, 3);
 
-
-        // Button Udbetal
+        // Button Udbetal - Button Annuller
         Button btnUdbetal = new Button("Udbetal");
+        Button btnAnnuller = new Button("Annuller");
         pane.add(btnUdbetal, 2, 4);
-        btnUdbetal.setAlignment(Pos.CENTER);
-        btnUdbetal.setMaxWidth(500);
+        btnUdbetal.setMaxWidth(300);
+        pane.add(btnAnnuller, 2, 5);
+        btnAnnuller.setMaxWidth(300);
+        btnAnnuller.setOnAction(event -> btnAnnullerAction());
+        btnUdbetal.setOnAction(event -> btnUdbetalAction());
+
+        // --------------------------------------------------------------------
+    }
+
+    private void btnUdbetalAction() {
+
+    }
+
+    private void btnAnnullerAction() {
+        udlejningsStatistikWindow.close();
+        statistikWindow.close();
     }
 }
