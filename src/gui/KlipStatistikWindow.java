@@ -1,6 +1,7 @@
 package gui;
 
 import controller.Controller;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,14 +15,11 @@ import model.Ordre;
 import model.Ordrelinje;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class KlipStatistikWindow extends Stage {
 
-    private String title;
     public KlipStatistikWindow(String title, Stage owner){
-        this.title = title;
         this.initOwner(owner);
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -36,7 +34,7 @@ public class KlipStatistikWindow extends Stage {
         Scene scene = new Scene(pane);
         this.setScene(scene);
     }
-    private final Label lblAntalSolgt = new Label();
+    private final Label lblAntalSolgt = new Label("Tryk på vis solgte klip for at se de solgte klip for perioden");
 
     private final DatePicker dp1 = new DatePicker();
     private final DatePicker dp2 = new DatePicker();
@@ -57,6 +55,7 @@ public class KlipStatistikWindow extends Stage {
         pane.add(lblVælgDato2,1,0);
         pane.add(dp2,1,1);
 
+
         Label lblViserPeriode = new Label("I perioden er der foretaget nedenstående salg af klippekort");
         pane.add(lblViserPeriode,0,2);
 
@@ -64,7 +63,7 @@ public class KlipStatistikWindow extends Stage {
         pane.add(btnVisSolgteKlipIPerioden,0,3);
         btnVisSolgteKlipIPerioden.setOnAction(event -> btnVisSolgteKlipIPeriodenAction());
 
-        pane.add(lblAntalSolgt,0,3);
+        pane.add(lblAntalSolgt,0,4);
 
     }
 
@@ -73,19 +72,23 @@ public class KlipStatistikWindow extends Stage {
         LocalDate localDate1 = dp1.getValue();
         LocalDate localDate2 = dp2.getValue();
 
+        System.out.println(localDate2);
+        System.out.println(localDate1);
+        System.out.println(Controller.getStorage().getOrdre());
         for (Ordre o : Controller.getStorage().getOrdre()) {
             if (o.getDato().isAfter(localDate1) && o.getDato().isBefore(localDate2)){
                 for (Ordrelinje ol : o.getOrdrelinjer()) {
-                    if (Objects.equals(ol.getProdukt().getNavn(), "Klippekort")){
+                    System.out.println(ol.getProdukt().getNavn());
+                    if (ol.getProdukt().getNavn().equals("Klippekort")){
                         antal += ol.getAntal();
-                        lblAntalSolgt.setText("I perioden er der solgt " + antal + " klippekort, svarende til " + antal*4 + " klip");
-
+                        System.out.println(antal);
                     }
-
                 }
             }
             else lblAntalSolgt.setText("Ingen klippekort købt i den valgte periode");
         }
+        lblAntalSolgt.setText("I perioden er der solgt " + antal + " klippekort, svarende til " + antal*4 + " klip");
     }
+
 
 }

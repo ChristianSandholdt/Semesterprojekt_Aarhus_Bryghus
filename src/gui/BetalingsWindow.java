@@ -63,7 +63,7 @@ public class BetalingsWindow extends Stage {
         hbox.setMaxWidth(200);
         hbox.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hbox, 0, 0, 2, 1);
-        txfPris.setText(Controller.totalPris());
+        //txfPris.setText(Controller.totalPris());
 
         // Rabat
         Label lblRabat = new Label("Rabat:");
