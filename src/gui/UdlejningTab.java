@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -143,18 +144,13 @@ public class UdlejningTab extends GridPane {
         add(lblAntalTilbage, 1, 8);
         add(lblPantTilbage, 1, 9);
 
-
         Button btnUdbetal = new Button("Udbetal");
         add(btnUdbetal, 0, 10,2,1);
         btnUdbetal.setAlignment(Pos.CENTER);
         btnUdbetal.setMaxWidth(500);
 
-
         // Betalings window
         betalingsWindow = new BetalingsWindow("Betaling", new Stage());
-
-
-
     }
 
     private void selectedProduktgruppeChanged() {
@@ -200,7 +196,7 @@ public class UdlejningTab extends GridPane {
         int antal = Integer.parseInt(txfAntal2.getText().trim());
         Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
         if (ordre == null) {
-            ordre = Controller.createOrdre(false, ordreID);
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
             ordreID++;
         }
         for (Pris p : Controller.getStorage().getPris()){

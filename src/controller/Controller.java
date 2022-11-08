@@ -20,8 +20,8 @@ public abstract class Controller {
     /**
      * Skaber en ordre
      */
-    public static Ordre createOrdre(boolean betalt, int ordreID){
-        Ordre ordre = new Ordre(betalt,ordreID);
+    public static Ordre createOrdre(boolean betalt, int ordreID,LocalDate localDate){
+        Ordre ordre = new Ordre(betalt,ordreID,localDate);
         storage.storeOrdre(ordre);
         return ordre;
     }
@@ -152,7 +152,7 @@ public abstract class Controller {
         prisliste.setNavn(navn);
     }
 
-    public static void createPris(Produkt produkt, Prisliste prisliste,int pris,int prisIKlip){
+    public static void createPris(Produkt produkt, Prisliste prisliste,double pris,int prisIKlip){
         Pris p = new Pris(pris);
         prisliste.addPris(p);
         produkt.addPris(p);
@@ -160,5 +160,15 @@ public abstract class Controller {
         produkt.getProduktgruppe().addPrisliste(prisliste);
         prisliste.addProduktgruppe(produkt.getProduktgruppe());
         storage.storePris(p);
+    }
+
+    public static Pris getPris(Prisliste pl, Produkt pr){
+        Pris pris = null;
+        for (Pris p : storage.getPris()){
+            if (pr.getPriser().contains(p) && pl.getPriser().contains(p)){
+                pris = p;
+            }
+        }
+        return pris;
     }
 }
