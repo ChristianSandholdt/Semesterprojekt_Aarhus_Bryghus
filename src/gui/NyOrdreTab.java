@@ -138,7 +138,7 @@ public class NyOrdreTab extends GridPane {
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-        txfSum.setText(Controller.totalPris() + " kr.");
+        txfSum.setText(Controller.totalPris(ordre) + " kr.");
     }
     //Fjerner vare fra kurven
     private void fjernAction() {
