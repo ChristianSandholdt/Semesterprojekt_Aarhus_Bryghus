@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import model.*;
 
@@ -21,8 +22,8 @@ public abstract class Controller {
     /**
      * Skaber en ordre
      */
-    public static Ordre createOrdre(boolean betalt, int ordreID,LocalDate localDate){
-        Ordre ordre = new Ordre(betalt,ordreID,localDate);
+    public static Ordre createOrdre(boolean betalt, int ordreID,LocalDate localDate,String betalingsform){
+        Ordre ordre = new Ordre(betalt,ordreID,localDate,betalingsform);
         storage.storeOrdre(ordre);
         return ordre;
     }
@@ -153,8 +154,8 @@ public abstract class Controller {
         prisliste.setNavn(navn);
     }
 
-    public static Pris createPris(Produkt produkt, Prisliste prisliste,double pris,int prisIKlip){
-        Pris p = new Pris(pris);
+    public static Pris createPris(Produkt produkt, Prisliste prisliste,double pris,double prisIKlip){
+        Pris p = new Pris(pris,prisIKlip);
         prisliste.addPris(p);
         produkt.addPris(p);
         p.setProdukt(produkt);
@@ -194,6 +195,31 @@ public abstract class Controller {
             }
         }
         label.setText("I perioden er der solgt " + antal + " klippekort, svarende til " + antal*4 + " klip");
+    }
+
+    public static void VisAntalBrugteKlip(LocalDate dato1, LocalDate dato2,Label label){
+        double antal = 0;
+        for (Ordre o : getStorage().getOrdre()){
+            if (o.getDato().isAfter(dato1) && o.getDato().isBefore(dato2)){
+                System.out.println(o.getDato());
+                System.out.println(dato1);
+                System.out.println(dato2);
+                System.out.println(o.getBetalingsform());
+                if (o.getBetalingsform().equals("Klippekort")){
+                    for (Ordrelinje ol : o.getOrdrelinjer()){
+                        for (Pris p : ol.getProdukt().getPriser()){
+                            antal += p.getPrisIKlip();
+                        }
+                    }
+                }
+            }
+        }
+        label.setText("Antallet af brugte klip i perioden er " + antal);
+    }
+
+    public static void betalOrdre(Ordre ordre, ComboBox comboBox){
+        ordre.setBetalt(true);
+        ordre.setBetalingsform(comboBox.getSelectionModel().getSelectedItem().toString());
     }
 
 }

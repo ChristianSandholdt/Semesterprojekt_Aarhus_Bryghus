@@ -39,6 +39,8 @@ public class KlipStatistikWindow extends Stage {
     private final DatePicker dp1 = new DatePicker();
     private final DatePicker dp2 = new DatePicker();
 
+    private final Label lblAntalBrugt = new Label("Tryk på vis brugte klip for at se antallet af brugte klip for perioden");
+
     public void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -67,11 +69,19 @@ public class KlipStatistikWindow extends Stage {
 
 
 
+        Button btnAntalSolgt = new Button("Vis brugte klip");
+        btnAntalSolgt.setOnAction(event -> btnVisBrugteKlipAction());
+        pane.add(btnAntalSolgt,0,6);
+        pane.add(lblAntalBrugt, 0,7);
 
     }
 
     private void btnVisAntalSolgteKlippeKortAction(){
         Controller.VisSolgteKlipIPerioden(dp1.getValue(),dp2.getValue(),lblAntalSolgt);
+    }
+
+    private void btnVisBrugteKlipAction(){
+        Controller.VisAntalBrugteKlip(dp1.getValue(), dp2.getValue(), lblAntalBrugt);
     }
 
 

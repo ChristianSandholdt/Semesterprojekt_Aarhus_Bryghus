@@ -7,9 +7,11 @@ public class Pris implements Serializable {
     private final double pris;
     private Prisliste prisliste;
     private Produkt produkt;
+    private final double prisIKlip;
 
-    public Pris(double pris) {
+    public Pris(double pris,double prisIKlip) {
         this.pris = pris;
+        this.prisIKlip = prisIKlip;
     }
 
 
@@ -31,6 +33,10 @@ public class Pris implements Serializable {
 
     public void setProdukt(Produkt produkt) {
         this.produkt = produkt;
+    }
+
+    public double getPrisIKlip() {
+        return prisIKlip;
     }
 
     @Override

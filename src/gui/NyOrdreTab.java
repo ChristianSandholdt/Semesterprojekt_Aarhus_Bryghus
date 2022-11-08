@@ -130,11 +130,12 @@ public class NyOrdreTab extends GridPane {
 
     //Tilføj vare til kurven
     public void tilføjAction() {
+        String betalingsform = "Betalingskort";
         int ordreID = 1;
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
         if (ordre == null){
-            ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
             ordreID++;
         }
         pris = Controller.getPris(prisliste, produkt);

@@ -15,10 +15,11 @@ public class Ordre implements Serializable {
 
     private Kunde kunde;
 
-    public Ordre(boolean betalt, int ordreID,LocalDate dato) {
+    public Ordre(boolean betalt, int ordreID,LocalDate dato, String betalingsform) {
         this.betalt = betalt;
         this.ordreID = ordreID;
         this.dato = dato;
+        this.betalingsform = betalingsform;
     }
 
     // Aggregation -> 0..*
@@ -62,5 +63,13 @@ public class Ordre implements Serializable {
 
     public void setBetalt(boolean betalt) {
         this.betalt = betalt;
+    }
+
+    public String getBetalingsform() {
+        return betalingsform;
+    }
+
+    public void setBetalingsform(String betalingsform){
+        this.betalingsform = betalingsform;
     }
 }

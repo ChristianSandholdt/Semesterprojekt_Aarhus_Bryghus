@@ -19,7 +19,7 @@ public class App {
 
         Controller.setStorage(storage);
 
-        //initStorage();
+        initStorage();
 
         Application.launch(Gui.class);
 
@@ -29,7 +29,6 @@ public class App {
         Pris pris = Controller.createPris(pro1,prisliste,36,2);
         System.out.println(p1.getProdukter());
 
-        Ordre ordre = Controller.createOrdre(false,1,LocalDate.now());
         Ordrelinje ordrelinje = new Ordrelinje(1,pro1,pris);
     }
 
@@ -44,59 +43,59 @@ public class App {
 
         Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
         Produkt p1 = Controller.createProdukt("Klosterbryg",pg1);
-        Controller.createPris(p1,butik,36,2);
+        Controller.createPris(p1,butik,36,0);
         Controller.createPris(p1,fredagsbar,70,2);
 
         Produkt p2 = Controller.createProdukt("Sweet Georgie Brown", pg1);
-        Controller.createPris(p2,butik,36,2);
+        Controller.createPris(p2,butik,36,0);
         Controller.createPris(p2,fredagsbar,70,2);
 
         Produkt p3 = Controller.createProdukt("Extra Pilsner",pg1);
-        Controller.createPris(p3,butik,36,2);
+        Controller.createPris(p3,butik,36,0);
         Controller.createPris(p3,fredagsbar,70,2);
 
         Produkt p4 = Controller.createProdukt("Celebration",pg1);
-        Controller.createPris(p4,butik,36,2);
+        Controller.createPris(p4,butik,36,0);
         Controller.createPris(p4,fredagsbar,70,2);
 
         Produkt p5 = Controller.createProdukt("Blondie",pg1);
-        Controller.createPris(p5,butik,36,2);
+        Controller.createPris(p5,butik,36,0);
         Controller.createPris(p5,fredagsbar,70,2);
 
         Produkt p6 = Controller.createProdukt("Forårsbryg",pg1);
-        Controller.createPris(p6,butik,36,2);
+        Controller.createPris(p6,butik,36,0);
         Controller.createPris(p6,fredagsbar,70,2);
 
         Produkt p7 = Controller.createProdukt("India Pale Ale",pg1);
-        Controller.createPris(p7,butik,36,2);
+        Controller.createPris(p7,butik,36,0);
         Controller.createPris(p7,fredagsbar,70,2);
 
         Produkt p8 = Controller.createProdukt("Julebryg",pg1);
-        Controller.createPris(p8,butik,36,2);
+        Controller.createPris(p8,butik,36,0);
         Controller.createPris(p8,fredagsbar,70,2);
 
         Produkt p9 = Controller.createProdukt("Juletønden",pg1);
-        Controller.createPris(p9,butik,36,2);
+        Controller.createPris(p9,butik,36,0);
         Controller.createPris(p9,fredagsbar,70,2);
 
         Produkt p10 = Controller.createProdukt("Old Strong Ale",pg1);
-        Controller.createPris(p10,butik,36,2);
+        Controller.createPris(p10,butik,36,0);
         Controller.createPris(p10,fredagsbar,70,2);
 
         Produkt p11 = Controller.createProdukt("Fregatten Jylland",pg1);
-        Controller.createPris(p11,butik,36,2);
+        Controller.createPris(p11,butik,36,0);
         Controller.createPris(p11,fredagsbar,70,2);
 
         Produkt p12 = Controller.createProdukt("Imperial Stout",pg1);
-        Controller.createPris(p12,butik,36,2);
+        Controller.createPris(p12,butik,36,0);
         Controller.createPris(p12,fredagsbar,70,2);
 
         Produkt p13 = Controller.createProdukt("Tribute",pg1);
-        Controller.createPris(p13,butik,36,2);
+        Controller.createPris(p13,butik,36,0);
         Controller.createPris(p13,fredagsbar,70,2);
 
         Produkt p14 = Controller.createProdukt("Black Monster",pg1);
-        Controller.createPris(p14,butik,60,3);
+        Controller.createPris(p14,butik,60,0);
         Controller.createPris(p14,fredagsbar,100,3);
 
 

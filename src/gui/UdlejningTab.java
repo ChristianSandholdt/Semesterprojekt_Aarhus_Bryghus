@@ -126,11 +126,12 @@ public class UdlejningTab extends GridPane {
     }
 
     private void btnTilføj() {
+        String betalingsform = "Betalingskort";
         int ordreID = 1;
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
         if (ordre == null) {
-            ordre = Controller.createOrdre(false, ordreID, LocalDate.now());
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
             ordreID++;
         }
         prisliste = Controller.getStorage().getPrisliste().get(0);
