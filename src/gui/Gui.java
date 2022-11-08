@@ -26,8 +26,6 @@ public class Gui extends Application {
         ordreWindow = new NyOrdreWindow();
         rundvisningsWindow = new RundvisningsWindow("Rundvisnings Window", stage);
         statistikWindow = new StatistikWindow("Statistik", stage);
-
-
     }
     @Override
     public void stop() {
