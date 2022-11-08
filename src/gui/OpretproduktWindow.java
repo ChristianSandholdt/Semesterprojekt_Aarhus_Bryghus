@@ -81,18 +81,16 @@ public class OpretproduktWindow extends Stage {
         Button btnOpret = new Button("Opret");
         pane.add(btnOpret,0,11);
         btnOpret.setOnAction(event -> btnOpretProduktAction());
-
-
-
-
     }
 
     private void btnOpretProduktAction(){
         String navn = txfNavn.getText().trim();
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         Produkt p1 = Controller.createProdukt(navn, lvwProduktGruppe.getSelectionModel().getSelectedItem());
-        Controller.createPris(p1,cbxPrisliste.getSelectionModel().getSelectedItem(),Integer.parseInt(txfpris.getText()),cbxPrisIKlip.getSelectionModel().getSelectedItem());
+        Controller.createPris(p1,cbxPrisliste.getSelectionModel().getSelectedItem(),
+                Integer.parseInt(txfpris.getText()),cbxPrisIKlip.getSelectionModel().getSelectedItem());
         txfNavn.clear();
+        txfpris.clear();
         close();
 
     }
