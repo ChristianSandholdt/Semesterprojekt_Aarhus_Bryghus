@@ -32,6 +32,10 @@ public class App {
         Prisliste butik = Controller.createPrisliste("Butik");
         Prisliste fredagsbar = Controller.createPrisliste("Fredagsbar");
 
+        Produktgruppe pgKlippeKort = Controller.createProduktGruppe("Klippekort",false);
+        Produkt p = Controller.createProdukt("Klippekort",pgKlippeKort);
+        Controller.createPris(p,butik,130,0);
+        Controller.createPris(p,fredagsbar,130,0);
 
         Produktgruppe pg1 = Controller.createProduktGruppe("Flaske",false);
         Produkt p1 = Controller.createProdukt("Klosterbryg",pg1);
