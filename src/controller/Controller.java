@@ -171,4 +171,11 @@ public abstract class Controller {
         }
         return pris;
     }
+    public static String totalPris(){
+        double pris = 0;
+        for(Ordrelinje o : storage.getOrdrelinjer()){
+            pris = pris + o.getPrisOrdreLinje().getPris() * o.getAntal();
+        }
+        return pris + "";
+    }
 }

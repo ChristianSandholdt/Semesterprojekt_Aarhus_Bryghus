@@ -134,16 +134,11 @@ public class NyOrdreTab extends GridPane {
             ordreID++;
         }
         pris = Controller.getPris(prisliste, produkt);
-        //for (Pris p : Controller.getStorage().getPris()){
-            //if (produkt.getPriser().contains(p) && prisliste.getPriser().contains(p)){
-                //pris = p;
-            //}
-        //}
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-
+        txfSum.setText(Controller.totalPris() + " kr.");
     }
     //Fjerner vare fra kurven
     private void fjernAction() {
