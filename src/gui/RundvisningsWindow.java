@@ -117,6 +117,8 @@ public class RundvisningsWindow extends Stage {
 
         HBox btnBox = new HBox(btnReserver, btnUpdate, btnDelete);
         pane.add(btnBox, 0, 11, 3,1);
+        btnBox.setSpacing(25);
+        btnBox.setAlignment(Pos.CENTER);
         btnReserver.setOnAction(event -> btnReserverAction());
         btnUpdate.setOnAction(event -> btnUpdateAction());
         btnDelete.setOnAction(event -> btnDeleteAction());

@@ -142,7 +142,7 @@ public class UdlejningTab extends GridPane {
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdreLinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-        txfSum.setText(Controller.totalPris() + " kr.");
+        txfSum.setText(Controller.totalPris(ordre) + " kr.");
     }
 
     private void btnRemove() {
