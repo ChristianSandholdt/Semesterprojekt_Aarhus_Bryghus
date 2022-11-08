@@ -56,38 +56,19 @@ public class KlipStatistikWindow extends Stage {
         pane.add(dp2,1,1);
 
 
-        Label lblViserPeriode = new Label("I perioden er der foretaget nedenstående salg af klippekort");
+        Label lblViserPeriode = new Label("I perioden mellem datoerne er der foretaget nedenstående salg af klippekort");
         pane.add(lblViserPeriode,0,2);
 
         Button btnVisSolgteKlipIPerioden = new Button("Vis solgte klip");
         pane.add(btnVisSolgteKlipIPerioden,0,3);
-        btnVisSolgteKlipIPerioden.setOnAction(event -> btnVisSolgteKlipIPeriodenAction());
+        btnVisSolgteKlipIPerioden.setOnAction(event -> btnVisAntalSolgteKlippeKortAction());
 
         pane.add(lblAntalSolgt,0,4);
 
     }
 
-    private void btnVisSolgteKlipIPeriodenAction(){
-        int antal = 0;
-        LocalDate localDate1 = dp1.getValue();
-        LocalDate localDate2 = dp2.getValue();
-
-        System.out.println(localDate2);
-        System.out.println(localDate1);
-        System.out.println(Controller.getStorage().getOrdre());
-        for (Ordre o : Controller.getStorage().getOrdre()) {
-            if (o.getDato().isAfter(localDate1) && o.getDato().isBefore(localDate2)){
-                for (Ordrelinje ol : o.getOrdrelinjer()) {
-                    System.out.println(ol.getProdukt().getNavn());
-                    if (ol.getProdukt().getNavn().equals("Klippekort")){
-                        antal += ol.getAntal();
-                        System.out.println(antal);
-                    }
-                }
-            }
-            else lblAntalSolgt.setText("Ingen klippekort købt i den valgte periode");
-        }
-        lblAntalSolgt.setText("I perioden er der solgt " + antal + " klippekort, svarende til " + antal*4 + " klip");
+    private void btnVisAntalSolgteKlippeKortAction(){
+        Controller.VisSolgteKlipIPerioden(dp1.getValue(),dp2.getValue(),lblAntalSolgt);
     }
 
 

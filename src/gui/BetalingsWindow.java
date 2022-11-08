@@ -81,5 +81,7 @@ public class BetalingsWindow extends Stage {
     }
 
     private void betalAction() {
+        ordre.setBetalt(true);
+        close();
     }
 }

@@ -3,9 +3,7 @@ package gui;
 import controller.Controller;
 import controller.Storage;
 import javafx.application.Application;
-import model.Prisliste;
-import model.Produkt;
-import model.Produktgruppe;
+import model.*;
 import storage.ListStorage;
 
 import java.time.LocalDate;
@@ -21,13 +19,18 @@ public class App {
 
         Controller.setStorage(storage);
 
-        initStorage();
+        //initStorage();
 
         Application.launch(Gui.class);
 
         Produktgruppe p1 = new Produktgruppe("Øl", false);
-        Controller.createProdukt("Klosterbryg",p1);
+        Produkt pro1 = Controller.createProdukt("Klosterbryg",p1);
+        Prisliste prisliste = new Prisliste("Test");
+        Pris pris = Controller.createPris(pro1,prisliste,36,2);
         System.out.println(p1.getProdukter());
+
+        Ordre ordre = Controller.createOrdre(false,1,LocalDate.now());
+        Ordrelinje ordrelinje = new Ordrelinje(1,pro1,pris);
     }
 
     public static void initStorage(){

@@ -27,9 +27,6 @@ public class Gui extends Application {
         rundvisningsWindow = new RundvisningsWindow("Rundvisnings Window", stage);
         statistikWindow = new StatistikWindow("Statistik", stage);
     }
-
-
-
     @Override
     public void stop() {
         ListStorage.saveStorage(Controller.getStorage());

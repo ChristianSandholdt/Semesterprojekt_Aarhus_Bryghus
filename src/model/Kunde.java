@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Kunde {
+public class Kunde implements Serializable {
 
     // Association -> 0..x Ordre
     private final ArrayList<Ordre> ordre = new ArrayList<>();

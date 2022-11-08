@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.control.Label;
 import model.*;
 
 import java.time.LocalDate;
@@ -152,7 +153,7 @@ public abstract class Controller {
         prisliste.setNavn(navn);
     }
 
-    public static void createPris(Produkt produkt, Prisliste prisliste,double pris,int prisIKlip){
+    public static Pris createPris(Produkt produkt, Prisliste prisliste,double pris,int prisIKlip){
         Pris p = new Pris(pris);
         prisliste.addPris(p);
         produkt.addPris(p);
@@ -160,6 +161,7 @@ public abstract class Controller {
         produkt.getProduktgruppe().addPrisliste(prisliste);
         prisliste.addProduktgruppe(produkt.getProduktgruppe());
         storage.storePris(p);
+        return p;
     }
 
     public static Pris getPris(Prisliste pl, Produkt pr){
@@ -178,4 +180,20 @@ public abstract class Controller {
         }
         return pris + "";
     }
+
+    public static void VisSolgteKlipIPerioden(LocalDate dato1, LocalDate dato2, Label label){
+        int antal = 0;
+
+        for (Ordre o : getStorage().getOrdre()){
+            if (o.getDato().isAfter(dato1) && o.getDato().isBefore(dato2)){
+                for (Ordrelinje ol : o.getOrdrelinjer()){
+                    if (ol.getProdukt().getNavn().equals("Klippekort")){
+                        antal += ol.getAntal();
+                    }
+                }
+            }
+        }
+        label.setText("I perioden er der solgt " + antal + " klippekort, svarende til " + antal*4 + " klip");
+    }
+
 }

@@ -1,6 +1,8 @@
 package model;
 
-public class Udlejning {
+import java.io.Serializable;
+
+public class Udlejning implements Serializable {
     private final int antal;
     private final double pris;
     private final Produkt produkt;

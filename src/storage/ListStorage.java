@@ -12,7 +12,7 @@ public class ListStorage implements Storage, Serializable {
     private List<Produkt> produkter = new ArrayList<>();
     private List<Produktgruppe> produktgrupper = new ArrayList<>();
 
-    private List<Ordre> ordre = new ArrayList<>();
+    private List<Ordre> ordrer = new ArrayList<>();
     private List<Ordrelinje> ordrelinjer = new ArrayList<>();
 
     private List<Rundvisning> rundvisninger = new ArrayList<>();
@@ -23,12 +23,12 @@ public class ListStorage implements Storage, Serializable {
 
     @Override
     public List<Ordre> getOrdre(){
-        return new ArrayList<>(ordre);
+        return new ArrayList<>(ordrer);
     }
 
     @Override
     public void storeOrdre(Ordre ordre){
-        ordre.addOrdre(ordre);
+        ordrer.add(ordre);
     }
     @Override
     public void deleteOrdre(Ordre ordre) {

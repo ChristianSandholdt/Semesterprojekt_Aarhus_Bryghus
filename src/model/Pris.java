@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Pris {
+public class Pris implements Serializable {
     private final double pris;
     private Prisliste prisliste;
     private Produkt produkt;
