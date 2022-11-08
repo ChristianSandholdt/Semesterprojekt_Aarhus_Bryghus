@@ -92,6 +92,7 @@ public class NyOrdreTab extends GridPane {
 
     }
 
+    //Finder og indsætter prislister og viser relevante produktgrupper
     private void selectedPrisListeChanged() {
         lvwProduktGruppe.getItems().clear();
         for (Produktgruppe p : Controller.getStorage().getProduktgruppe()){
@@ -100,20 +101,23 @@ public class NyOrdreTab extends GridPane {
             }
         }
     }
-
+    // Annuller button - Lukker NyOrdreVindue
     private void annullerAction() {
+        lvwProduktGruppe.getItems().clear();
         lvwProdukt.getItems().clear();
         lvwOrdrelinje.getItems().clear();
         txfSum.clear();
-        nyOrdreWindow.hide();
-
+        ordre = null;
+        nyOrdreWindow.close();
     }
 
+    //Til at opdatere produkter når man vælger ny produktgruppe
     private void selectedProduktgruppeChanged() {
         this.updateControlsProduktgruppe();
     }
 
 
+    //Tilføj vare til kurven
     public void tilføjAction() {
         int ordreID = 1;
         int antal = Integer.parseInt(txfAntal.getText().trim());
@@ -131,8 +135,9 @@ public class NyOrdreTab extends GridPane {
         ordre.addOrdrelinje(ordrelinje);
         lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
-    }
 
+    }
+    //Fjerner vare fra kurven
     private void fjernAction() {
         Ordrelinje o = lvwOrdrelinje.getSelectionModel().getSelectedItem();
         if (o != null) {
@@ -156,19 +161,19 @@ public class NyOrdreTab extends GridPane {
             alert.show();
         }
     }
-
+    //Opdatere produkt listview med relaterede produkter når der skiftes produktgruppe
     public void updateControlsProduktgruppe() {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
             lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
         }
     }
-
+    //Lægger 1 til antal
     private void btnIncreaseAction() {
         int increase = Integer.parseInt(txfAntal.getText()) + 1;
         txfAntal.setText(Integer.toString(increase));
     }
-
+    //Trækker 1 fra antal
     private void btnDecreaseAction() {
         int decrease = Integer.parseInt(txfAntal.getText()) - 1;
         txfAntal.setText(Integer.toString(decrease));
