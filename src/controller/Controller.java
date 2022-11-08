@@ -26,7 +26,7 @@ public abstract class Controller {
         return ordre;
     }
     /**
-     *Sletter et produkt
+     * Sletter en ordre
      * Pre: Ordren er skabt
      */
     public static void deleteOrdre(Ordre ordre){
@@ -36,8 +36,8 @@ public abstract class Controller {
     /**
      * Skabet en ordrelinje
      */
-    public static Ordrelinje createOrdrelinje(int antal, Produkt produkt){
-        Ordrelinje ordrelinje = new Ordrelinje(antal,produkt);
+    public static Ordrelinje createOrdrelinje(int antal, Produkt produkt, Pris pris){
+        Ordrelinje ordrelinje = new Ordrelinje(antal,produkt,pris);
         storage.storeOrdrelinje(ordrelinje);
         return ordrelinje;
     }
@@ -155,8 +155,10 @@ public abstract class Controller {
     public static void createPris(Produkt produkt, Prisliste prisliste,int pris,int prisIKlip){
         Pris p = new Pris(pris);
         prisliste.addPris(p);
+        produkt.addPris(p);
         p.setProdukt(produkt);
         produkt.getProduktgruppe().addPrisliste(prisliste);
         prisliste.addProduktgruppe(produkt.getProduktgruppe());
+        storage.storePris(p);
     }
 }

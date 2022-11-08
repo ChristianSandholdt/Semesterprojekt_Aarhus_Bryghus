@@ -30,4 +30,8 @@ public interface Storage {
     List<Prisliste> getPrisliste();
     void storePrisliste(Prisliste prisliste);
     void deletePrisliste(Prisliste prisliste);
+    //--------------------------------------------------------------------------------------------------
+    List<Pris> getPris();
+    void storePris(Pris pris);
+    void deletePris(Pris pris);
 }
