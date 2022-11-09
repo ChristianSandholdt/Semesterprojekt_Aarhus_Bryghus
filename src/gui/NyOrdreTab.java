@@ -136,9 +136,6 @@ public class NyOrdreTab extends GridPane {
         double ordreID = Math.random();
         if (ordre == null){
             ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
-        } else {
-            ordreID = Math.random();
-            ordre = Controller.createOrdre(false, ordreID, LocalDate.now(), betalingsform);
         }
         pris = Controller.getPris(prisliste, produkt);
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);

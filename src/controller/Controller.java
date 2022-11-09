@@ -233,13 +233,12 @@ public abstract class Controller {
         return ordre;
     }
 
-    public static String visUdlejningStatistik() {
-        String ordreLinje = null;
-        for (Ordre o : getStorage().getOrdre()) {
-            for (Ordrelinje ol : o.getOrdrelinjer()) {
-                ordreLinje = ol.toString();
-            }
+    public static ArrayList<String> visUdlejningStatistik(Ordre ordre) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (Ordrelinje ol : ordre.getOrdrelinjer()) {
+            arrayList.add(ol.toString());
         }
-        return ordreLinje;
+
+        return arrayList;
     }
 }

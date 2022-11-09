@@ -37,8 +37,8 @@ public class UdlejningsStatistikWindow extends Stage {
     }
     // --------------------------------------------------------------------
 
-    private final ListView lvwUdlejninger = new ListView<>();
-    private final ListView lvwOrdre = new ListView<>();
+    private final ListView<Ordre> lvwUdlejninger = new ListView<>();
+    private final ListView<String> lvwOrdre = new ListView<>();
     private final TextField txfFustage = new TextField();
     private final TextField txfKulsyre = new TextField();
     private final TextField txfSum = new TextField();
@@ -55,7 +55,7 @@ public class UdlejningsStatistikWindow extends Stage {
         pane.add(lblUdlejninger, 0, 0);
         pane.add(lvwUdlejninger, 0, 1,1,6);
         lvwUdlejninger.getItems().setAll(Controller.getStorage().getOrdre());
-        ChangeListener<Ordrelinje> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
+        ChangeListener<Ordre> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
         lvwUdlejninger.getSelectionModel().selectedItemProperty().addListener(listener);
 
 
@@ -63,6 +63,7 @@ public class UdlejningsStatistikWindow extends Stage {
         Label lblOrdre = new Label("Ordre:");
         pane.add(lblOrdre, 1, 0);
         pane.add(lvwOrdre, 1, 1,1,6);
+        lvwOrdre.getSelectionModel().selectFirst();
 
 
         // Udbetal pant
@@ -93,6 +94,10 @@ public class UdlejningsStatistikWindow extends Stage {
     }
 
     private void selectedOrdreLinjeChanged() {
+        Ordre ordre = lvwUdlejninger.getSelectionModel().getSelectedItem();
+        if (ordre != null) {
+            lvwOrdre.getItems().setAll(Controller.visUdlejningStatistik(ordre));
+        }
 
     }
 //    private void selectedOrdreLinjeChanged() {
