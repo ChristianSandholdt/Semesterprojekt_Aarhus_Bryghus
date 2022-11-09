@@ -149,7 +149,8 @@ public class NyOrdreTab extends GridPane {
     // Action til at åbne betalingsvindue
     private void betalAction() {
         betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre, nyOrdreWindow);
-        betalingsWindow.show();
+        betalingsWindow.showAndWait();
+        txfSum.clear();
     }
 
     // Fjerner vare fra kurven
