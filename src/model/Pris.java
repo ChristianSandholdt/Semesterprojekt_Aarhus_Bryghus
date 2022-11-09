@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Pris implements Serializable {
-    private final double pris;
+    private double pris;
     private Prisliste prisliste;
     private Produkt produkt;
     private final double prisIKlip;
@@ -14,7 +14,6 @@ public class Pris implements Serializable {
         this.prisIKlip = prisIKlip;
     }
 
-
     public double getPris(Prisliste pl, Produkt pr) {
         double realOGPrice = 0;
         for (Pris p : pl.getPriser()) {
@@ -23,6 +22,7 @@ public class Pris implements Serializable {
         }
         return realOGPrice;
     }
+
     public double getPris() {
         return pris;
     }

@@ -24,7 +24,7 @@ public abstract class Controller {
     /**
      * Skaber en ordre
      */
-    public static Ordre createOrdre(boolean betalt, int ordreID,LocalDate localDate,String betalingsform){
+    public static Ordre createOrdre(boolean betalt, double ordreID,LocalDate localDate,String betalingsform){
         Ordre ordre = new Ordre(betalt,ordreID,localDate,betalingsform);
         storage.storeOrdre(ordre);
         return ordre;
@@ -222,23 +222,19 @@ public abstract class Controller {
 
     public static String visOrdreStatistik() {
         String ordre = null;
-
         for (Ordre o : getStorage().getOrdre()) {
             ordre = o.toString();
         }
-
         return ordre;
     }
 
     public static String visUdlejningStatistik() {
         String ordreLinje = null;
-
         for (Ordre o : getStorage().getOrdre()) {
             for (Ordrelinje ol : o.getOrdrelinjer()) {
                 ordreLinje = ol.toString();
             }
         }
-
         return ordreLinje;
     }
 }

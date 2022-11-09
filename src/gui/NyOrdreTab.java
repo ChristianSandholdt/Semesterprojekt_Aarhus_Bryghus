@@ -20,10 +20,12 @@ public class NyOrdreTab extends GridPane {
     public static Ordre ordre;
     private BetalingsWindow betalingsWindow;
     private Ordrelinje ordrelinje;
+    private Rundvisning rundvisning;
     private NyOrdreWindow nyOrdreWindow;
     private final ComboBox<Prisliste> cbxPrisliste = new ComboBox<>();
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
+    private final ListView<Rundvisning> lvwRundvisning = new ListView<>();
     private final ListView<Ordrelinje> lvwOrdrelinje = new ListView<>();
     private TextField txfSum = new TextField();
     private TextField txfAntal = new TextField();
@@ -66,6 +68,8 @@ public class NyOrdreTab extends GridPane {
         Label lblProdukt = new Label("Produkter:");
         this.add(lblProdukt, 1, 1);
         this.add(lvwProdukt, 1, 2);
+        this.add(lvwRundvisning, 1, 2);
+        lvwRundvisning.setVisible(false);
 
         // Antal under produkter
         txfAntal.setMaxWidth(30);
@@ -131,17 +135,26 @@ public class NyOrdreTab extends GridPane {
     // Tilføj vare til kurven
     public void tilføjAction() {
         String betalingsform = "Betalingskort";
-        int ordreID = 1;
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
+        double ordreID = Math.random();
         if (ordre == null){
             ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
-            ordreID++;
         }
-        pris = Controller.getPris(prisliste, produkt);
+        if (lvwRundvisning.isVisible()){
+            pris = new Pris(100, 0);
+        }
+        else {
+            pris = Controller.getPris(prisliste, produkt);
+        }
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
-        lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
+        if (lvwRundvisning.isVisible()){
+            //lvwOrdrelinje.getItems().add(lvwRundvisning.getSelectionModel().getSelectedItem());
+        }
+        else {
+            lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
+        }
         txfAntal.setText("1");
         System.out.println("Ny: " + ordre);
         txfSum.setText(Controller.totalPris(ordre) + " kr.");
@@ -167,7 +180,6 @@ public class NyOrdreTab extends GridPane {
                 lvwOrdrelinje.getItems().remove(o);
                 Controller.deleteOrdrelinje(o, ordre);
             }
-
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initOwner(this.getScene().getWindow());
@@ -183,7 +195,12 @@ public class NyOrdreTab extends GridPane {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
             lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
+            lvwRundvisning.setVisible(false);
         }
+        //if (produktgruppe.toString().equals("Rundvisning")){
+            //lvwRundvisning.getItems().setAll(Controller.getStorage().getRundvisning());
+            //lvwRundvisning.setVisible(true);
+        //}
     }
 
     // Lægger 1 til antal

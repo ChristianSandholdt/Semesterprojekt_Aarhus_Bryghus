@@ -14,9 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.Ordrelinje;
-import model.Produkt;
-import model.Produktgruppe;
+import model.*;
 
 public class UdlejningsStatistikWindow extends Stage {
 
@@ -56,15 +54,16 @@ public class UdlejningsStatistikWindow extends Stage {
         Label lblUdlejninger = new Label("Udlejninger:");
         pane.add(lblUdlejninger, 0, 0);
         pane.add(lvwUdlejninger, 0, 1,1,6);
-        lvwUdlejninger.getItems().add(Controller.visOrdreStatistik());
+        lvwUdlejninger.getItems().setAll(Controller.getStorage().getOrdre());
+        ChangeListener<Ordrelinje> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
+        lvwUdlejninger.getSelectionModel().selectedItemProperty().addListener(listener);
 
 
         // Oversigt over den valgte udlejning
         Label lblOrdre = new Label("Ordre:");
         pane.add(lblOrdre, 1, 0);
         pane.add(lvwOrdre, 1, 1,1,6);
-//        ChangeListener<Ordrelinje> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
-//        lvwUdlejninger.getSelectionModel().selectedItemProperty().addListener(listener);
+
 
         // Udbetal pant
         Label lblPantRetur = new Label("Pant retur:");
@@ -90,6 +89,10 @@ public class UdlejningsStatistikWindow extends Stage {
         btnAnnuller.setMaxWidth(300);
         btnAnnuller.setOnAction(event -> btnAnnullerAction());
         btnUdbetal.setOnAction(event -> btnUdbetalAction());
+
+    }
+
+    private void selectedOrdreLinjeChanged() {
 
     }
 //    private void selectedOrdreLinjeChanged() {

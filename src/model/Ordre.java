@@ -7,15 +7,11 @@ import java.util.ArrayList;
 
 public class Ordre implements Serializable {
     public boolean betalt;
-    public int sum;
     public String betalingsform;
-    public int ordreID;
-
+    public double ordreID;
     public LocalDate dato;
 
-    private Kunde kunde;
-
-    public Ordre(boolean betalt, int ordreID,LocalDate dato, String betalingsform) {
+    public Ordre(boolean betalt, double ordreID, LocalDate dato, String betalingsform) {
         this.betalt = betalt;
         this.ordreID = ordreID;
         this.dato = dato;
