@@ -153,6 +153,7 @@ public class NyOrdreTab extends GridPane {
         txfSum.clear();
         lvwOrdrelinje.getItems().clear();
         txfSum.setText(Controller.resetPris());
+        ordre = null;
     }
 
     // Fjerner vare fra kurven

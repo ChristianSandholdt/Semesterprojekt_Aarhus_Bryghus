@@ -18,7 +18,7 @@ import model.Ordre;
 
 public class BetalingsWindow extends Stage {
 
-    private final Ordre ordre;
+    private Ordre ordre;
     private NyOrdreWindow nyOrdreWindow;
 
     public BetalingsWindow(String title, Stage owner, Ordre ordre, NyOrdreWindow nyOrdreWindow) {

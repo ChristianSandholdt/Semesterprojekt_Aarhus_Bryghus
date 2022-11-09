@@ -131,6 +131,7 @@ public class UdlejningTab extends GridPane {
         txfSum.clear();
         lvwOrdreLinje.getItems().clear();
         txfSum.setText(Controller.resetPris());
+        ordre = null;
     }
 
     private void btnAnnullerAction() {
