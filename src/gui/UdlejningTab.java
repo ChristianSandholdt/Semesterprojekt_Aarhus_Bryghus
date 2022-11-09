@@ -128,6 +128,9 @@ public class UdlejningTab extends GridPane {
     private void btnÅbenBetalingAction() {
         betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre, nyOrdreWindow);
         betalingsWindow.show();
+        txfSum.clear();
+        lvwOrdreLinje.getItems().clear();
+        txfSum.setText(Controller.resetPris());
     }
 
     private void btnAnnullerAction() {
