@@ -107,6 +107,9 @@ public abstract class Controller {
 
     public static Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner,
                                                 LocalDate dato, String startTid, String slutTid){
+        if (antalPersoner < 1){
+            throw new RuntimeException("Kan ikke oprettes med 0 personer");
+        }
         Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner, dato, startTid, slutTid);
         storage.storeRundvisning(rundvisning);
         return rundvisning;
