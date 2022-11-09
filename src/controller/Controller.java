@@ -107,8 +107,7 @@ public abstract class Controller {
 
     public static Rundvisning createRundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner,
                                                 LocalDate dato, String startTid, String slutTid){
-        Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner,
-                dato, startTid, slutTid);
+        Rundvisning rundvisning = new Rundvisning(navn, email, tlfNummer, pris, antalPersoner, dato, startTid, slutTid);
         storage.storeRundvisning(rundvisning);
         return rundvisning;
     }

@@ -15,7 +15,7 @@ public class ListStorage implements Storage, Serializable {
     private List<Ordre> ordrer = new ArrayList<>();
     private List<Ordrelinje> ordrelinjer = new ArrayList<>();
 
-    private List<Rundvisning> rundvisninger = new ArrayList<>();
+    private final List<Rundvisning> rundvisninger = new ArrayList<>();
 
     private List<Prisliste> prislister = new ArrayList<>();
 
