@@ -25,17 +25,9 @@ public class Ordre implements Serializable {
     // Aggregation -> 0..*
     private final ArrayList<Ordrelinje> ordreLinjer = new ArrayList<>();
     private final ArrayList<Rundvisning> rundvisninger = new ArrayList<>();
-    private final ArrayList<Ordre> ordrer = new ArrayList<>();
 
-    public Ordrelinje createOrderLine(int antal, Produkt produkt, Pris pris){
-        Ordrelinje orderLine = new Ordrelinje(antal,produkt,pris);
-        ordreLinjer.add(orderLine);
-        return orderLine;
-    }
 
-    public ArrayList<Rundvisning> getRundvisninger() {
-        return new ArrayList<>(rundvisninger);
-    }
+
     public ArrayList<Ordrelinje> getOrdrelinjer() {
         return new ArrayList<>(ordreLinjer);
     }
@@ -50,19 +42,17 @@ public class Ordre implements Serializable {
         ordreLinjer.remove(ordrelinje);
     }
 
-    public void addOrdre(Ordre ordre) {
-        ordrer.add(ordre);
-    }
-    public void removeOrdre(Ordre ordre){
-        ordrer.remove(ordre);
-    }
-
     public LocalDate getDato() {
         return dato;
     }
 
     public void setBetalt(boolean betalt) {
         this.betalt = betalt;
+    }
+
+    //Bruges til test. Testes ikke selv direkte.
+    public boolean isBetalt() {
+        return betalt;
     }
 
     public String getBetalingsform() {
