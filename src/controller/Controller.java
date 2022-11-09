@@ -34,7 +34,6 @@ public abstract class Controller {
      * Pre: Ordren er skabt
      */
     public static void deleteOrdre(Ordre ordre){
-        ordre.removeOrdre(ordre);
         storage.deleteOrdre(ordre);
     }
     /**

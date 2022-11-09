@@ -30,9 +30,10 @@ public class ListStorage implements Storage, Serializable {
     public void storeOrdre(Ordre ordre){
         ordrer.add(ordre);
     }
+
     @Override
     public void deleteOrdre(Ordre ordre) {
-        ordre.removeOrdre(ordre);
+        ordrer.remove(ordre);
     }
 
     @Override
