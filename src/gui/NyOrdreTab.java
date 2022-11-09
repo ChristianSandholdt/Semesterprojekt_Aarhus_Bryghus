@@ -20,13 +20,11 @@ public class NyOrdreTab extends GridPane {
     public static Ordre ordre;
     private BetalingsWindow betalingsWindow;
     private Ordrelinje ordrelinje;
-    private Rundvisning rundvisning;
     private NyOrdreWindow nyOrdreWindow;
     private final ComboBox<Prisliste> cbxPrisliste = new ComboBox<>();
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
-    private final ListView<Produkt> lvwProdukt = new ListView<>();
-    private final ListView<Rundvisning> lvwRundvisning = new ListView<>();
-    private final ListView<Ordrelinje> lvwOrdrelinje = new ListView<>();
+    private final ListView lvwProdukt = new ListView<>();
+    private final ListView lvwOrdrelinje = new ListView<>();
     private TextField txfSum = new TextField();
     private TextField txfAntal = new TextField();
     private final Label lblTotal = new Label("Total: ");
@@ -68,8 +66,6 @@ public class NyOrdreTab extends GridPane {
         Label lblProdukt = new Label("Produkter:");
         this.add(lblProdukt, 1, 1);
         this.add(lvwProdukt, 1, 2);
-        this.add(lvwRundvisning, 1, 2);
-        lvwRundvisning.setVisible(false);
 
         // Antal under produkter
         txfAntal.setMaxWidth(30);
@@ -136,25 +132,15 @@ public class NyOrdreTab extends GridPane {
     public void tilføjAction() {
         String betalingsform = "Betalingskort";
         int antal = Integer.parseInt(txfAntal.getText().trim());
-        Produkt produkt = lvwProdukt.getSelectionModel().getSelectedItem();
+        Produkt produkt = (Produkt) lvwProdukt.getSelectionModel().getSelectedItem();
         double ordreID = Math.random();
         if (ordre == null){
             ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
         }
-        if (lvwRundvisning.isVisible()){
-            pris = new Pris(100, 0);
-        }
-        else {
-            pris = Controller.getPris(prisliste, produkt);
-        }
+        pris = Controller.getPris(prisliste, produkt);
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
         ordre.addOrdrelinje(ordrelinje);
-        if (lvwRundvisning.isVisible()){
-            //lvwOrdrelinje.getItems().add(lvwRundvisning.getSelectionModel().getSelectedItem());
-        }
-        else {
-            lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
-        }
+        lvwOrdrelinje.getItems().setAll(ordre.getOrdrelinjer());
         txfAntal.setText("1");
         System.out.println("Ny: " + ordre);
         txfSum.setText(Controller.totalPris(ordre) + " kr.");
@@ -168,7 +154,7 @@ public class NyOrdreTab extends GridPane {
 
     // Fjerner vare fra kurven
     private void fjernAction() {
-        Ordrelinje o = lvwOrdrelinje.getSelectionModel().getSelectedItem();
+        Ordrelinje o = (Ordrelinje) lvwOrdrelinje.getSelectionModel().getSelectedItem();
         if (o != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.initOwner(this.getScene().getWindow());
@@ -195,12 +181,10 @@ public class NyOrdreTab extends GridPane {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
             lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
-            lvwRundvisning.setVisible(false);
         }
-        //if (produktgruppe.toString().equals("Rundvisning")){
-            //lvwRundvisning.getItems().setAll(Controller.getStorage().getRundvisning());
-            //lvwRundvisning.setVisible(true);
-        //}
+        if (produktgruppe.toString().equals("Rundvisning")){
+            lvwProdukt.getItems().setAll(Controller.getStorage().getRundvisning());
+        }
     }
 
     // Lægger 1 til antal
