@@ -151,6 +151,8 @@ public class NyOrdreTab extends GridPane {
         betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre, nyOrdreWindow);
         betalingsWindow.showAndWait();
         txfSum.clear();
+        lvwOrdrelinje.getItems().clear();
+        txfSum.setText(Controller.resetPris());
     }
 
     // Fjerner vare fra kurven

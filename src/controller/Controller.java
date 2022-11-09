@@ -183,6 +183,12 @@ public abstract class Controller {
         return pris + "";
     }
 
+    public static String resetPris() {
+        Pris pris = null;
+        pris = new Pris(0, 0);
+        return pris + "";
+    }
+
     public static void VisSolgteKlipIPerioden(LocalDate dato1, LocalDate dato2, Label label){
         int antal = 0;
 
