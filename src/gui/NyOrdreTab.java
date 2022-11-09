@@ -181,9 +181,9 @@ public class NyOrdreTab extends GridPane {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
             lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
-        }
-        if (produktgruppe.toString().equals("Rundvisning")){
-            lvwProdukt.getItems().setAll(Controller.getStorage().getRundvisning());
+            if (produktgruppe.toString().equals("Rundvisning")){
+                lvwProdukt.getItems().setAll(Controller.getStorage().getRundvisning());
+            }
         }
     }
 
