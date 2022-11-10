@@ -67,7 +67,6 @@ public class DagensSalgStatistik extends Stage {
         LocalDate selectedItem = datePicker.getValue();
         if (selectedItem != null) {
             this.fillTxfSalg(selectedItem);
-            System.out.println(selectedItem);
         }
     }
 
