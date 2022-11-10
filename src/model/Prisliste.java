@@ -25,19 +25,8 @@ public class Prisliste implements Serializable {
         priser.add(pris);
     }
 
-    public ArrayList<Produktgruppe> getProduktgrupper() {
-        return new ArrayList<>(produktgrupper);
-    }
-
     public void addProduktgruppe(Produktgruppe produktgruppe){
         produktgrupper.add(produktgruppe);
-    }
-
-    public void setNavn(String navn) {
-        this.navn = navn;
-    }
-
-    public void setPris(double pris) {
     }
 
     public String toString() {

@@ -30,14 +30,6 @@ public abstract class Controller {
         storage.storeOrdre(ordre);
         return ordre;
     }
-    /**
-     * This function deletes an Ordre from the database
-     * Pre: Ordre exists
-     */
-    public static void deleteOrdre(Ordre ordre){
-        storage.deleteOrdre(ordre);
-    }
-
 
     /**
      * Creates an Ordrelinje, store it, and return it.
@@ -172,22 +164,6 @@ public abstract class Controller {
         return prisliste;
     }
 
-    /**
-     * This function deletes a Prisliste from the database
-     * Pre: Prisliste already exist
-     */
-    public static void deletePrisliste(Prisliste prisliste){
-        storage.deletePrisliste(prisliste);
-    }
-
-
-    /**
-     * This function updates the name of a Prisliste
-     * Pre: Prisliste already exist
-     */
-    public static void updatePrisliste(Prisliste prisliste, String navn){
-        prisliste.setNavn(navn);
-    }
 
     /**
      * It creates a Pris for a Produkt in a Prisliste
@@ -282,6 +258,7 @@ public abstract class Controller {
      * the two dates, and if the order is paid with a klippekort, it loops through all the orderlines, and then through all
      * the prices of the products in the orderlines, and then it adds the price in klip of the Produkt to the variable
      * antal. Then it sets the text of the label to "Antallet af brugte klip i perioden er " + antal
+     *
      * Pre: An Ordre with a Klippekort sold exist
      */
     public static void VisAntalBrugteKlip(LocalDate dato1, LocalDate dato2,Label label){
@@ -311,18 +288,7 @@ public abstract class Controller {
         ordre.setBetalingsform(comboBox.getSelectionModel().getSelectedItem().toString());
     }
 
-    /**
-     * It returns a string containing the toString() method of Ordre in the storage
-     * Pre: Ordre already exists
-     * @return The method returns the toString() method of the stored Ordre from Storage.
-     */
-    public static String visOrdreStatistik() {
-        String ordre = null;
-        for (Ordre o : getStorage().getOrdre()) {
-            ordre = o.toString();
-        }
-        return ordre;
-    }
+
     /**
      * It returns an ArrayList of all orders that contain a product that is a rental product
      * Pre: Ordre with Udlejning exists

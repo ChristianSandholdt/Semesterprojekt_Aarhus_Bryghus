@@ -19,11 +19,6 @@ public class App {
         initStorage();
         Application.launch(Gui.class);
 
-        Produktgruppe p1 = new Produktgruppe("Øl", false);
-        Produkt pro1 = Controller.createProdukt("Klosterbryg",p1);
-        Prisliste prisliste = new Prisliste("Test");
-        Pris pris = Controller.createPris(pro1,prisliste,36,2);
-        System.out.println(p1.getProdukter());
     }
 
     public static void initStorage(){

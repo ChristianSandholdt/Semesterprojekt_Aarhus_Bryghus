@@ -49,7 +49,6 @@ public class Produktwindow extends Stage{
 
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
-    private final Button btnFjernProduktGruppe = new Button();
     private final Button btnFjernProdukt = new Button();
 
     private void initContent(GridPane pane){
@@ -86,6 +85,7 @@ public class Produktwindow extends Stage{
         Button btnTilfoejProdukt = new Button("Tilføj nyt produkt");
         pane.add(btnTilfoejProdukt,1,2);
         btnTilfoejProdukt.setOnAction(event -> btnOpretProduktAction());
+
         //Fjern produkt
         btnFjernProdukt.setText("Fjern produkt");
         pane.add(btnFjernProdukt,1,3);

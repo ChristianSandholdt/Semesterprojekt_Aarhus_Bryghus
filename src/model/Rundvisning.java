@@ -14,8 +14,6 @@ public class Rundvisning implements Serializable {
     private String startTid;
     private String slutTid;
 
-    Ordre ordre; // OBS: package visible
-
     // ------------------------------------------------------------------------------------------
 
     public Rundvisning(String navn, String email, int tlfNummer, double pris, int antalPersoner, LocalDate dato, String startTid, String slutTid) {
@@ -45,10 +43,6 @@ public class Rundvisning implements Serializable {
         return tlfNummer;
     }
 
-    public double getPris() {
-        return pris;
-    }
-
     public int getAntalPersoner() {
         return antalPersoner;
     }
@@ -65,41 +59,11 @@ public class Rundvisning implements Serializable {
         return slutTid;
     }
 
-    // Setters
-
-    public void setNavn(String navn) {
-        this.navn = navn;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setTlfNummer(int tlfNummer) {
-        this.tlfNummer = tlfNummer;
-    }
 
     public void setPris(double pris) {
         this.pris = pris;
     }
 
-    public void setAntalPersoner(int antalPersoner) {
-        this.antalPersoner = antalPersoner;
-    }
-
-    public void setDato(LocalDate dato) {
-        this.dato = dato;
-    }
-
-    public void setStartTid(String startTid) {
-        this.startTid = startTid;
-    }
-
-    public void setSlutTid(String slutTid) {
-        this.slutTid = slutTid;
-    }
-
-    // To String metode
 
     @Override
     public String toString() {

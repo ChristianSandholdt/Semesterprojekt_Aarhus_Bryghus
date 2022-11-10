@@ -35,7 +35,6 @@ public class OpretproduktgruppeWindow extends Stage {
         this.setScene(scene);
     }
     private final TextField txfNavn = new TextField();
-    private final TextField txfType = new TextField();
     private final CheckBox chkUdlejning = new CheckBox();
 
     private void initContent(GridPane pane){
@@ -49,31 +48,23 @@ public class OpretproduktgruppeWindow extends Stage {
         pane.add(txfNavn,0,1);
         txfNavn.setEditable(true);
 
-        Label lblType = new Label("Type på produktgruppe");
-        pane.add(lblType,0,2);
-        pane.add(txfType,0,3);
-        txfType.setEditable(true);
-
-
 
         Button btnOpret = new Button("Opret");
-        pane.add(btnOpret,0,6);
+        pane.add(btnOpret,0,4);
         btnOpret.setOnAction(event -> btnOpretAction());
 
 
         Label lblUdlejning = new Label("Udlejning");
-        pane.add(lblUdlejning,0,4);
-        pane.add(chkUdlejning, 0,5);
+        pane.add(lblUdlejning,0,2);
+        pane.add(chkUdlejning, 0,3);
 
     }
 
     private void btnOpretAction(){
         String navn = txfNavn.getText();
-        String type = txfType.getText();
         boolean udlejning = chkUdlejning.isSelected();
         Controller.createProduktGruppe(navn,udlejning);
         txfNavn.clear();
-        txfType.clear();
         close();
     }
 

@@ -20,8 +20,6 @@ public class Ordre implements Serializable {
 
     // Aggregation -> 0..*
     private final ArrayList<Ordrelinje> ordreLinjer = new ArrayList<>();
-    private final ArrayList<Rundvisning> rundvisninger = new ArrayList<>();
-
 
 
     public ArrayList<Ordrelinje> getOrdrelinjer() {

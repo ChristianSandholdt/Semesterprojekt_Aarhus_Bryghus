@@ -19,10 +19,6 @@ public class Pris implements Serializable {
         return pris;
     }
 
-    public Produkt getProdukt() {
-        return produkt;
-    }
-
     public void setProdukt(Produkt produkt) {
         this.produkt = produkt;
     }
