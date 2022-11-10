@@ -134,6 +134,7 @@ public class RundvisningsWindow extends Stage {
         String startTid = txfStartTid.getText();
         String slutTid = txfSlutTid.getText();
         Controller.createRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
+        close();
     }
 
     // Pre: TextField skal være udfyldt
@@ -145,6 +146,7 @@ public class RundvisningsWindow extends Stage {
         String startTid = txfStartTid.getText();
         String slutTid = txfSlutTid.getText();
         Controller.updateRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
+        close();
     }
 
     // Pre: TextField skal være udfyldt

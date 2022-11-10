@@ -131,8 +131,14 @@ public class NyOrdreTab extends GridPane {
     // Tilføj vare til kurven
     public void tilføjAction() {
         String betalingsform = "Betalingskort";
+        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         int antal = Integer.parseInt(txfAntal.getText().trim());
-        Produkt produkt = (Produkt) lvwProdukt.getSelectionModel().getSelectedItem();
+        Produkt produkt = null;
+        if (produktgruppe.toString().equals("Rundvisning")){
+            produkt = produktgruppe.getProdukter().get(0);
+        } else {
+            produkt = (Produkt) lvwProdukt.getSelectionModel().getSelectedItem();
+        }
         double ordreID = Math.random() * 1000000;
         ordreID = Math.floor(ordreID);
         if (ordre == null){

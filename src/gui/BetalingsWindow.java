@@ -76,6 +76,7 @@ public class BetalingsWindow extends Stage {
         pane.add(hbox, 0, 0, 2, 1);
         System.out.println("Bet: " + ordre);
         txfPris.setText(Controller.totalPris(ordre));
+        txfPris.setEditable(false);
 
         // Rabat
         txfRabat.setMaxWidth(75);
@@ -102,7 +103,7 @@ public class BetalingsWindow extends Stage {
         HBox hBox3 = new HBox(10,lblNyPris,txfNyPris);
         hBox3.setMaxWidth(200);
         pane.add(hBox3, 0, 3,2,1);
-
+        txfNyPris.setEditable(false);
     }
 
     //------------------------------------------------------------------------------------------------------------------
