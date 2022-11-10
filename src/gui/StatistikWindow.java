@@ -71,6 +71,7 @@ public class StatistikWindow extends Stage {
     }
 
     private void btnDagensSalgAction() {
+        dagensSalgStatistik.update();
         dagensSalgStatistik.showAndWait();
     }
 
