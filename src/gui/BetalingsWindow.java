@@ -47,7 +47,8 @@ public class BetalingsWindow extends Stage {
     private final Button btnBetal = new Button("Betal");
     private final ComboBox betalingsBox = new ComboBox<>();
     private final Button btnUdregnNyPris = new Button("Udregn ny pris");
-
+    Label lblRabat = new Label("Rabat (%):     ");
+    Label lblNyPris = new Label("Ny totalpris:  ");
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -77,7 +78,6 @@ public class BetalingsWindow extends Stage {
         txfPris.setText(Controller.totalPris(ordre));
 
         // Rabat
-        Label lblRabat = new Label("Rabat (%):     ");
         txfRabat.setMaxWidth(75);
         txfRabat.setAlignment(Pos.CENTER_RIGHT);
         HBox hbox2 = new HBox(10,lblRabat,txfRabat);
@@ -97,7 +97,6 @@ public class BetalingsWindow extends Stage {
         btnUdregnNyPris.setOnAction(event -> this.udregnNyPris());
 
         // Ny total pris
-        Label lblNyPris = new Label("Ny totalpris:  ");
         txfNyPris.setMaxWidth(75);
         txfNyPris.setAlignment(Pos.CENTER_RIGHT);
         HBox hBox3 = new HBox(10,lblNyPris,txfNyPris);
@@ -120,6 +119,14 @@ public class BetalingsWindow extends Stage {
         double nyPris = pris - (pris * rabat);
         String total = String.format("%.2f",nyPris);
         txfNyPris.setText(total);
+    }
+    
+    public void hideRabat() {
+        txfRabat.setVisible(false);
+        lblRabat.setVisible(false);
+        btnUdregnNyPris.setVisible(false);
+        lblNyPris.setVisible(false);
+        txfNyPris.setVisible(false);
     }
 
 }
