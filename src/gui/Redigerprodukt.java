@@ -17,7 +17,6 @@ public class Redigerprodukt extends Stage {
     private final String title;
     Produktwindow produktwindow;
 
-
     public Redigerprodukt(String title, Stage owner) {
         this.title = title;
         this.initOwner(owner);
@@ -32,8 +31,8 @@ public class Redigerprodukt extends Stage {
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
-
     }
 
     ListView<Produktgruppe> lvwProduktGruppe = new ListView();

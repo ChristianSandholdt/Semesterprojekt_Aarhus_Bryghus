@@ -16,6 +16,7 @@ public class NyOrdreWindow extends Stage {
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         setScene(scene);
         setHeight(800);
         setWidth(500);

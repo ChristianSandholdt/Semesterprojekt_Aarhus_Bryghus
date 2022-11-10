@@ -65,7 +65,7 @@ public class UdlejningTab extends GridPane {
         btnDecrease.setOnAction(event -> this.btn2DecreaseAction());
 
         // HBox 1
-        Button btnRemove = new Button("Fjern:");
+        Button btnRemove = new Button("Fjern");
         Button btnAdd = new Button("Tilføj");
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");

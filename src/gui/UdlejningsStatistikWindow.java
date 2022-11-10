@@ -33,6 +33,7 @@ public class UdlejningsStatistikWindow extends Stage {
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
     }
     // --------------------------------------------------------------------
@@ -53,7 +54,8 @@ public class UdlejningsStatistikWindow extends Stage {
         // Oversigt over udlejninger
         Label lblUdlejninger = new Label("Udlejninger:");
         pane.add(lblUdlejninger, 0, 0);
-        pane.add(lvwUdlejninger, 0, 1,1,6);
+        pane.add(lvwUdlejninger, 0, 1,3,5);
+        lvwUdlejninger.setMaxHeight(160);
         lvwUdlejninger.getItems().setAll(Controller.getStorage().getOrdre());
         ChangeListener<Ordre> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
         lvwUdlejninger.getSelectionModel().selectedItemProperty().addListener(listener);
@@ -61,33 +63,36 @@ public class UdlejningsStatistikWindow extends Stage {
 
         // Oversigt over den valgte udlejning
         Label lblOrdre = new Label("Ordre:");
-        pane.add(lblOrdre, 1, 0);
-        pane.add(lvwOrdre, 1, 1,1,6);
+        pane.add(lblOrdre, 0, 6);
+        lvwOrdre.setMaxHeight(300);
+        pane.add(lvwOrdre, 0, 7,4,3);
+        //lvwOrdre.setMaxWidth(1000);
+
         lvwOrdre.getSelectionModel().selectFirst();
 
 
         // Udbetal pant
         Label lblPantRetur = new Label("Pant retur:");
-        pane.add(lblPantRetur, 2, 0);
-        Label lblFustager = new Label("Fustager:   ");
-        Label lblKulsyre = new Label("Kulsyre:     ");
-        Label lblSum = new Label("Sum:          ");
+        pane.add(lblPantRetur, 3, 0);
+        Label lblFustager = new Label(" Fustager:    ");
+        Label lblKulsyre = new Label(" Kulsyre:     ");
+        Label lblSum = new Label(" Sum:         ");
         HBox hBoxFustager = new HBox(10,lblFustager,txfFustage);
-        pane.add(hBoxFustager, 2, 1);
+        pane.add(hBoxFustager, 3, 1);
         HBox hBoxKulsyre = new HBox(10,lblKulsyre,txfKulsyre);
         txfKulsyre.setAlignment(Pos.CENTER_RIGHT);
-        pane.add(hBoxKulsyre, 2, 2);
+        pane.add(hBoxKulsyre, 3, 2);
         HBox hBoxSum = new HBox(10,lblSum,txfSum);
         txfSum.setAlignment(Pos.CENTER_RIGHT);
-        pane.add(hBoxSum, 2, 3);
+        pane.add(hBoxSum, 3, 3);
 
         // Button Udbetal - Button Annuller
         Button btnUdbetal = new Button("Udbetal");
         Button btnAnnuller = new Button("Annuller");
-        pane.add(btnUdbetal, 2, 4);
         btnUdbetal.setMaxWidth(300);
-        pane.add(btnAnnuller, 2, 5);
         btnAnnuller.setMaxWidth(300);
+        pane.add(btnUdbetal, 3, 4);
+        pane.add(btnAnnuller, 3, 5);
         btnAnnuller.setOnAction(event -> btnAnnullerAction());
         btnUdbetal.setOnAction(event -> btnUdbetalAction());
 
