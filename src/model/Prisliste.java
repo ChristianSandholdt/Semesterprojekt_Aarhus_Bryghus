@@ -21,7 +21,6 @@ public class Prisliste implements Serializable {
         return new ArrayList<>(priser);
     }
 
-
     public void addPris(Pris pris){
         priser.add(pris);
     }
