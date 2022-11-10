@@ -232,12 +232,17 @@ public abstract class Controller {
         ordre.setBetalingsform(comboBox.getSelectionModel().getSelectedItem().toString());
     }
 
-    public static String visOrdreStatistik() {
-        String ordre = null;
-        for (Ordre o : getStorage().getOrdre()) {
-            ordre = o.toString();
-        }
-        return ordre;
+    public static ArrayList<Ordre> visUdlejninger(){
+        ArrayList<Ordre> arrayList = new ArrayList<>();
+        for (Ordre o : getStorage().getOrdre())
+            for (Ordrelinje ol : o.getOrdrelinjer()){
+                if (ol.getProdukt().getProduktgruppe().getUdlejning()){
+                    if (!arrayList.contains(o)){
+                        arrayList.add(o);
+                    }
+                }
+            }
+        return arrayList;
     }
 
     public static ArrayList<String> visUdlejningStatistik(Ordre ordre) {

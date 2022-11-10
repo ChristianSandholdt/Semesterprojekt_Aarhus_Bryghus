@@ -133,7 +133,8 @@ public class NyOrdreTab extends GridPane {
         String betalingsform = "Betalingskort";
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = (Produkt) lvwProdukt.getSelectionModel().getSelectedItem();
-        double ordreID = Math.random();
+        double ordreID = Math.random() * 1000000;
+        ordreID = Math.floor(ordreID);
         if (ordre == null){
             ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
         }

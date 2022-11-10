@@ -140,7 +140,8 @@ public class UdlejningTab extends GridPane {
 
     private void btnTilføj() {
         String betalingsform = "Betalingskort";
-        double ordreID = Math.random();
+        double ordreID = Math.random() * 1000000;
+        ordreID = Math.floor(ordreID);
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
         if (ordre == null) {
