@@ -75,7 +75,6 @@ public class DagensSalgStatistik extends Stage {
         txfTotalSalg.clear();
         ArrayList<Ordre> ordrer = new ArrayList<>();
         for (Ordre o : Controller.getStorage().getOrdre()) {
-            System.out.println(o.getDato());
             if (o.getDato().equals(localDate)) {
                 ordrer.add(o);
             }
