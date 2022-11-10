@@ -48,6 +48,7 @@ public class RundvisningsWindow extends Stage {
     private final Button btnReserver = new Button("Reserver");
     private final Button btnUpdate = new Button("Opdatere");
     private final Button btnDelete = new Button("Slet");
+
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(30));
         pane.setHgap(10);
@@ -62,13 +63,13 @@ public class RundvisningsWindow extends Stage {
         datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             @Override
             public DateCell call(DatePicker param) {
-                return new DateCell(){
+                return new DateCell() {
                     @Override
                     public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
                         if (item != null) {
-                            for (Rundvisning r : Controller.getStorage().getRundvisning()){
-                                if (item.equals(r.getDato())){
+                            for (Rundvisning r : Controller.getStorage().getRundvisning()) {
+                                if (item.equals(r.getDato())) {
                                     this.setStyle("-fx-background-color: pink");
                                 }
                             }
@@ -79,7 +80,7 @@ public class RundvisningsWindow extends Stage {
         });
 
         Label lblNavn = new Label("Navn");
-        pane.add(lblNavn, 0,3);
+        pane.add(lblNavn, 0, 3);
         pane.add(txfNavn, 0, 4);
 
         Label lblEmail = new Label("Email");
@@ -117,7 +118,7 @@ public class RundvisningsWindow extends Stage {
         pane.add(txfSlutTid, 1, 10);
 
         HBox btnBox = new HBox(btnReserver, btnUpdate, btnDelete);
-        pane.add(btnBox, 0, 11, 3,1);
+        pane.add(btnBox, 0, 11, 3, 1);
         btnBox.setSpacing(25);
         btnBox.setAlignment(Pos.CENTER);
         btnReserver.setOnAction(event -> btnReserverAction());
@@ -132,7 +133,7 @@ public class RundvisningsWindow extends Stage {
         int antalPersoner = Integer.parseInt(txfAntalPersoner.getText());
         String startTid = txfStartTid.getText();
         String slutTid = txfSlutTid.getText();
-        Controller.createRundvisning(navn,email,tlfNummer,0,antalPersoner,date,startTid, slutTid);
+        Controller.createRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
     }
 
     // Pre: TextField skal være udfyldt
@@ -143,13 +144,13 @@ public class RundvisningsWindow extends Stage {
         int antalPersoner = Integer.parseInt(txfAntalPersoner.getText());
         String startTid = txfStartTid.getText();
         String slutTid = txfSlutTid.getText();
-        Controller.updateRundvisning(navn,email,tlfNummer,0,antalPersoner,date,startTid, slutTid);
+        Controller.updateRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
     }
 
     // Pre: TextField skal være udfyldt
     private void btnDeleteAction() {
-        for (Rundvisning r : Controller.getStorage().getRundvisning()){
-            if (date.equals(r.getDato())){
+        for (Rundvisning r : Controller.getStorage().getRundvisning()) {
+            if (date.equals(r.getDato())) {
                 Controller.deleteRundvisning(r);
             }
             txfNavn.clear();
@@ -168,8 +169,8 @@ public class RundvisningsWindow extends Stage {
         txfAntalPersoner.clear();
         txfStartTid.clear();
         txfSlutTid.clear();
-        for (Rundvisning r : Controller.getStorage().getRundvisning()){
-            if (date.equals(r.getDato())){
+        for (Rundvisning r : Controller.getStorage().getRundvisning()) {
+            if (date.equals(r.getDato())) {
                 txfNavn.setText(r.getNavn());
                 txfEmail.setText(r.getEmail());
                 txfTlf.setText(String.valueOf(r.getTlfNummer()));

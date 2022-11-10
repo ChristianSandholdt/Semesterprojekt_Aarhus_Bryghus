@@ -54,7 +54,7 @@ public class UdlejningsStatistikWindow extends Stage {
         // Oversigt over udlejninger
         Label lblUdlejninger = new Label("Udlejninger:");
         pane.add(lblUdlejninger, 0, 0);
-        pane.add(lvwUdlejninger, 0, 1,3,5);
+        pane.add(lvwUdlejninger, 0, 1, 3, 5);
         lvwUdlejninger.setMaxHeight(160);
         lvwUdlejninger.getItems().setAll(Controller.visUdlejninger());
         ChangeListener<Ordre> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
@@ -65,7 +65,7 @@ public class UdlejningsStatistikWindow extends Stage {
         Label lblOrdre = new Label("Ordre:");
         pane.add(lblOrdre, 0, 6);
         lvwOrdre.setMaxHeight(300);
-        pane.add(lvwOrdre, 0, 7,4,3);
+        pane.add(lvwOrdre, 0, 7, 4, 3);
         //lvwOrdre.setMaxWidth(1000);
 
         lvwOrdre.getSelectionModel().selectFirst();
@@ -77,12 +77,12 @@ public class UdlejningsStatistikWindow extends Stage {
         Label lblFustager = new Label(" Fustager:    ");
         Label lblKulsyre = new Label(" Kulsyre:     ");
         Label lblSum = new Label(" Sum:         ");
-        HBox hBoxFustager = new HBox(10,lblFustager,txfFustage);
+        HBox hBoxFustager = new HBox(10, lblFustager, txfFustage);
         pane.add(hBoxFustager, 3, 1);
-        HBox hBoxKulsyre = new HBox(10,lblKulsyre,txfKulsyre);
+        HBox hBoxKulsyre = new HBox(10, lblKulsyre, txfKulsyre);
         txfKulsyre.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hBoxKulsyre, 3, 2);
-        HBox hBoxSum = new HBox(10,lblSum,txfSum);
+        HBox hBoxSum = new HBox(10, lblSum, txfSum);
         txfSum.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hBoxSum, 3, 3);
 

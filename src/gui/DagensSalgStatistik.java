@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class DagensSalgStatistik extends Stage {
     private String title;
+
     public DagensSalgStatistik(String title, Stage owner) {
         this.title = title;
         this.initOwner(owner);
@@ -40,7 +41,7 @@ public class DagensSalgStatistik extends Stage {
     private final TextField txfTotalSalg = new TextField();
 
 
-    public void initContent(GridPane pane){
+    public void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
         pane.setHgap(10);
@@ -48,38 +49,38 @@ public class DagensSalgStatistik extends Stage {
 
 
         //Datepicker
-        pane.add(datePicker,0,0);
+        pane.add(datePicker, 0, 0);
 
         //Salg
         Label lblTotaltSalg = new Label("Totalt antal salg for den valgt dag:");
-        pane.add(lblTotaltSalg,1,0);
-        pane.add(txfTotalSalg,1,1);
+        pane.add(lblTotaltSalg, 1, 0);
+        pane.add(txfTotalSalg, 1, 1);
         txfTotalSalg.setEditable(false);
 
         //Listener til dato
-        ChangeListener<LocalDate> listener = (obs,o,n) -> this.selectedDateChanged();
+        ChangeListener<LocalDate> listener = (obs, o, n) -> this.selectedDateChanged();
         datePicker.valueProperty().addListener(listener);
 
     }
 
-        private void selectedDateChanged(){
-            LocalDate selectedItem = datePicker.getValue();
-            if (selectedItem != null){
-                this.fillTxfSalg(selectedItem);
-                System.out.println(selectedItem);
-            }
+    private void selectedDateChanged() {
+        LocalDate selectedItem = datePicker.getValue();
+        if (selectedItem != null) {
+            this.fillTxfSalg(selectedItem);
+            System.out.println(selectedItem);
         }
+    }
 
-        private void fillTxfSalg(LocalDate localDate){
+    private void fillTxfSalg(LocalDate localDate) {
         txfTotalSalg.clear();
-            ArrayList<Ordre> ordrer = new ArrayList<>();
-            for (Ordre o : Controller.getStorage().getOrdre()){
-                System.out.println(o.getDato());
-                if (o.getDato().equals(localDate)){
-                    ordrer.add(o);
-                }
+        ArrayList<Ordre> ordrer = new ArrayList<>();
+        for (Ordre o : Controller.getStorage().getOrdre()) {
+            System.out.println(o.getDato());
+            if (o.getDato().equals(localDate)) {
+                ordrer.add(o);
             }
-            String s = "" + ordrer.size();
-        txfTotalSalg.setText(s);
         }
+        String s = "" + ordrer.size();
+        txfTotalSalg.setText(s);
+    }
 }
