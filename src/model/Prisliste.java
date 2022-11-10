@@ -13,10 +13,6 @@ public class Prisliste implements Serializable {
         this.navn = navn;
     }
 
-    public String getNavn() {
-        return navn;
-    }
-
     public ArrayList<Pris> getPriser() {
         return new ArrayList<>(priser);
     }
