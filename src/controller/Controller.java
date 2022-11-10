@@ -176,6 +176,7 @@ public abstract class Controller {
         }
         return pris;
     }
+
     public static String totalPris(Ordre ordre){
         double pris = 0;
         for(Ordrelinje o : ordre.getOrdrelinjer()){
@@ -250,7 +251,6 @@ public abstract class Controller {
         for (Ordrelinje ol : ordre.getOrdrelinjer()) {
             arrayList.add(ol.toString());
         }
-
         return arrayList;
     }
 }

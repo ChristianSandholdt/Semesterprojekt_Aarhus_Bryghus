@@ -106,7 +106,7 @@ public class NyOrdreTab extends GridPane {
     private void selectedPrisListeChanged() {
         lvwProduktGruppe.getItems().clear();
         for (Produktgruppe p : Controller.getStorage().getProduktgruppe()){
-            if (p.getPrislister().contains(prisliste)){
+            if (p.getPrislister().contains(prisliste) && !p.getUdlejning()){
                 lvwProduktGruppe.getItems().add(p);
             }
         }
