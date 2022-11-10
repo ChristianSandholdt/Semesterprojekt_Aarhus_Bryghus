@@ -53,7 +53,7 @@ public class UdlejningsStatistikWindow extends Stage {
         pane.add(lblUdlejninger, 0, 0);
         pane.add(lvwUdlejninger, 0, 1,3,5);
         lvwUdlejninger.setMaxHeight(160);
-        lvwUdlejninger.getItems().setAll(Controller.getStorage().getOrdre());
+        lvwUdlejninger.getItems().setAll(Controller.visUdlejninger());
         ChangeListener<Ordre> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
         lvwUdlejninger.getSelectionModel().selectedItemProperty().addListener(listener);
 
@@ -104,7 +104,6 @@ public class UdlejningsStatistikWindow extends Stage {
         if (ordre != null) {
             lvwOrdre.getItems().setAll(Controller.visUdlejningStatistik(ordre));
         }
-
     }
 
     // ------------------------------------------------------------------------------------------------
