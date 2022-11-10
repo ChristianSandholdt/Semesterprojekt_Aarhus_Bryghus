@@ -37,7 +37,7 @@ public class StatistikWindow extends Stage {
     }
 
     private DagensSalgStatistik dagensSalgStatistik;
-    private final UdlejningsStatistikWindow udlejningsStatistikWindow;
+    private UdlejningsStatistikWindow udlejningsStatistikWindow;
     private KlipStatistikWindow klipStatistikWindow;
 
     private void initContent(GridPane pane) {
@@ -79,6 +79,7 @@ public class StatistikWindow extends Stage {
     }
 
     private void btnUdlejningStatistikAction() {
+        udlejningsStatistikWindow.update();
         udlejningsStatistikWindow.showAndWait();
     }
 

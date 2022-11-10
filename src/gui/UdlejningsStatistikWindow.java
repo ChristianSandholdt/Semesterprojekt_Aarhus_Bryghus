@@ -35,7 +35,7 @@ public class UdlejningsStatistikWindow extends Stage {
     }
     // --------------------------------------------------------------------
 
-    private final ListView<Ordre> lvwUdlejninger = new ListView<>();
+    private ListView<Ordre> lvwUdlejninger = new ListView<>();
     private final ListView<String> lvwOrdre = new ListView<>();
     private final TextField txfFustage = new TextField();
     private final TextField txfKulsyre = new TextField();
@@ -138,5 +138,8 @@ public class UdlejningsStatistikWindow extends Stage {
             alert.setContentText("Vælg en ordre og udfyld felterne før du kan fortsætte.");
             alert.show();
         }
+    }
+    void update(){
+        lvwUdlejninger.getItems().setAll(Controller.visUdlejninger());
     }
 }
