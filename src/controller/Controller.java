@@ -47,6 +47,14 @@ public abstract class Controller {
     }
 
     /**
+     * Sletter en ordre
+     * Pre: Ordren er skabt
+     */
+    public static void deleteOrdre(Ordre ordre){
+        storage.deleteOrdre(ordre);
+    }
+
+    /**
      * "Deletes an Ordrelinje from an Ordre."
      * The function is called with two parameters, an Ordrelinje and an Ordre. The Ordrelinje is removed from the Ordre,
      * and then the Ordrelinje is deleted from the database
