@@ -61,6 +61,6 @@ public class Ordre implements Serializable {
 
     @Override
     public String toString() {
-        return "Ordre: " + ordreID;
+        return "Ordre: " + (int) ordreID;
     }
 }
