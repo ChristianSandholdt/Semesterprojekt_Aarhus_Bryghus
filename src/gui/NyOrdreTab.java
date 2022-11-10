@@ -45,7 +45,7 @@ public class NyOrdreTab extends GridPane {
         // Dropdown-menu med prisliste
         Label lblPrisListe = new Label("Prisliste: ");
         HBox prisBox = new HBox(2, lblPrisListe, cbxPrisliste);
-        this.add(prisBox, 0,0,2,1);
+        this.add(prisBox, 0, 0, 2, 1);
         cbxPrisliste.setPromptText("Vælg Prisliste: ");
         cbxPrisliste.getItems().addAll(Controller.getStorage().getPrisliste());
         cbxPrisliste.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) ->
@@ -71,7 +71,7 @@ public class NyOrdreTab extends GridPane {
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");
         txfAntal.setAlignment(Pos.CENTER);
-        HBox hbox1 = new HBox(5,btnFjern, btnDecrease, txfAntal, btnIncrease, btnTilføj);
+        HBox hbox1 = new HBox(5, btnFjern, btnDecrease, txfAntal, btnIncrease, btnTilføj);
         this.add(hbox1, 1, 3);
         hbox1.setAlignment(Pos.CENTER);
 
@@ -105,8 +105,8 @@ public class NyOrdreTab extends GridPane {
     // Finder og indsætter prislister og viser relevante produktgrupper
     private void selectedPrisListeChanged() {
         lvwProduktGruppe.getItems().clear();
-        for (Produktgruppe p : Controller.getStorage().getProduktgruppe()){
-            if (p.getPrislister().contains(prisliste)){
+        for (Produktgruppe p : Controller.getStorage().getProduktgruppe()) {
+            if (p.getPrislister().contains(prisliste)) {
                 lvwProduktGruppe.getItems().add(p);
             }
         }
@@ -133,9 +133,10 @@ public class NyOrdreTab extends GridPane {
         String betalingsform = "Betalingskort";
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = (Produkt) lvwProdukt.getSelectionModel().getSelectedItem();
-        double ordreID = Math.random();
-        if (ordre == null){
-            ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
+        double ordreID = Math.random() * 1000000;
+        ordreID = Math.floor(ordreID);
+        if (ordre == null) {
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now(), betalingsform);
         }
         pris = Controller.getPris(prisliste, produkt);
         ordrelinje = Controller.createOrdrelinje(antal, produkt, pris);
@@ -185,7 +186,7 @@ public class NyOrdreTab extends GridPane {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {
             lvwProdukt.getItems().setAll(produktgruppe.getProdukter());
-            if (produktgruppe.toString().equals("Rundvisning")){
+            if (produktgruppe.toString().equals("Rundvisning")) {
                 lvwProdukt.getItems().setAll(Controller.getStorage().getRundvisning());
             }
         }

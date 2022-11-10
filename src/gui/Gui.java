@@ -28,6 +28,7 @@ public class Gui extends Application {
         rundvisningsWindow = new RundvisningsWindow("Rundvisnings Window", stage);
         statistikWindow = new StatistikWindow("Statistik", stage);
     }
+
     @Override
     public void stop() {
         ListStorage.saveStorage(Controller.getStorage());
@@ -49,44 +50,44 @@ public class Gui extends Application {
         Button btnProdukt = new Button("Produkter");
         btnProdukt.setMinHeight(100);
         btnProdukt.setMinWidth(120);
-        pane.add(btnProdukt,0,0);
+        pane.add(btnProdukt, 0, 0);
         btnProdukt.setOnAction(event -> this.btnProduktAction());
 
         //Ordre
         Button btnOrdre = new Button("Ny Ordre");
         btnOrdre.setMinHeight(100);
         btnOrdre.setMinWidth(120);
-        pane.add(btnOrdre,1,0);
+        pane.add(btnOrdre, 1, 0);
         btnOrdre.setOnAction(event -> this.btnNyOrdreAction());
 
         //Statistik
         Button btnStatistik = new Button("Statistik");
         btnStatistik.setMinHeight(100);
         btnStatistik.setMinWidth(120);
-        pane.add(btnStatistik,0,1);
+        pane.add(btnStatistik, 0, 1);
         btnStatistik.setOnAction(event -> this.btnStatistiskAction());
 
         //Rundvisning
         Button btnRundvisning = new Button("   Book \nRundvisning");
         btnRundvisning.setMinHeight(100);
         btnRundvisning.setMinWidth(120);
-        pane.add(btnRundvisning,1,1);
+        pane.add(btnRundvisning, 1, 1);
         btnRundvisning.setOnAction(event -> this.btnRundvisningAction());
     }
 
-    private void btnProduktAction(){
+    private void btnProduktAction() {
         produktWindow.show();
     }
 
-    private void btnNyOrdreAction(){
-       ordreWindow.show();
+    private void btnNyOrdreAction() {
+        ordreWindow.show();
     }
 
-    private void btnRundvisningAction(){
+    private void btnRundvisningAction() {
         rundvisningsWindow.show();
     }
 
-    private void btnStatistiskAction(){
+    private void btnStatistiskAction() {
         statistikWindow.show();
     }
 }

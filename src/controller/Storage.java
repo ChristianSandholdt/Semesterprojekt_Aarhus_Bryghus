@@ -8,30 +8,50 @@ public interface Storage {
 
     //-------------------------------------------------------------------------------------------------
     List<Ordre> getOrdre();
+
     void storeOrdre(Ordre ordre);
+
     void deleteOrdre(Ordre ordre);
+
     //--------------------------------------------------------------------------------------------------
     List<Ordrelinje> getOrdrelinjer();
+
     void storeOrdrelinje(Ordrelinje ordrelinje);
+
     void deleteOrdreLinje(Ordrelinje ordrelinje);
+
     //--------------------------------------------------------------------------------------------------
     List<Produktgruppe> getProduktgruppe();
+
     void storeProduktgruppe(Produktgruppe produktgruppe);
+
     void deleteProduktgruppe(Produktgruppe produktgruppe);
+
     //--------------------------------------------------------------------------------------------------
     List<Produkt> getProdukt();
+
     void storeProdukt(Produkt produkt);
+
     void deleteProdukt(Produkt produkt);
+
     //--------------------------------------------------------------------------------------------------
     List<Rundvisning> getRundvisning();
+
     void storeRundvisning(Rundvisning rundvisning);
+
     void deleteRundvisning(Rundvisning rundvisning);
+
     //--------------------------------------------------------------------------------------------------
     List<Prisliste> getPrisliste();
+
     void storePrisliste(Prisliste prisliste);
+
     void deletePrisliste(Prisliste prisliste);
+
     //--------------------------------------------------------------------------------------------------
     List<Pris> getPris();
+
     void storePris(Pris pris);
+
     void deletePris(Pris pris);
 }
