@@ -19,6 +19,7 @@ public class Gui extends Application {
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         stage.setScene(scene);
         stage.show();
 
@@ -66,7 +67,7 @@ public class Gui extends Application {
         btnStatistik.setOnAction(event -> this.btnStatistiskAction());
 
         //Rundvisning
-        Button btnRundvisning = new Button("Book Rundvisning");
+        Button btnRundvisning = new Button("   Book \nRundvisning");
         btnRundvisning.setMinHeight(100);
         btnRundvisning.setMinWidth(120);
         pane.add(btnRundvisning,1,1);

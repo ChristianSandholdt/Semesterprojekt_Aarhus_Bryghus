@@ -16,7 +16,7 @@ public class App {
 
         Controller.setStorage(storage);
 
-        //initStorage();
+        initStorage();
         Application.launch(Gui.class);
 
         Produktgruppe p1 = new Produktgruppe("Øl", false);

@@ -31,6 +31,7 @@ public class OpretproduktgruppeWindow extends Stage {
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
     }
     private final TextField txfNavn = new TextField();

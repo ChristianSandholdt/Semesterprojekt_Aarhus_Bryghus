@@ -38,20 +38,19 @@ public class Produktwindow extends Stage{
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
+
         opretproduktgruppe = new OpretproduktgruppeWindow("Opret produktgruppe", stage);
         opretproduktWindow = new OpretproduktWindow("Opret produkt", stage);
         redigerprodukt = new Redigerprodukt("Rediger produkt", stage);
 
     }
+
     private final ListView<Produktgruppe> lvwProduktGruppe = new ListView<>();
     private final ListView<Produkt> lvwProdukt = new ListView<>();
-
     private final Button btnFjernProduktGruppe = new Button();
-
     private final Button btnFjernProdukt = new Button();
-
-
 
     private void initContent(GridPane pane){
         pane.setGridLinesVisible(false);
@@ -126,7 +125,6 @@ public class Produktwindow extends Stage{
             this.fillProduktList(selectedItem);
         }
     }
-
 
     //Actions til produkter
     //--------------------------------------------------------------------------------------

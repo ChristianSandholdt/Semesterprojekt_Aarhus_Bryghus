@@ -29,7 +29,7 @@ public class Ordrelinje implements Serializable {
 
     @Override
     public String toString() {
-        String str = String.format("%-20s      %.5s kr.      %5d", produkt.getNavn(),pris, antal);
+        String str = String.format("%-24s      %.4s kr.      %12d", produkt.getNavn(),pris, antal);
         return str;
     }
 
