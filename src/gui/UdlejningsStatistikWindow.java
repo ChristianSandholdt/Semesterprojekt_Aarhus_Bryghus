@@ -139,7 +139,5 @@ public class UdlejningsStatistikWindow extends Stage {
             alert.show();
         }
     }
-    void update(){
-        lvwUdlejninger.getItems().setAll(Controller.visUdlejninger());
-    }
+
 }
