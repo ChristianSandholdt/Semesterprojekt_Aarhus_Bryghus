@@ -49,37 +49,35 @@ public class Redigerprodukt extends Stage {
 
         //Navn
         Label lblName = new Label("Navn");
-        pane.add(lblName, 0,0);
+        pane.add(lblName, 0, 0);
 
-        pane.add(txfNavn,0, 1);
+        pane.add(txfNavn, 0, 1);
 
         //Beskrivelse
         Label lblBeskrivelse = new Label("Beskrivelse");
-        pane.add(lblBeskrivelse,0,2);
+        pane.add(lblBeskrivelse, 0, 2);
 
-        pane.add(txfBeskrivelse, 0,3);
+        pane.add(txfBeskrivelse, 0, 3);
 
         //Produktgruppe
         Label lblProduktGruppe = new Label("Produkgruppe");
-        pane.add(lblProduktGruppe,0,4);
-        pane.add(lvwProduktGruppe,0,5);
+        pane.add(lblProduktGruppe, 0, 4);
+        pane.add(lvwProduktGruppe, 0, 5);
         lvwProduktGruppe.getItems().addAll(Controller.getStorage().getProduktgruppe());
 
         //Knap til opdatering af produkt
         Button btnOpdaterProdukt = new Button("Opdater");
-        pane.add(btnOpdaterProdukt, 0,6);
+        pane.add(btnOpdaterProdukt, 0, 6);
         btnOpdaterProdukt.setOnAction(event -> btnOpdaterOnAction());
-
 
 
     }
 
-    private void btnOpdaterOnAction(){
+    private void btnOpdaterOnAction() {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         //System.out.println(produktgruppe);
         close();
     }
-
 
 
 }

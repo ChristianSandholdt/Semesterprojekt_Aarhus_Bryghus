@@ -17,11 +17,11 @@ public class Prisliste implements Serializable {
         return new ArrayList<>(priser);
     }
 
-    public void addPris(Pris pris){
+    public void addPris(Pris pris) {
         priser.add(pris);
     }
 
-    public void addProduktgruppe(Produktgruppe produktgruppe){
+    public void addProduktgruppe(Produktgruppe produktgruppe) {
         produktgrupper.add(produktgruppe);
     }
 

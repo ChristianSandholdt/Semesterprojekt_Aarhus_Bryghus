@@ -31,16 +31,16 @@ public class StatistikWindow extends Stage {
         scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
 
-         dagensSalgStatistik = new DagensSalgStatistik("Statistik over dagens salg",stage);
-         udlejningsStatistikWindow = new UdlejningsStatistikWindow(this);
-         klipStatistikWindow = new KlipStatistikWindow("Statistik over klippekort", stage);
-}
+        dagensSalgStatistik = new DagensSalgStatistik("Statistik over dagens salg", stage);
+        udlejningsStatistikWindow = new UdlejningsStatistikWindow(this);
+        klipStatistikWindow = new KlipStatistikWindow("Statistik over klippekort", stage);
+    }
 
     private DagensSalgStatistik dagensSalgStatistik;
     private final UdlejningsStatistikWindow udlejningsStatistikWindow;
     private KlipStatistikWindow klipStatistikWindow;
 
-    private void initContent(GridPane pane){
+    private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
         pane.setHgap(10);
@@ -48,14 +48,14 @@ public class StatistikWindow extends Stage {
 
         //Dagens salg
         Button btnDagensSalg = new Button("Dagens salg");
-        pane.add(btnDagensSalg,0,0);
+        pane.add(btnDagensSalg, 0, 0);
         btnDagensSalg.setPrefHeight(100);
         btnDagensSalg.setPrefWidth(120);
         btnDagensSalg.setOnAction(event -> this.btnDagensSalgAction());
 
         //Statistik for klip
         Button btnKlipStatistik = new Button("Statistik\nfor klip");
-        pane.add(btnKlipStatistik,0,1);
+        pane.add(btnKlipStatistik, 0, 1);
         btnKlipStatistik.setPrefHeight(100);
         btnKlipStatistik.setPrefWidth(120);
         btnKlipStatistik.setOnAction(event -> this.btnStatistikForKlipAction());
@@ -63,22 +63,22 @@ public class StatistikWindow extends Stage {
 
         //Udlejning statistik
         Button btnUdlejning = new Button("Udlejnings\nstatistik");
-        pane.add(btnUdlejning,1,0);
+        pane.add(btnUdlejning, 1, 0);
         btnUdlejning.setPrefHeight(100);
         btnUdlejning.setPrefWidth(120);
         btnUdlejning.setOnAction(event -> this.btnUdlejningStatistikAction());
 
     }
 
-    private void btnDagensSalgAction(){
+    private void btnDagensSalgAction() {
         dagensSalgStatistik.showAndWait();
     }
 
-    private void btnStatistikForKlipAction(){
+    private void btnStatistikForKlipAction() {
         klipStatistikWindow.showAndWait();
     }
 
-    private void btnUdlejningStatistikAction(){
+    private void btnUdlejningStatistikAction() {
         udlejningsStatistikWindow.showAndWait();
     }
 

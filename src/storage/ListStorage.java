@@ -22,12 +22,12 @@ public class ListStorage implements Storage, Serializable {
     private List<Pris> priser = new ArrayList<>();
 
     @Override
-    public List<Ordre> getOrdre(){
+    public List<Ordre> getOrdre() {
         return new ArrayList<>(ordrer);
     }
 
     @Override
-    public void storeOrdre(Ordre ordre){
+    public void storeOrdre(Ordre ordre) {
         ordrer.add(ordre);
     }
 
@@ -37,15 +37,17 @@ public class ListStorage implements Storage, Serializable {
     }
 
     @Override
-    public List<Ordrelinje> getOrdrelinjer(){
+    public List<Ordrelinje> getOrdrelinjer() {
         return new ArrayList<>(ordrelinjer);
     }
+
     @Override
-    public void storeOrdrelinje(Ordrelinje ordrelinje){
+    public void storeOrdrelinje(Ordrelinje ordrelinje) {
         ordrelinjer.add(ordrelinje);
     }
+
     @Override
-    public void deleteOrdreLinje(Ordrelinje ordrelinje){
+    public void deleteOrdreLinje(Ordrelinje ordrelinje) {
         ordrelinjer.remove(ordrelinje);
     }
 
@@ -53,10 +55,12 @@ public class ListStorage implements Storage, Serializable {
     public List<Produktgruppe> getProduktgruppe() {
         return new ArrayList<>(produktgrupper);
     }
+
     @Override
     public void storeProduktgruppe(Produktgruppe produktgruppe) {
         produktgrupper.add(produktgruppe);
     }
+
     @Override
     public void deleteProduktgruppe(Produktgruppe produktgruppe) {
         produktgrupper.remove(produktgruppe);
@@ -122,7 +126,7 @@ public class ListStorage implements Storage, Serializable {
         priser.remove(pris);
     }
 
-    public static void saveStorage(Storage storage){
+    public static void saveStorage(Storage storage) {
         String fileName = "src/SerializableStorage/storage.ser";
         try (FileOutputStream fileOut = new FileOutputStream(fileName);
              ObjectOutputStream objOut = new ObjectOutputStream(fileOut)
@@ -136,7 +140,7 @@ public class ListStorage implements Storage, Serializable {
         }
     }
 
-    public static ListStorage loadStorage(){
+    public static ListStorage loadStorage() {
         String fileName = "src/SerializableStorage/storage.ser";
         try (FileInputStream fileIn = new FileInputStream(fileName);
              ObjectInputStream objIn = new ObjectInputStream(fileIn)

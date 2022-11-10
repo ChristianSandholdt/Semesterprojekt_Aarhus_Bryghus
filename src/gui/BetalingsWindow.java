@@ -45,6 +45,7 @@ public class BetalingsWindow extends Stage {
     private final TextField txfRabat = new TextField();
     private final Button btnBetal = new Button("Betal");
     private final ComboBox betalingsBox = new ComboBox<>();
+
     private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
@@ -52,7 +53,7 @@ public class BetalingsWindow extends Stage {
         pane.setVgap(10);
 
         // ComboBox
-        HBox hboxtest = new HBox(5,betalingsBox);
+        HBox hboxtest = new HBox(5, betalingsBox);
         pane.add(betalingsBox, 3, 0);
         betalingsBox.setPromptText("Vælg Betaling");
         betalingsBox.getItems().add(0, "Betalingskort");
@@ -64,22 +65,22 @@ public class BetalingsWindow extends Stage {
         // Total pris
         Label lblPris = new Label("Pris:  ");
         txfPris.setMaxWidth(50);
-        HBox hbox = new HBox(10,lblPris,txfPris);
+        HBox hbox = new HBox(10, lblPris, txfPris);
         hbox.setMaxWidth(200);
         hbox.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hbox, 0, 0, 2, 1);
-        System.out.println("Bet: " +ordre);
+        System.out.println("Bet: " + ordre);
         txfPris.setText(Controller.totalPris(ordre));
 
         // Rabat
         Label lblRabat = new Label("Rabat:");
         txfRabat.setMaxWidth(50);
-        HBox hbox2 = new HBox(10,lblRabat,txfRabat);
+        HBox hbox2 = new HBox(10, lblRabat, txfRabat);
         hbox2.setMaxWidth(200);
         pane.add(hbox2, 0, 1, 2, 1);
 
         // Betal
-        pane.add(btnBetal, 3,1);
+        pane.add(btnBetal, 3, 1);
         btnBetal.setOnAction(event -> this.betalAction());
     }
 

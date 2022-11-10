@@ -27,12 +27,12 @@ public class Ordre implements Serializable {
     }
 
     //Pre: The OrderLine is not connected to an Order.
-    public void addOrdrelinje(Ordrelinje ordrelinje){
+    public void addOrdrelinje(Ordrelinje ordrelinje) {
         ordreLinjer.add(ordrelinje);
     }
 
     //Pre: The OrderLine is connected to an Order.
-    public void removeOrdrelinje(Ordrelinje ordrelinje){
+    public void removeOrdrelinje(Ordrelinje ordrelinje) {
         ordreLinjer.remove(ordrelinje);
     }
 
@@ -53,7 +53,7 @@ public class Ordre implements Serializable {
         return betalingsform;
     }
 
-    public void setBetalingsform(String betalingsform){
+    public void setBetalingsform(String betalingsform) {
         this.betalingsform = betalingsform;
     }
 

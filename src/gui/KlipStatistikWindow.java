@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class KlipStatistikWindow extends Stage {
 
-    public KlipStatistikWindow(String title, Stage owner){
+    public KlipStatistikWindow(String title, Stage owner) {
         this.initOwner(owner);
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -35,6 +35,7 @@ public class KlipStatistikWindow extends Stage {
         scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
     }
+
     private final Label lblAntalSolgt = new Label("Tryk på vis solgte klip for at se de solgte klip for perioden");
 
     private final DatePicker dp1 = new DatePicker();
@@ -42,7 +43,7 @@ public class KlipStatistikWindow extends Stage {
 
     private final Label lblAntalBrugt = new Label("Tryk på vis brugte klip for at se antallet af brugte klip for perioden");
 
-    public void initContent(GridPane pane){
+    public void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
         pane.setHgap(10);
@@ -50,38 +51,37 @@ public class KlipStatistikWindow extends Stage {
 
         //Datepicker til startdato
         Label lblVælgDato1 = new Label("Vælg startdatoen for perioden");
-        pane.add(lblVælgDato1,0,0);
-        pane.add(dp1,0,1);
+        pane.add(lblVælgDato1, 0, 0);
+        pane.add(dp1, 0, 1);
 
         //Datepicker til slutdato
         Label lblVælgDato2 = new Label("Vælg slutdatoen for perioden");
-        pane.add(lblVælgDato2,1,0);
-        pane.add(dp2,1,1);
+        pane.add(lblVælgDato2, 1, 0);
+        pane.add(dp2, 1, 1);
 
 
         Label lblViserPeriode = new Label("I perioden mellem datoerne er der foretaget nedenstående salg af klippekort");
-        pane.add(lblViserPeriode,0,2,1,2);
+        pane.add(lblViserPeriode, 0, 2, 1, 2);
 
         Button btnVisSolgteKlipIPerioden = new Button("Vis solgte klip");
-        pane.add(btnVisSolgteKlipIPerioden,0,4);
+        pane.add(btnVisSolgteKlipIPerioden, 0, 4);
         btnVisSolgteKlipIPerioden.setOnAction(event -> btnVisAntalSolgteKlippeKortAction());
 
-        pane.add(lblAntalSolgt,0,5);
-
+        pane.add(lblAntalSolgt, 0, 5);
 
 
         Button btnAntalSolgt = new Button("Vis brugte klip");
         btnAntalSolgt.setOnAction(event -> btnVisBrugteKlipAction());
-        pane.add(btnAntalSolgt,0,6);
-        pane.add(lblAntalBrugt, 0,7);
+        pane.add(btnAntalSolgt, 0, 6);
+        pane.add(lblAntalBrugt, 0, 7);
 
     }
 
-    private void btnVisAntalSolgteKlippeKortAction(){
-        Controller.VisSolgteKlipIPerioden(dp1.getValue(),dp2.getValue(),lblAntalSolgt);
+    private void btnVisAntalSolgteKlippeKortAction() {
+        Controller.VisSolgteKlipIPerioden(dp1.getValue(), dp2.getValue(), lblAntalSolgt);
     }
 
-    private void btnVisBrugteKlipAction(){
+    private void btnVisBrugteKlipAction() {
         Controller.VisAntalBrugteKlip(dp1.getValue(), dp2.getValue(), lblAntalBrugt);
     }
 

@@ -34,36 +34,37 @@ public class OpretproduktgruppeWindow extends Stage {
         scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
     }
+
     private final TextField txfNavn = new TextField();
     private final CheckBox chkUdlejning = new CheckBox();
 
-    private void initContent(GridPane pane){
+    private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
         pane.setHgap(10);
         pane.setVgap(10);
 
         Label lblNavn = new Label("Navn på produktgruppe");
-        pane.add(lblNavn,0,0);
-        pane.add(txfNavn,0,1);
+        pane.add(lblNavn, 0, 0);
+        pane.add(txfNavn, 0, 1);
         txfNavn.setEditable(true);
 
 
         Button btnOpret = new Button("Opret");
-        pane.add(btnOpret,0,4);
+        pane.add(btnOpret, 0, 4);
         btnOpret.setOnAction(event -> btnOpretAction());
 
 
         Label lblUdlejning = new Label("Udlejning");
-        pane.add(lblUdlejning,0,2);
-        pane.add(chkUdlejning, 0,3);
+        pane.add(lblUdlejning, 0, 2);
+        pane.add(chkUdlejning, 0, 3);
 
     }
 
-    private void btnOpretAction(){
+    private void btnOpretAction() {
         String navn = txfNavn.getText();
         boolean udlejning = chkUdlejning.isSelected();
-        Controller.createProduktGruppe(navn,udlejning);
+        Controller.createProduktGruppe(navn, udlejning);
         txfNavn.clear();
         close();
     }
