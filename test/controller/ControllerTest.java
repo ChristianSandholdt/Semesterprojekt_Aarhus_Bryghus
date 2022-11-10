@@ -25,16 +25,6 @@ class ControllerTest {
         Controller.setStorage(storage);
     }
 
-    void setupOrdre(){
-        Ordre ordre = Controller.createOrdre(false,1,LocalDate.of(2022,11,10), "Betalingskort");
-        Produktgruppe produktgruppe = Controller.createProduktGruppe("Klippekort",false);
-        Produkt produkt = Controller.createProdukt("Klippekort",produktgruppe);
-        Pris pris = new Pris(36,2);
-        Ordrelinje ol = new Ordrelinje(2,produkt,pris);
-        ordre.addOrdrelinje(ol);
-    }
-
-
 
     @Test
     void createRundvisningSucces() {
