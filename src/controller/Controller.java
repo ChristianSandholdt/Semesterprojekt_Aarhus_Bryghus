@@ -1,7 +1,9 @@
 package controller;
 
+import gui.UdlejningsStatistikWindow;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import model.*;
 
 import java.time.LocalDate;
@@ -232,6 +234,10 @@ public abstract class Controller {
         ordre.setBetalingsform(comboBox.getSelectionModel().getSelectedItem().toString());
     }
 
+    //---------------------------------------------------------------------------
+
+    // Metoder til UdlejningsStatistikWindow
+
     public static String visOrdreStatistik() {
         String ordre = null;
         for (Ordre o : getStorage().getOrdre()) {
@@ -248,4 +254,8 @@ public abstract class Controller {
 
         return arrayList;
     }
+
+
+    //---------------------------------------------------------------------------
+
 }

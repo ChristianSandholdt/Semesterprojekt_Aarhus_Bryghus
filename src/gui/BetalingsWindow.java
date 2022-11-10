@@ -59,26 +59,31 @@ public class BetalingsWindow extends Stage {
         betalingsBox.getItems().add(1, "Mobile Pay");
         betalingsBox.getItems().add(2, "Kontant");
         betalingsBox.getItems().add(3, "Klippekort");
+        betalingsBox.getItems().add(4,"Regning");
         hboxtest.setMaxWidth(200);
 
         // Total pris
         Label lblPris = new Label("Pris:  ");
-        txfPris.setMaxWidth(50);
+        txfPris.setMaxWidth(75);
+        txfPris.setAlignment(Pos.CENTER_RIGHT);
         HBox hbox = new HBox(10,lblPris,txfPris);
         hbox.setMaxWidth(200);
         hbox.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hbox, 0, 0, 2, 1);
-        System.out.println("Bet: " +ordre);
+        System.out.println("Bet: " + ordre);
         txfPris.setText(Controller.totalPris(ordre));
 
         // Rabat
-        Label lblRabat = new Label("Rabat:");
-        txfRabat.setMaxWidth(50);
+        Label lblRabat = new Label("Rabat: ");
+        txfRabat.setMaxWidth(75);
+        txfRabat.setAlignment(Pos.CENTER_RIGHT);
         HBox hbox2 = new HBox(10,lblRabat,txfRabat);
         hbox2.setMaxWidth(200);
         pane.add(hbox2, 0, 1, 2, 1);
 
         // Betal
+        btnBetal.setAlignment(Pos.CENTER);
+        btnBetal.setMaxWidth(200);
         pane.add(btnBetal, 3,1);
         btnBetal.setOnAction(event -> this.betalAction());
     }
@@ -87,7 +92,6 @@ public class BetalingsWindow extends Stage {
         Controller.betalOrdre(ordre, betalingsBox);
         close();
         nyOrdreWindow.close();
-
     }
 
 }
