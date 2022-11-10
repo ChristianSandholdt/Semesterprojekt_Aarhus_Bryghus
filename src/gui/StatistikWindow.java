@@ -28,6 +28,7 @@ public class StatistikWindow extends Stage {
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
 
          dagensSalgStatistik = new DagensSalgStatistik("Statistik over dagens salg",stage);
@@ -53,7 +54,7 @@ public class StatistikWindow extends Stage {
         btnDagensSalg.setOnAction(event -> this.btnDagensSalgAction());
 
         //Statistik for klip
-        Button btnKlipStatistik = new Button("Statistik for klip");
+        Button btnKlipStatistik = new Button("Statistik\nfor klip");
         pane.add(btnKlipStatistik,0,1);
         btnKlipStatistik.setPrefHeight(100);
         btnKlipStatistik.setPrefWidth(120);
@@ -61,7 +62,7 @@ public class StatistikWindow extends Stage {
 
 
         //Udlejning statistik
-        Button btnUdlejning = new Button("Udlejningsstatistik");
+        Button btnUdlejning = new Button("Udlejnings\nstatistik");
         pane.add(btnUdlejning,1,0);
         btnUdlejning.setPrefHeight(100);
         btnUdlejning.setPrefWidth(120);

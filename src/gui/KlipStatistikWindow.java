@@ -32,6 +32,7 @@ public class KlipStatistikWindow extends Stage {
         this.initContent(pane);
 
         Scene scene = new Scene(pane);
+        scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
     }
     private final Label lblAntalSolgt = new Label("Tryk på vis solgte klip for at se de solgte klip for perioden");
