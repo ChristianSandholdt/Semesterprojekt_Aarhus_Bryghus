@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Produkt;
 import model.Produktgruppe;
 
 public class Redigerprodukt extends Stage {
@@ -38,7 +39,6 @@ public class Redigerprodukt extends Stage {
     ListView<Produktgruppe> lvwProduktGruppe = new ListView();
 
     TextField txfNavn = new TextField();
-    TextField txfBeskrivelse = new TextField();
 
 
     private void initContent(GridPane pane) {
@@ -49,35 +49,32 @@ public class Redigerprodukt extends Stage {
 
         //Navn
         Label lblName = new Label("Navn");
-        pane.add(lblName, 0, 0);
+        pane.add(lblName, 0,0);
 
-        pane.add(txfNavn, 0, 1);
-
-        //Beskrivelse
-        Label lblBeskrivelse = new Label("Beskrivelse");
-        pane.add(lblBeskrivelse, 0, 2);
-
-        pane.add(txfBeskrivelse, 0, 3);
+        pane.add(txfNavn,0, 1);
 
         //Produktgruppe
         Label lblProduktGruppe = new Label("Produkgruppe");
-        pane.add(lblProduktGruppe, 0, 4);
-        pane.add(lvwProduktGruppe, 0, 5);
+        pane.add(lblProduktGruppe,0,2);
+        pane.add(lvwProduktGruppe,0,3);
         lvwProduktGruppe.getItems().addAll(Controller.getStorage().getProduktgruppe());
 
         //Knap til opdatering af produkt
         Button btnOpdaterProdukt = new Button("Opdater");
-        pane.add(btnOpdaterProdukt, 0, 6);
+        pane.add(btnOpdaterProdukt, 0,4);
         btnOpdaterProdukt.setOnAction(event -> btnOpdaterOnAction());
 
 
+
     }
 
-    private void btnOpdaterOnAction() {
-        Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
-        //System.out.println(produktgruppe);
+    private void btnOpdaterOnAction(){
+        Produkt produkt = produktwindow.getProdukt();
+        produkt.setProduktgruppe(lvwProduktGruppe.getSelectionModel().getSelectedItem());
+        produkt.setNavn(txfNavn.getText());
         close();
     }
+
 
 
 }
