@@ -323,6 +323,23 @@ public abstract class Controller {
         }
         return ordre;
     }
+    /**
+     * It returns an ArrayList of all orders that contain a product that is a rental product
+     * Pre: Ordre with Udlejning exists
+     * @return An ArrayList of all the orders that contain a product that is a rental.
+     */
+    public static ArrayList<Ordre> visUdlejninger(){
+        ArrayList<Ordre> arrayList = new ArrayList<>();
+        for (Ordre o : getStorage().getOrdre())
+            for (Ordrelinje ol : o.getOrdrelinjer()){
+                if (ol.getProdukt().getProduktgruppe().getUdlejning()){
+                    if (!arrayList.contains(o)){
+                        arrayList.add(o);
+                    }
+                }
+            }
+        return arrayList;
+    }
 
     /**
      * It takes an Ordre and returns an arraylist of strings containing the Ordrelinjer of the Ordre
