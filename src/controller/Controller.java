@@ -6,7 +6,6 @@ import model.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public abstract class Controller {
 
@@ -191,8 +190,11 @@ public abstract class Controller {
         return pris + "";
     }
 
-    public static void VisSolgteKlipIPerioden(LocalDate dato1, LocalDate dato2, Label label){
+    public static int VisSolgteKlipIPerioden(LocalDate dato1, LocalDate dato2, Label label){
         int antal = 0;
+        if (dato1.isAfter(dato2)){
+            throw new RuntimeException("Første dato skal være før anden dato");
+        }
 
         for (Ordre o : getStorage().getOrdre()){
             if (o.getDato().isAfter(dato1) && o.getDato().isBefore(dato2)){
@@ -203,7 +205,10 @@ public abstract class Controller {
                 }
             }
         }
-        label.setText("I perioden er der solgt " + antal + " klippekort, svarende til " + antal*4 + " klip");
+        if (label != null){
+            label.setText("I perioden er der solgt " + antal + " klippekort, svarende til " + antal*4 + " klip");
+        }
+        return antal;
     }
 
     public static void VisAntalBrugteKlip(LocalDate dato1, LocalDate dato2,Label label){
