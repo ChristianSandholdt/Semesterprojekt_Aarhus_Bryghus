@@ -20,8 +20,6 @@ public class Ordre implements Serializable {
 
     // Aggregation -> 0..*
     private final ArrayList<Ordrelinje> ordreLinjer = new ArrayList<>();
-    private final ArrayList<Rundvisning> rundvisninger = new ArrayList<>();
-
 
 
     public ArrayList<Ordrelinje> getOrdrelinjer() {
@@ -29,12 +27,12 @@ public class Ordre implements Serializable {
     }
 
     //Pre: The OrderLine is not connected to an Order.
-    public void addOrdrelinje(Ordrelinje ordrelinje){
+    public void addOrdrelinje(Ordrelinje ordrelinje) {
         ordreLinjer.add(ordrelinje);
     }
 
     //Pre: The OrderLine is connected to an Order.
-    public void removeOrdrelinje(Ordrelinje ordrelinje){
+    public void removeOrdrelinje(Ordrelinje ordrelinje) {
         ordreLinjer.remove(ordrelinje);
     }
 
@@ -55,7 +53,7 @@ public class Ordre implements Serializable {
         return betalingsform;
     }
 
-    public void setBetalingsform(String betalingsform){
+    public void setBetalingsform(String betalingsform) {
         this.betalingsform = betalingsform;
     }
 

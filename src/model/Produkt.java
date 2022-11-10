@@ -7,15 +7,18 @@ public class Produkt implements Serializable {
     private String navn;
     private final ArrayList<Pris> priser = new ArrayList<>();
     Produktgruppe produktgruppe; // OBS: Package visible
+
     // ----------------------------------------------------------------------
     public Produkt(String navn, Produktgruppe produktgruppe) {
         this.navn = navn;
         produktgruppe.tilfoejProdukt(this);
         this.produktgruppe = produktgruppe;
     }
+
     public void setNavn(String navn) {
         this.navn = navn;
     }
+
     public String getNavn() {
         return navn;
     }
@@ -24,7 +27,7 @@ public class Produkt implements Serializable {
         return new ArrayList<>(priser);
     }
 
-    public void addPris(Pris pris){
+    public void addPris(Pris pris) {
         priser.add(pris);
     }
 

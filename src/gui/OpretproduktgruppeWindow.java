@@ -34,46 +34,38 @@ public class OpretproduktgruppeWindow extends Stage {
         scene.getRoot().setStyle("-fx-font-family: monospace");
         this.setScene(scene);
     }
+
     private final TextField txfNavn = new TextField();
-    private final TextField txfType = new TextField();
     private final CheckBox chkUdlejning = new CheckBox();
 
-    private void initContent(GridPane pane){
+    private void initContent(GridPane pane) {
         pane.setGridLinesVisible(false);
         pane.setPadding(new Insets(20));
         pane.setHgap(10);
         pane.setVgap(10);
 
         Label lblNavn = new Label("Navn på produktgruppe");
-        pane.add(lblNavn,0,0);
-        pane.add(txfNavn,0,1);
+        pane.add(lblNavn, 0, 0);
+        pane.add(txfNavn, 0, 1);
         txfNavn.setEditable(true);
-
-        Label lblType = new Label("Type på produktgruppe");
-        pane.add(lblType,0,2);
-        pane.add(txfType,0,3);
-        txfType.setEditable(true);
-
 
 
         Button btnOpret = new Button("Opret");
-        pane.add(btnOpret,0,6);
+        pane.add(btnOpret, 0, 4);
         btnOpret.setOnAction(event -> btnOpretAction());
 
 
         Label lblUdlejning = new Label("Udlejning");
-        pane.add(lblUdlejning,0,4);
-        pane.add(chkUdlejning, 0,5);
+        pane.add(lblUdlejning, 0, 2);
+        pane.add(chkUdlejning, 0, 3);
 
     }
 
-    private void btnOpretAction(){
+    private void btnOpretAction() {
         String navn = txfNavn.getText();
-        String type = txfType.getText();
         boolean udlejning = chkUdlejning.isSelected();
-        Controller.createProduktGruppe(navn,udlejning);
+        Controller.createProduktGruppe(navn, udlejning);
         txfNavn.clear();
-        txfType.clear();
         close();
     }
 

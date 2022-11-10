@@ -5,10 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -56,7 +53,7 @@ public class UdlejningsStatistikWindow extends Stage {
         pane.add(lblUdlejninger, 0, 0);
         pane.add(lvwUdlejninger, 0, 1,3,5);
         lvwUdlejninger.setMaxHeight(160);
-        lvwUdlejninger.getItems().setAll(Controller.visUdlejninger());
+        lvwUdlejninger.getItems().setAll(Controller.getStorage().getOrdre());
         ChangeListener<Ordre> listener = (ov, o, n) -> this.selectedOrdreLinjeChanged();
         lvwUdlejninger.getSelectionModel().selectedItemProperty().addListener(listener);
 
@@ -70,7 +67,6 @@ public class UdlejningsStatistikWindow extends Stage {
 
         lvwOrdre.getSelectionModel().selectFirst();
 
-
         // Udbetal pant
         Label lblPantRetur = new Label("Pant retur:");
         pane.add(lblPantRetur, 3, 0);
@@ -78,6 +74,7 @@ public class UdlejningsStatistikWindow extends Stage {
         Label lblKulsyre = new Label(" Kulsyre:     ");
         Label lblSum = new Label(" Sum:         ");
         HBox hBoxFustager = new HBox(10,lblFustager,txfFustage);
+        txfFustage.setAlignment(Pos.CENTER_RIGHT);
         pane.add(hBoxFustager, 3, 1);
         HBox hBoxKulsyre = new HBox(10,lblKulsyre,txfKulsyre);
         txfKulsyre.setAlignment(Pos.CENTER_RIGHT);
@@ -87,14 +84,18 @@ public class UdlejningsStatistikWindow extends Stage {
         pane.add(hBoxSum, 3, 3);
 
         // Button Udbetal - Button Annuller
+        Button btnUdregn = new Button("Udregn");
         Button btnUdbetal = new Button("Udbetal");
         Button btnAnnuller = new Button("Annuller");
-        btnUdbetal.setMaxWidth(300);
+        HBox hBox = new HBox(5,btnUdregn,btnUdbetal);
+        hBox.setMaxWidth(300);
+        hBox.setAlignment(Pos.CENTER);
+        pane.add(hBox, 3, 4);
         btnAnnuller.setMaxWidth(300);
-        pane.add(btnUdbetal, 3, 4);
         pane.add(btnAnnuller, 3, 5);
         btnAnnuller.setOnAction(event -> btnAnnullerAction());
         btnUdbetal.setOnAction(event -> btnUdbetalAction());
+        btnUdregn.setOnAction(event -> btnUdregnAction());
 
     }
 
@@ -105,25 +106,38 @@ public class UdlejningsStatistikWindow extends Stage {
         }
 
     }
-//    private void selectedOrdreLinjeChanged() {
-//        this.updateControls();
-//    }
-//
-//    public void updateControls() {
-//        Ordrelinje ordrelinje = (Ordrelinje) lvwUdlejninger.getSelectionModel().getSelectedItem();
-//        if (ordrelinje != null) {
-//            lvwOrdre.getItems().setAll(Controller.visUdlejningStatistik());
-//        }
-//    }
 
     // ------------------------------------------------------------------------------------------------
 
-
-    private void btnUdbetalAction() {
-
-    }
-
     private void btnAnnullerAction() {
         close();
+    }
+
+    private void btnUdregnAction() {
+        int antalFostager = Integer.parseInt(txfFustage.getText());
+        int antalKulsyre = Integer.parseInt(txfKulsyre.getText());
+        double sum = (antalFostager * 200) + (antalKulsyre * 1000);
+        String total = String.format("%.2f", sum);
+        txfSum.setText(total);
+    }
+
+    private void btnUdbetalAction() {
+        Ordre ordre = lvwUdlejninger.getSelectionModel().getSelectedItem();
+        String test = txfSum.getText();
+        if (ordre != null && !test.isEmpty()) {
+            Controller.deleteOrdre(ordre);
+            lvwOrdre.getItems().clear();
+            lvwUdlejninger.getItems().remove(ordre);
+            txfFustage.clear();
+            txfKulsyre.clear();
+            txfSum.clear();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Fejl");
+            alert.setHeaderText("Ingen ordre valgt!");
+            alert.setContentText("Vælg en ordre og udfyld felterne før du kan fortsætte.");
+            alert.show();
+        }
     }
 }

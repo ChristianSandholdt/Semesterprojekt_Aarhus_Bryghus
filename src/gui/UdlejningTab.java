@@ -69,7 +69,7 @@ public class UdlejningTab extends GridPane {
         Button btnAdd = new Button("Tilføj");
         txfAntal.setMaxWidth(30);
         txfAntal.setText("1");
-        HBox hbox = new HBox(5,btnRemove,btnDecrease, txfAntal, btnIncrease,btnAdd);
+        HBox hbox = new HBox(5, btnRemove, btnDecrease, txfAntal, btnIncrease, btnAdd);
         this.add(hbox, 1, 2);
         hbox.setAlignment(Pos.CENTER);
         btnRemove.setOnAction(event -> this.btnRemove());
@@ -80,19 +80,19 @@ public class UdlejningTab extends GridPane {
         this.add(lblKurv, 0, 2);
         lvwOrdreLinje.getSelectionModel().selectFirst();
         lvwOrdreLinje.setMaxHeight(300);
-        this.add(lvwOrdreLinje, 0, 3,2,3);
+        this.add(lvwOrdreLinje, 0, 3, 2, 3);
 
         // Total
         Label lblTotal = new Label("Total: ");
-        HBox hBox3 = new HBox(10,lblTotal,txfSum);
-        this.add(hBox3, 0, 7,1,1);
+        HBox hBox3 = new HBox(10, lblTotal, txfSum);
+        this.add(hBox3, 0, 7, 1, 1);
         hBox3.setAlignment(Pos.CENTER_LEFT);
 
 
         // Betaling + annuller
         Button btnAnnuller = new Button("Annuller");
         Button btnBetaling = new Button("Betal");
-        HBox hBox = new HBox(20,btnAnnuller,btnBetaling);
+        HBox hBox = new HBox(20, btnAnnuller, btnBetaling);
         hBox.setAlignment(Pos.CENTER_RIGHT);
         this.add(hBox, 1, 7);
         btnBetaling.setOnAction(event -> this.btnÅbenBetalingAction());
@@ -145,7 +145,7 @@ public class UdlejningTab extends GridPane {
         int antal = Integer.parseInt(txfAntal.getText().trim());
         Produkt produkt = lvwProdukter.getSelectionModel().getSelectedItem();
         if (ordre == null) {
-            ordre = Controller.createOrdre(false, ordreID, LocalDate.now(),betalingsform);
+            ordre = Controller.createOrdre(false, ordreID, LocalDate.now(), betalingsform);
         }
         prisliste = Controller.getStorage().getPrisliste().get(0);
         pris = Controller.getPris(prisliste, produkt);
@@ -180,6 +180,7 @@ public class UdlejningTab extends GridPane {
             alert.show();
         }
     }
+
     public void updateControlsProduktgruppe() {
         Produktgruppe produktgruppe = lvwProduktGruppe.getSelectionModel().getSelectedItem();
         if (produktgruppe != null) {

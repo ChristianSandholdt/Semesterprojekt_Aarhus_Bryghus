@@ -9,7 +9,7 @@ public class Pris implements Serializable {
     private Produkt produkt;
     private double prisIKlip;
 
-    public Pris(double pris,double prisIKlip) {
+    public Pris(double pris, double prisIKlip) {
         this.pris = pris;
         this.prisIKlip = prisIKlip;
     }
@@ -17,10 +17,6 @@ public class Pris implements Serializable {
 
     public double getPris() {
         return pris;
-    }
-
-    public Produkt getProdukt() {
-        return produkt;
     }
 
     public void setProdukt(Produkt produkt) {
@@ -31,7 +27,7 @@ public class Pris implements Serializable {
         return prisIKlip;
     }
 
-    public void setPrisIKlip(double prisIKlip){
+    public void setPrisIKlip(double prisIKlip) {
         this.prisIKlip = prisIKlip;
     }
 

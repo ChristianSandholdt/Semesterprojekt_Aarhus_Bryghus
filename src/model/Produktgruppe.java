@@ -16,7 +16,7 @@ public class Produktgruppe implements Serializable {
         this.udlejning = udlejning;
     }
 
-    public boolean getUdlejning(){
+    public boolean getUdlejning() {
         return this.udlejning;
     }
 
@@ -28,16 +28,16 @@ public class Produktgruppe implements Serializable {
         return new ArrayList<>(prislister);
     }
 
-    public void addPrisliste(Prisliste prisliste){
+    public void addPrisliste(Prisliste prisliste) {
         prislister.add(prisliste);
     }
 
-    public void tilfoejProdukt(Produkt produkt){
+    public void tilfoejProdukt(Produkt produkt) {
         produkter.add(produkt);
-        produkt.produktgruppe=this;
+        produkt.produktgruppe = this;
     }
 
-    public void fjernProdukt(Produkt produkt){
+    public void fjernProdukt(Produkt produkt) {
         produkter.remove(produkt);
     }
 
