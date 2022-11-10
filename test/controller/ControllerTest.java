@@ -35,7 +35,6 @@ class ControllerTest {
     }
 
     /**
-     *
      * @throws RuntimeException
      * Kan ikke oprettes med 0 personer.
      */
@@ -47,8 +46,6 @@ class ControllerTest {
         //Act
         Rundvisning rundvisning = Controller.createRundvisning("Martin","Martin@mail.com",42557898,1200,0,
                 LocalDate.of(2022,11,18),"11:30","12:30");
-        //Assert
-
         }
 
 
@@ -64,9 +61,9 @@ class ControllerTest {
         Pris pris = new Pris(36,2);
         Ordrelinje ol = new Ordrelinje(2,produkt,pris);
         ordre.addOrdrelinje(ol);
-
-
         //Assert
         assertEquals(72.0,Double.parseDouble(Controller.totalPris(ordre)));
     }
+
+
 }
