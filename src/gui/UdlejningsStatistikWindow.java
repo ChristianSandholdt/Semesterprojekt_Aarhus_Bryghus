@@ -61,6 +61,10 @@ public class UdlejningsStatistikWindow extends Stage {
         // Oversigt over den valgte udlejning
         Label lblOrdre = new Label("Ordre:");
         pane.add(lblOrdre, 0, 6);
+        Label lblPris = new Label("                   Pris:");
+        pane.add(lblPris, 1, 6);
+        Label lblAntal = new Label("               Antal:");
+        pane.add(lblAntal, 2, 6);
         lvwOrdre.setMaxHeight(300);
         pane.add(lvwOrdre, 0, 7,4,3);
         //lvwOrdre.setMaxWidth(1000);
@@ -113,17 +117,29 @@ public class UdlejningsStatistikWindow extends Stage {
     }
 
     private void btnUdregnAction() {
-        int antalFostager = Integer.parseInt(txfFustage.getText());
-        int antalKulsyre = Integer.parseInt(txfKulsyre.getText());
-        double sum = (antalFostager * 200) + (antalKulsyre * 1000);
-        String total = String.format("%.2f", sum);
-        txfSum.setText(total);
+        Ordre ordre = lvwUdlejninger.getSelectionModel().getSelectedItem();
+        String str = txfFustage.getText();
+        String Str = txfKulsyre.getText();
+        if (ordre != null && !str.isEmpty() && !Str.isEmpty()) {
+            int antalFostager = Integer.parseInt(txfFustage.getText());
+            int antalKulsyre = Integer.parseInt(txfKulsyre.getText());
+            double sum = (antalFostager * 200) + (antalKulsyre * 1000);
+            String total = String.format("%.2f", sum);
+            txfSum.setText(total);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Fejl");
+            alert.setHeaderText("Ingen udlejning valgt!");
+            alert.setContentText("Vælg en udlejning og udfyld felterne før du kan fortsætte.");
+            alert.show();
+        }
     }
 
     private void btnUdbetalAction() {
         Ordre ordre = lvwUdlejninger.getSelectionModel().getSelectedItem();
-        String test = txfSum.getText();
-        if (ordre != null && !test.isEmpty()) {
+        String str = txfSum.getText();
+        if (ordre != null && !str.isEmpty()) {
             Controller.deleteOrdre(ordre);
             lvwOrdre.getItems().clear();
             lvwUdlejninger.getItems().remove(ordre);
@@ -134,7 +150,7 @@ public class UdlejningsStatistikWindow extends Stage {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initOwner(this.getScene().getWindow());
             alert.setTitle("Fejl");
-            alert.setHeaderText("Ingen ordre valgt!");
+            alert.setHeaderText("Ingen udlejning valgt!");
             alert.setContentText("Vælg en ordre og udfyld felterne før du kan fortsætte.");
             alert.show();
         }
