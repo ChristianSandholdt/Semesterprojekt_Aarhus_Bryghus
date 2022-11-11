@@ -142,7 +142,8 @@ public class DagensSalgStatistik extends Stage {
         String s = "" + ordrer.size();
         txfTotalSalg.setText(s);
     }
-    void update(){
-        fillLvwOrdre(LocalDate.now());
+    void updateDato(){
+        datePicker.setValue(LocalDate.now());
+        selectedDateChanged();
     }
 }
