@@ -125,6 +125,7 @@ public class UdlejningTab extends GridPane {
         txfAntal.setText(Integer.toString(decrease));
     }
 
+    //Pre: Der skal være til antal produkter, tilsvarende antal pant.
     private void btnÅbenBetalingAction() {
         betalingsWindow = new BetalingsWindow("Betaling", new Stage(), ordre, nyOrdreWindow);
         betalingsWindow.hideRabat();

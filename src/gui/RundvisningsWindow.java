@@ -14,6 +14,7 @@ import javafx.util.Callback;
 import model.Rundvisning;
 
 import java.time.LocalDate;
+import java.time.chrono.Chronology;
 
 public class RundvisningsWindow extends Stage {
 
@@ -48,13 +49,13 @@ public class RundvisningsWindow extends Stage {
     private final Button btnReserver = new Button("Reserver");
     private final Button btnUpdate = new Button("Opdatere");
     private final Button btnDelete = new Button("Slet");
+    DatePicker datePicker = new DatePicker(LocalDate.now());
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(30));
         pane.setHgap(10);
         pane.setVgap(10);
 
-        DatePicker datePicker = new DatePicker(LocalDate.now());
         datePicker.setEditable(false);
         HBox dateBox = new HBox(datePicker);
         pane.add(dateBox, 0, 0, 2, 1);
@@ -119,34 +120,69 @@ public class RundvisningsWindow extends Stage {
 
         HBox btnBox = new HBox(btnReserver, btnUpdate, btnDelete);
         pane.add(btnBox, 0, 11, 3, 1);
-        btnBox.setSpacing(25);
+        btnBox.setSpacing(10);
         btnBox.setAlignment(Pos.CENTER);
         btnReserver.setOnAction(event -> btnReserverAction());
         btnUpdate.setOnAction(event -> btnUpdateAction());
         btnDelete.setOnAction(event -> btnDeleteAction());
     }
 
+    // Pre: Der må ikke være reserveret på en valgt dato. Alle felter skal udfyldes.
     private void btnReserverAction() {
+        if (txfTlf.getText().isEmpty() || txfAntalPersoner.getText().isEmpty() || !txfDato.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Udfyld manglende text felter");
+            alert.setHeaderText("Der mangler at blive udfyldt et telefon nummer eller et antal personer eller en dato");
+            alert.setContentText("Udfyld det textfelt du glemte");
+            alert.show();
+        }
         String navn = txfNavn.getText();
         String email = txfEmail.getText();
         int tlfNummer = Integer.parseInt(txfTlf.getText());
         int antalPersoner = Integer.parseInt(txfAntalPersoner.getText());
         String startTid = txfStartTid.getText();
         String slutTid = txfSlutTid.getText();
-        Controller.createRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
-        close();
+        if (!navn.isEmpty() && !email.isEmpty() && !startTid.isEmpty() && !slutTid.isEmpty()){
+            Controller.createRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
+            close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Udfyld manglende text felter");
+            alert.setHeaderText("Der mangler at blive udfyldt et textfelt");
+            alert.setContentText("Udfyld det textfelt du glemte");
+            alert.show();
+        }
     }
 
     // Pre: TextField skal være udfyldt
     private void btnUpdateAction() {
+        if (txfTlf.getText().isEmpty() || txfAntalPersoner.getText().isEmpty() || !txfDato.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Udfyld manglende text felter");
+            alert.setHeaderText("Der mangler at blive udfyldt et telefon nummer eller et antal personer eller en dato");
+            alert.setContentText("Udfyld det textfelt du glemte");
+            alert.show();
+        }
         String navn = txfNavn.getText();
         String email = txfEmail.getText();
         int tlfNummer = Integer.parseInt(txfTlf.getText());
         int antalPersoner = Integer.parseInt(txfAntalPersoner.getText());
         String startTid = txfStartTid.getText();
         String slutTid = txfSlutTid.getText();
-        Controller.updateRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
-        close();
+        if (!navn.isEmpty() && !email.isEmpty() && !startTid.isEmpty() && !slutTid.isEmpty()){
+            Controller.updateRundvisning(navn, email, tlfNummer, 0, antalPersoner, date, startTid, slutTid);
+            close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Udfyld manglende text felter");
+            alert.setHeaderText("Der mangler at blive udfyldt et textfelt");
+            alert.setContentText("Udfyld det textfelt du glemte");
+            alert.show();
+        }
     }
 
     // Pre: TextField skal være udfyldt
@@ -164,21 +200,33 @@ public class RundvisningsWindow extends Stage {
         }
     }
 
+    //Udfylder tekstfelter baseret på en gemt reservation ud fra datoen valgt.
+    // Pre: Der skal være en reserveret dato.
     private void reservationsDatoValgt() {
-        txfNavn.clear();
-        txfEmail.clear();
-        txfTlf.clear();
-        txfAntalPersoner.clear();
-        txfStartTid.clear();
-        txfSlutTid.clear();
-        for (Rundvisning r : Controller.getStorage().getRundvisning()) {
-            if (date.equals(r.getDato())) {
-                txfNavn.setText(r.getNavn());
-                txfEmail.setText(r.getEmail());
-                txfTlf.setText(String.valueOf(r.getTlfNummer()));
-                txfAntalPersoner.setText(String.valueOf(r.getAntalPersoner()));
-                txfStartTid.setText(r.getStartTid());
-                txfSlutTid.setText(r.getSlutTid());
+        if (date.isBefore(LocalDate.now())){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(this.getScene().getWindow());
+            alert.setTitle("Datoen valgt er før i dag!");
+            alert.setHeaderText("Vælg en dato efter i dag");
+            alert.setContentText("Datoen må ikke være valgt i forvejen");
+            datePicker.setValue(LocalDate.now());
+            alert.show();
+        } else {
+            txfNavn.clear();
+            txfEmail.clear();
+            txfTlf.clear();
+            txfAntalPersoner.clear();
+            txfStartTid.clear();
+            txfSlutTid.clear();
+            for (Rundvisning r : Controller.getStorage().getRundvisning()) {
+                if (date.equals(r.getDato())) {
+                    txfNavn.setText(r.getNavn());
+                    txfEmail.setText(r.getEmail());
+                    txfTlf.setText(String.valueOf(r.getTlfNummer()));
+                    txfAntalPersoner.setText(String.valueOf(r.getAntalPersoner()));
+                    txfStartTid.setText(r.getStartTid());
+                    txfSlutTid.setText(r.getSlutTid());
+                }
             }
         }
     }

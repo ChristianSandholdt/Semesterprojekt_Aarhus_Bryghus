@@ -16,7 +16,7 @@ public class App {
 
         Controller.setStorage(storage);
 
-        // initStorage();
+        //initStorage();
         Application.launch(Gui.class);
 
     }
@@ -288,7 +288,5 @@ public class App {
         Produktgruppe pg11 = Controller.createProduktGruppe("Rundvisning", false);
         Produkt GG22 = Controller.createProdukt("Rundvisning", pg11);
         Controller.createPris(GG22, butik, 100, 0);
-
-
     }
 }
